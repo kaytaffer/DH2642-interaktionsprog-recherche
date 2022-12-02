@@ -5,7 +5,6 @@
 /.pnp
 .pnp.js
 
-.idea/*
 # testing
 /coverage
 
@@ -33,5 +32,8 @@ package-lock.json
 !telemetry.config.json
 /public/*.js
 /public/*.html
-.DS_Store
 .idea/*
+
+#ESLint
+.eslintrc.js
+.eslintrc.json
