@@ -1,3 +1,5 @@
+//TODO wrapper for other sub-components
+
 import WordInputView from "../view/wordInputView.js";
 import React from "react";
 
