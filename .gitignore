@@ -26,7 +26,6 @@ yarn-error.log*
 **/node_modules
 **/*~
 dist
-package-lock.json
 **/*solved*
 **/*Config.js*
 !telemetry.config.json
@@ -36,3 +35,7 @@ package-lock.json
 
 #ESLint
 .eslintrc.json
+
+#Package
+package.json
+package-lock.json

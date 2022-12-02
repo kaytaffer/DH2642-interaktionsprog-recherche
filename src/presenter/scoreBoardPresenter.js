@@ -1,14 +1,9 @@
 //TODO present component scoreBoard
-
 import React from "react";
 
-import ScoreBoardView from "../view/wordInputView";
+import ScoreBoardView from "../view/scoreBoardView.js";
 
 function ScoreBoard() {
-
-    return <div>
-        <ScoreBoardView word = {"word"}/>;
-    </div>
-
+    return <ScoreBoardView word = {"word"}/>;
 }
 export default ScoreBoard;
