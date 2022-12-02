@@ -1,4 +1,4 @@
-import GameView from "../view/gameView.js";
+import WordInputView from "../view/wordInputView.js";
 import React from "react";
 
 function Game(props){
@@ -11,9 +11,9 @@ function Game(props){
     }
 
     return <div>
-        <GameView randomWordOption = {["example", "type", "span", "ability", "border", "membership", "resolve"]}
-                  onUserTextInput = {addWordACB}
-                  onSendButtonClick ={performSendACB}/>;
+        <WordInputView randomWordOption = {["example", "type", "span", "ability", "border", "membership", "resolve"]}
+                       onUserTextInput = {addWordACB}
+                       onSendButtonClick ={performSendACB}/>;
     </div>
 }
 export default Game;

@@ -1,4 +1,6 @@
-function GameView(props){
+import React from "react";
+
+function WordInputView(props){
 
     function userInputButtonACB(){
         props.onSendButtonClick();
@@ -18,4 +20,4 @@ function GameView(props){
         </span>
     );
 }
-export default GameView;
+export default WordInputView;
