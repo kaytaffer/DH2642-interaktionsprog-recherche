@@ -4,12 +4,10 @@ import React from "react";
 
 //TODO present a third party clock/timer
 
-
-
 import WordInputView from "../view/wordInputView.js";
 
 
-function Game(props){
+function WordInput() {
 
     function addWordACB(text){
         console.log(text);
@@ -23,5 +21,6 @@ function Game(props){
                        onUserTextInput = {addWordACB}
                        onSendButtonClick ={performSendACB}/>;
     </div>
+
 }
-export default Game;
+export default WordInput;

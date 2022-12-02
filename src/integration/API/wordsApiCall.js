@@ -11,7 +11,7 @@ const apiParam ={  // "method": "GET",              // HTTP method
     //"headers": {                  // HTTP headers, also object literal
   //      'X-Mashape-Key': API_KEY,
   //      "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    } // end of headers object
+    //} // end of headers object
 }/* end of second fetch parameter, object */
 
 function apiCall(URL){
@@ -19,10 +19,10 @@ function apiCall(URL){
 }
 
 function getRandomWord(){
-    return apiCall(BASE_URL +//TODO )
+    return apiCall(/*BASE_URL + TODO*/ )
 }
 
 function getFrequency(word){
-    return apiCall(BASE_URL +//TODO )
+    return apiCall(/*BASE_URL + TODO*/ )
 }
 

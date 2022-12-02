@@ -3,10 +3,10 @@ import Game from "./presenter/gamePresenter";
 import React from "react";
 
 export default
-function App(props) {
+function App() {
   return (
     <div className="App">
-        <Game model ={props.model}/>
+        <Game/>
     </div>
   );
 }
