@@ -6,7 +6,11 @@ function treatHTTPResponseACB(response){
     else return response.json()
 }
 
-//format of the call, wanted by the API
+function transformResultACB(data){
+    return data.results;
+}
+
+
 const apiParam ={
     "method": "GET",  // HTTP method
     "headers": {      // HTTP headers, also object literal
@@ -17,7 +21,7 @@ const apiParam ={
 }
 
 function apiCall(URL){
-    return fetch(URL,apiParam).then(treatHTTPResponseACB);
+    return fetch(URL,apiParam).then(treatHTTPResponseACB).then(transformResultACB);
 }
 
 function getRandomWord(){
