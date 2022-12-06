@@ -1,8 +1,11 @@
-//TODO add utilities here:
+//TODO add utilities concerning game logic here:
 
 export const roundLength = 10;
 
 
-//TODO function to check synonym to theWord
+//TODO
+function calculatePointsFromFrequencyCB(frequency){
+    const points = 0 //TODO: some calculation
 
-//TODO function to check frequency of synonym to theWord
+    return points;
+}
