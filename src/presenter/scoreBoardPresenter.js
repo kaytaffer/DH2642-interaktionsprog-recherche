@@ -16,6 +16,8 @@ function ScoreBoard() {
     console.log("user words:")
     console.log(userWords);
 
-    return <ScoreBoardView word = {"word"}/>;
+    return <ScoreBoardView word = {givenWord}
+                    definition = {definition}
+                    userWords = {userWords}/>;
 }
 export default ScoreBoard;
