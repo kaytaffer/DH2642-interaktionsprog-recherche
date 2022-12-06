@@ -3,9 +3,9 @@
 export const roundLength = 10;
 
 
-//TODO
-export function calculatePointsFromFrequency(frequency){
-    const points = 0 //TODO: some calculation
-
-    return points;
+//TODO decide on final score rules
+//Calculates score for a word depending on how recherché it is.
+export function calculateScoreFromFrequency(frequency){
+    //The higher the frequency, the lower the points:
+    return (1 / frequency) * 1000;
 }
