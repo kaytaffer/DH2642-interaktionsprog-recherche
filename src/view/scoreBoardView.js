@@ -3,8 +3,8 @@ function ScoreBoardView(props){
 
     function tableRowCB(synonymObject) {
         return (
-            <tr key={synonymObject.synonym}>
-                <td>{synonymObject.synonym}</td>
+            <tr key={synonymObject.word}>
+                <td>{synonymObject.word}</td>
                 <td>{synonymObject.points}</td>
             </tr>
             )
