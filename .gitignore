@@ -35,7 +35,3 @@ dist
 
 #ESLint
 .eslintrc.json
-
-#Package
-package.json
-package-lock.json
