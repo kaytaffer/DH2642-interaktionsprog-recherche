@@ -1,5 +1,5 @@
 import { atom, selector } from 'recoil';
-import {compareWordsMatch, createSynonymPointObject} from "../utilities/wordUtilities";
+import {compareWordsMatch, compareWordsMisMatch, createSynonymScoreObject} from "../utilities/wordUtilities";
 
 // The given word
 export const givenWordState = atom({
@@ -46,7 +46,7 @@ export const enteredWordsWithFrequencyState = selector({
 
         function addFrequencyCB(synonym) {
             // TODO: call function to get frequencies
-            return createSynonymPointObject(synonym, 0);
+            return createSynonymScoreObject(synonym, 0);
         }
         return compareWordsMatch(get(enteredWordsState), get(synonymsState)).map(addFrequencyCB);
     }
