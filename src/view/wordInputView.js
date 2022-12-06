@@ -12,11 +12,14 @@ function WordInputView(props){
         if(event.key !== "Enter") {return}
         props.onAddEnteredWord();
     }
+    function displayEnteredWordACB(word){
+        return <tr key ={word}><td>{word}</td></tr>;
+    }
 
     return (
         <span className="App">
 
-            <h1>{props.randomWordOption}</h1>
+            <h1>{props.randomWord}</h1>
 
             <input type = "text"
                    placeholder="Give us your best Recherché synonyms.."
@@ -26,7 +29,17 @@ function WordInputView(props){
                    onChange={textInputChangeACB}
                    onKeyDown={keyGoesDownACB}/>
             <button onClick={sendButtonClickedACB}>Send</button>
-        </span>
+
+            <table className="centered">
+                <tbody>
+                {props.enteredWords.map(displayEnteredWordACB)}
+                </tbody>
+            </table>
+
+
+
+            </span>
+
     );
 }
 export default WordInputView;
