@@ -1,5 +1,3 @@
-//TODO present component wordInput
-//TODO present a third party clock/timer
 
 import React, {useState} from "react";
 import WordInputView from "../view/wordInputView.js";
@@ -9,11 +7,6 @@ import {enteredWordsState, givenWordState} from "../model/atoms.js";
 function WordInput() {
     const givenWord = useRecoilValue(givenWordState);
     const [enteredWords, setEnteredWords] = useRecoilState(enteredWordsState);
-
-    //to test:
-    console.log("given word: " + givenWord);
-    console.log("entered words: " + enteredWords);
-    // to add a new word that user entered: setEnteredWords([...enteredWords, newWord]);
     const [newWord, setNewWord] = useState('');
 
     //Saves last text input from user in component state.
@@ -29,11 +22,13 @@ function WordInput() {
         setNewWord('');
     };
 
+
     return <div>
-        <WordInputView  randomWordOption = {givenWord}
+        <WordInputView  randomWord = {givenWord}
                         inputText = {newWord}
                         onAddEnteredWord ={performAddWordACB}
-                        onTextInputChange = {handleTextChangeACB}/>
+                        onTextInputChange = {handleTextChangeACB}
+                        enteredWords = {enteredWords}/>
     </div>
 
 }
