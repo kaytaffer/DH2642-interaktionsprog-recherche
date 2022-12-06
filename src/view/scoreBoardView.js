@@ -5,7 +5,7 @@ function ScoreBoardView(props){
         return (
             <tr key={synonymObject.synonym}>
                 <td>{synonymObject.synonym}</td>
-                <td>{synonymObject.frequency}</td>
+                <td>{synonymObject.points}</td>
             </tr>
             )
     }

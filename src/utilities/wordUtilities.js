@@ -3,23 +3,32 @@
 
 
 //TODO
+import {synonymsState} from "../model/atoms";
+import {calculatePointsFromFrequency} from "./gameUtilities";
+
 function extractGivenWord(givenWordObject){
-    return "string";
+    return "example";
 }
 
 //TODO
 function extractDefinition(givenWordObject){
-    return "string"
+    return "a thing characteristic of its kind or illustrating a general rule."
 }
 
 //TODO
 function extractSynonyms(givenWordObject){
-    return [];
+    return ["instance", "case", "illustration", "sample"];
 }
 
 //TODO
-function compareWordsMatch(userSynonymArray, givenWordSynonyms){
-    return [];
+export function compareWordsMatch(userSynonymArray, givenWordSynonyms){
+    function isASynonymCB(word) {
+        function isWord(synonym) {
+            return word === synonym;
+        }
+        return givenWordSynonyms.find(isWord);
+    }
+    return userSynonymArray.filter(isASynonymCB);
 }
 
 //TODO
@@ -29,9 +38,9 @@ function compareWordsMismatch(userSynonymArray, givenWordSynonyms){
 }
 
 //TODO
-function createFrequencyObject (synonym, frequency) {
+export function createSynonymPointObject (synonym, frequency) {
 
-    return [{synonym: "string",
-            points: 0}];
+    return {synonym,
+            points: calculatePointsFromFrequency(frequency)};
 }
 

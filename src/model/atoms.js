@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import {compareWordsMatch, createSynonymPointObject} from "../utilities/wordUtilities";
 
 // The given word
 export const givenWordState = atom({
@@ -10,7 +11,7 @@ export const givenWordState = atom({
 // Will contain all synonyms of that word
 export const synonymsState = selector({
     key: 'synonymsState',
-    get: ({get}) => { //TODO: un-arrow notation this
+    get: ({get}) => {
         // TODO: call function to get synonyms, like this:
         // return functionName(get(givenWordState));
 
@@ -43,18 +44,10 @@ export const enteredWordsWithFrequencyState = selector({
     key: 'enteredWordsWithFrequencyState',
     get: ({get}) => { //TODO: un-arrow notation this
 
-        // TODO: maybe move to gameUtilities and use functions from there?
-        function isASynonymCB(word) {
-            function isWord(synonym) {
-                return word === synonym;
-            }
-            return get(synonymsState).find(isWord);
-        }
         function addFrequencyCB(synonym) {
             // TODO: call function to get frequencies
-            return {synonym, frequency: 30 /*getFrequencyOfWord(synonym)*/};
+            return createSynonymPointObject(synonym, 0);
         }
-
-        return get(enteredWordsState).filter(isASynonymCB).map(addFrequencyCB);
+        return compareWordsMatch(get(enteredWordsState), get(synonymsState)).map(addFrequencyCB);
     }
 })
