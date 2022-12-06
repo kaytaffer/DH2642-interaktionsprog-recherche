@@ -3,7 +3,7 @@ function ScoreBoardView(props){
 
     function tableRowCB(synonymObject) {
         return (
-            <tr>
+            <tr key={synonymObject.synonym}>
                 <td>{synonymObject.synonym}</td>
                 <td>{synonymObject.frequency}</td>
             </tr>
@@ -15,7 +15,9 @@ function ScoreBoardView(props){
             <h1>{props.word}</h1>
             <p>{props.definition}</p>
             <table className="centered">
-                {props.userWords.map(tableRowCB)}
+                <tbody>
+                    {props.userWords.map(tableRowCB)}
+                </tbody>
             </table>
         </div>
     );
