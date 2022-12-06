@@ -1,15 +1,10 @@
-import {BASE_URL, API_KEY} from "/src/integration/API/apiConfig.js"
+import {BASE_URL, API_KEY} from "./apiConfig.js"
 
 function treatHTTPResponseACB(response){
     if (response.status !== 200)
         throw Error("Something horrible happened @ api-call, server returned: " + response.status)
     else return response.json()
 }
-
-function transformResultACB(data){
-    return data.results;
-}
-
 
 const apiParam ={
     "method": "GET",  // HTTP method
@@ -21,7 +16,7 @@ const apiParam ={
 }
 
 function apiCall(URL){
-    return fetch(URL,apiParam).then(treatHTTPResponseACB).then(transformResultACB);
+    return fetch(URL,apiParam).then(treatHTTPResponseACB);
 }
 
 function getRandomWord(){
