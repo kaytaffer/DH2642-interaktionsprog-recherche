@@ -1,5 +1,7 @@
 //TODO add utilities here:
 
+export const roundLength = 10;
+
 
 //TODO function to check synonym to theWord
 
