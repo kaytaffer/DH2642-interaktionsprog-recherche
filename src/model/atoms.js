@@ -1,10 +1,18 @@
-import { atom, selector } from 'recoil';
-import {compareWordsMatch, compareWordsMisMatch, createSynonymScoreObject} from "../utilities/wordUtilities";
+import { atom, atomFamily, selector, useSetRecoilState } from 'recoil';
+import {compareWordsMatch, compareWordsMisMatch, createSynonymScoreObject, extractDefinition, extractFrequency, extractSynonyms} from "../utilities/wordUtilities";
+import { getRandomWord, getFrequency } from '../integration/API/wordsApiCall';
+import {extractGivenWord} from '../utilities/wordUtilities';
+    
+export const givenWordPromiseState = atom({
+    key: 'givenWordPromiseState',
+    default: getRandomWord(),
+})
 
-// The given word
-export const givenWordState = atom({
-    key: 'givenWordState',
-    default: 'example'
+export const givenWordState = selector({
+    key : 'givenWordState',
+    get : ({get}) => {
+        return extractGivenWord(get(givenWordPromiseState));
+    }
 })
 
 // Derived state of the given word
@@ -12,11 +20,7 @@ export const givenWordState = atom({
 export const synonymsState = selector({
     key: 'synonymsState',
     get: ({get}) => {
-        // TODO: call function to get synonyms, like this:
-        // return functionName(get(givenWordState));
-
-        // for now:
-        return ["instance", "case", "illustration", "sample"];
+        return extractSynonyms(get(givenWordPromiseState));
     }
 })
 
@@ -24,12 +28,8 @@ export const synonymsState = selector({
 // Will contain the definition of that word
 export const definitionState = selector({
     key: 'definitionState',
-    get: ({get}) => { //TODO: un-arrow notation this
-        // TODO: call function to get definition, like this:
-        // return functionName(get(givenWordState));
-
-        // for now:
-        return "a thing characteristic of its kind or illustrating a general rule.";
+    get: ({get}) => {
+        return extractDefinition(get(givenWordPromiseState));
     }
 })
 
@@ -39,6 +39,12 @@ export const enteredWordsState = atom({
     default: []
 })
 
+const frequencyFamily = atomFamily({
+    key: 'frequency',
+    default: word => getFrequency(word)
+    
+})
+
 // All words entered by the user with their frequency
 export const enteredWordsWithFrequencyState = selector({
     key: 'enteredWordsWithFrequencyState',
@@ -46,8 +52,9 @@ export const enteredWordsWithFrequencyState = selector({
 
         function addFrequencyCB(synonym) {
             // TODO: call function to get frequencies
-            return createSynonymScoreObject(synonym, 0);
+            return createSynonymScoreObject(synonym, extractFrequency(get(frequencyFamily(synonym))));
         }
         return compareWordsMatch(get(enteredWordsState), get(synonymsState)).map(addFrequencyCB);
+        //return get(synonymsState).map(addFrequencyCB);
     }
 })

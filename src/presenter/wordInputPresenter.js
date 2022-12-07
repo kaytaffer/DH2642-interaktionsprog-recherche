@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import WordInputView from "../view/wordInputView.js";
 import {useRecoilValue, useRecoilState} from "recoil";
-import {enteredWordsState, givenWordState} from "../model/atoms.js";
+import {enteredWordsState, givenWordState, synonymsState, definitionState} from "../model/atoms.js";
 
 function WordInput() {
     const givenWord = useRecoilValue(givenWordState);

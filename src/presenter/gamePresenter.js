@@ -33,14 +33,18 @@ function Game() {
     )
     if(!roundOver) return (
         <div>
-            <Countdown date={Date.now() + roundLength * 1000} onComplete={roundOverACB}
+            <React.Suspense fallback={<div> Loading... </div>}>
+                <Countdown date={Date.now() + roundLength * 1000} onComplete={roundOverACB}
                        precision={3} daysInHours={true} renderer={renderer}/>
-            <WordInput/>
+                <WordInput/>
+            </React.Suspense>
         </div>
     )
     return (
         <div>
-            <ScoreBoard/>
+            <React.Suspense fallback={<div> Loading... </div>}>
+                <ScoreBoard/>
+            </React.Suspense>
         </div>
     )
 }
