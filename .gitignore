@@ -35,3 +35,8 @@ dist
 
 #ESLint
 .eslintrc.json
+
+#firebase deployment
+.firebaserc
+firebase.json
+hosting.*.cache

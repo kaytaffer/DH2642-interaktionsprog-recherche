@@ -3,7 +3,7 @@
 A nerdy wordy game about finding rare synonyms.
 
 
-[Find the game here](http://recherche-1.appspot.com)
+[Find the game here](https://recherche-1.web.app/)
 ## Project description
 
 Web application where you compete against friends to find the most obscure synonym of a given word within a timeframe. 
