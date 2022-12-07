@@ -17,10 +17,11 @@ const apiParam ={
 
 function apiCall(URL){
     return fetch(URL,apiParam).then(treatHTTPResponseACB);
+    
 }
 
 function getRandomWord(){
-    return apiCall(BASE_URL + "/words/?random=true")
+    return apiCall(BASE_URL + "/words/?hasDetails=synonyms,definition&random=true")
 }
 
 function getFrequency(word){
