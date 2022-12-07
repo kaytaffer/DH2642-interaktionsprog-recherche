@@ -5,13 +5,13 @@ function ScoreBoardView(props){
         return (
             <tr key={synonymObject.word}>
                 <td>{synonymObject.word}</td>
-                <td>{synonymObject.points}</td>
+                <td>{synonymObject.points.toFixed(2)}</td>
             </tr>
             )
     }
 
     function definitionCB(definition) {
-        return <li>"{definition}"</li>
+        return <li key={definition}>"{definition}"</li>
     }
 
     return (

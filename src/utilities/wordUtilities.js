@@ -59,7 +59,10 @@ function compareWordsMatch(enteredWordsArray, givenWordSynonyms){
 //creates an array of the words the user entered which are NOT synonyms to the given word.
 function compareWordsMismatch(enteredWordsArray, givenWordSynonyms){
     function mismatchCheckerCB(word){
-        return (word !== givenWordSynonyms.find(word));
+        function isNotWord(synonym) {
+            return word !== synonym;
+        }
+        return (givenWordSynonyms.find(isNotWord));
     }
     return [...enteredWordsArray].filter(mismatchCheckerCB);
     
@@ -67,8 +70,6 @@ function compareWordsMismatch(enteredWordsArray, givenWordSynonyms){
 
 //creates an object of each word with points according to its frequency.
 function createSynonymScoreObject (synonym, frequency) {
-
-    console.log("created syn obj");
 
     return {word: synonym,
             points: calculateScoreFromFrequency(frequency)};

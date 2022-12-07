@@ -1,8 +1,8 @@
-import { atom, atomFamily, selector, useSetRecoilState } from 'recoil';
-import {compareWordsMatch, compareWordsMisMatch, createSynonymScoreObject, extractDefinition, extractFrequency, extractSynonyms} from "../utilities/wordUtilities";
+import { atom, atomFamily, selector } from 'recoil';
+import {compareWordsMatch, compareWordsMismatch, createSynonymScoreObject, extractDefinition, extractFrequency, extractSynonyms} from "../utilities/wordUtilities";
 import { getRandomWord, getFrequency } from '../integration/API/wordsApiCall';
 import {extractGivenWord} from '../utilities/wordUtilities';
-    
+
 export const givenWordPromiseState = atom({
     key: 'givenWordPromiseState',
     default: getRandomWord(),
@@ -39,22 +39,27 @@ export const enteredWordsState = atom({
     default: []
 })
 
+// Gets frequency for a specified word
 const frequencyFamily = atomFamily({
     key: 'frequency',
     default: word => getFrequency(word)
-    
 })
 
-// All words entered by the user with their frequency
+// All correct words entered by the user with their frequency
 export const enteredWordsWithFrequencyState = selector({
     key: 'enteredWordsWithFrequencyState',
-    get: ({get}) => { //TODO: un-arrow notation this
-
+    get: ({get}) => {
         function addFrequencyCB(synonym) {
-            // TODO: call function to get frequencies
             return createSynonymScoreObject(synonym, extractFrequency(get(frequencyFamily(synonym))));
         }
         return compareWordsMatch(get(enteredWordsState), get(synonymsState)).map(addFrequencyCB);
-        //return get(synonymsState).map(addFrequencyCB);
+    }
+})
+
+// All incorrect words entered by their user
+export const incorrectWordsState = selector({
+    key: 'incorrectWordsState',
+    get: ({get}) => {
+        return compareWordsMismatch(get(enteredWordsState), get(synonymsState));
     }
 })
