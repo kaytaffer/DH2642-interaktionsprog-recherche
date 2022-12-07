@@ -28,10 +28,11 @@ to their frequency in common English text.
 
 ### Our aim
 
-We aim to make the game more enjoyable through better UX. For example, we intend to more clearly present which entered
-synonyms are actually correct or not, and sum the score up for comparison to other players. 
+We aim to make the game more enjoyable through better UX. For example, we intend to select more appropriate words for 
+the random given word from the WordApi since these contain e.g. latin phrases and proper nouns.
+We also intend to more clearly present which entered synonyms are actually correct or not, and sum the score up for comparison to other players. 
 
-The biggest step is to add concurrent multiplayer versus mode 
+The biggest step is to add concurrent multiplayer versus mode. 
 
 Other game modes like finding rhymes and antonyms, or speed rounds with only one word allowed, are possible additions.
 
