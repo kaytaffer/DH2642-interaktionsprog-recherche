@@ -28,4 +28,9 @@ function getFrequency(word){
     return apiCall(BASE_URL +"/words/" + word + "/frequency")
 }
 
-export {getRandomWord, getFrequency}
+//only for testing
+function getSearchedWord(word){
+    return apiCall(BASE_URL + "/words/" + word)
+}
+
+export {getRandomWord, getFrequency, getSearchedWord}

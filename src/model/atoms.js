@@ -1,8 +1,11 @@
 import { atom, atomFamily, selector } from 'recoil';
 import {compareWordsMatch, compareWordsMismatch, createSynonymScoreObject, extractDefinition, extractFrequency, extractSynonyms} from "../utilities/wordUtilities";
-import { getRandomWord, getFrequency } from '../integration/API/wordsApiCall';
+import {getSearchedWord, getRandomWord, getFrequency } from '../integration/API/wordsApiCall';
 import {extractGivenWord} from '../utilities/wordUtilities';
 
+// To test a given word instead of a random
+// set default like this:
+// default : getSearchedWord("word"),
 export const givenWordPromiseState = atom({
     key: 'givenWordPromiseState',
     default: getRandomWord(),
