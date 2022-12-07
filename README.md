@@ -65,7 +65,7 @@ on a different page. Another page would contain the rules for the different game
 
 ### presenter
 
-`gamePresenter.js` - Wrapper for other sub-components and implements a third party component countdown timer `zeroPad`.
+`gamePresenter.js` - Wrapper for other sub-components and implements a third party component countdown timer `Countdown`.
 
 `scoreBoardPresenter.js` - Passes props to `scoreBoardView.js`
 
