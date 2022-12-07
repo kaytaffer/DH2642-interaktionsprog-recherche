@@ -19,7 +19,7 @@ function WordInputView(props){
     return (
         <span className="App">
 
-            <h1>{props.randomWord}</h1>
+            <h1>[{props.randomWord}]</h1>
 
             <input type = "text"
                    placeholder="Give us your best Recherché synonyms.."

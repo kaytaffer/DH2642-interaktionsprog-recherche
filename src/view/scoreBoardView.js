@@ -12,8 +12,8 @@ function ScoreBoardView(props){
 
     return (
         <div className="scoreBoard">
-            <h1>{props.word}</h1>
-            <p>{props.definition}</p>
+            <h1>[{props.word}]</h1>
+            <p>“{props.definition}”</p>
             <table className="centered">
                 <tbody>
                     {props.userWords.map(tableRowCB)}
