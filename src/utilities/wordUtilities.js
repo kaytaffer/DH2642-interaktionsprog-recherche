@@ -6,13 +6,11 @@
 
 import {calculateScoreFromFrequency} from "./gameUtilities";
 
-//TODO Test if this is right? should be according to https://rapidapi.com/dpventures/api/wordsapi
 //picks out the word string for the given word object.
 function extractGivenWord(givenWordObject){
     return givenWordObject.word;
 }
 
-//TODO Test if this is right? should be according to https://rapidapi.com/dpventures/api/wordsapi
 //picks out the definition for the given word.
 function extractDefinition(givenWordObject){
     function combineDefinitionCB(currentArray, newResult){
@@ -21,18 +19,17 @@ function extractDefinition(givenWordObject){
     return givenWordObject.results.reduce(combineDefinitionCB, []);
 }
 
-//TODO Test if this is right? should be according to https://rapidapi.com/dpventures/api/wordsapi
 //picks out the synonym array for the given word.
 function extractSynonyms(givenWordObject){
 
     function combineArraysCB(currentArray, newResults) {
+        if(!newResults.synonyms) return currentArray;
         return [...currentArray, ...newResults.synonyms];
     }
     
     return givenWordObject.results.reduce(combineArraysCB, []);
 }
 
-//TODO Test if this is right? should be according to https://rapidapi.com/dpventures/api/wordsapi
 //picks out the number of times the word is likely to appear in any English corpus, per million words.
 // If it does not have a frequency according to the API, returns a default value.
 function extractFrequency (wordFrequencyObject){
@@ -55,7 +52,7 @@ function compareWordsMatch(enteredWordsArray, givenWordSynonyms){
 
     }
     
-    return [...enteredWordsArray].filter(isASynonymCB);
+    return enteredWordsArray.filter(isASynonymCB);
 }
 
 //creates an array of the words the user entered which are NOT synonyms to the given word.
@@ -66,7 +63,7 @@ function compareWordsMismatch(enteredWordsArray, givenWordSynonyms){
         }
         return (givenWordSynonyms.find(isNotWord));
     }
-    return [...enteredWordsArray].filter(mismatchCheckerCB);
+    return enteredWordsArray.filter(mismatchCheckerCB);
     
 }
 
