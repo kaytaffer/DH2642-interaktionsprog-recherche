@@ -10,15 +10,21 @@ function WordInput() {
     const [newWord, setNewWord] = useState('');
 
     //Saves last text input from user in component state.
-    const handleTextChangeACB = event =>{
+    const handleTextChangeACB = event => {
         setNewWord(event.target.value);
     };
 
-    //Saves entered word from users into array when keyboard key "Enter" or "Send" button is activated.
+    // CB checks if a word is already represented in the array with saved word from current game.
+    // Ensures that no duplicate words are saved.
+    const renderEnteredWordsCB = (word) => {
+        return word === newWord;
+    }
+    //Saves unique entered word from users when keyboard key "Enter" or "Send" button is activated,
+    //and then clear the input box.
     const performAddWordACB = () => {
+        if(!enteredWords.find(renderEnteredWordsCB))
         setEnteredWords([...enteredWords, newWord]);
 
-        //Clear the input box.
         setNewWord('');
     };
 
