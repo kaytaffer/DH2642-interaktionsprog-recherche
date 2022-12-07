@@ -1,13 +1,22 @@
 //TODO build a view for the score board
 function ScoreBoardView(props){
 
-    function tableRowCB(synonymObject) {
+    function showCorrectSynonymsCB(synonymObject) {
         return (
             <tr key={synonymObject.word}>
                 <td>{synonymObject.word}</td>
                 <td>{synonymObject.points.toFixed(2)}</td>
             </tr>
             )
+    }
+    function showIncorrectSynonymsCB(incorrectSynonym){
+        return(
+            <tr key ={incorrectSynonym}>
+                <td>
+                    <span className="strikethrough">{incorrectSynonym}</span>
+                </td>
+            </tr>
+        )
     }
 
     function definitionCB(definition) {
@@ -22,7 +31,8 @@ function ScoreBoardView(props){
             </ol>
             <table className="centered">
                 <tbody>
-                    {props.userWords.map(tableRowCB)}
+                    {props.userWords.map(showCorrectSynonymsCB)}
+                    {props.incorrectUserWords.map(showIncorrectSynonymsCB)}
                 </tbody>
             </table>
         </div>

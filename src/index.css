@@ -16,3 +16,8 @@ code {
 .centered{
   margin: 0 auto;
 }
+
+.strikethrough{
+  color: darkred;
+  text-decoration: line-through;
+}
