@@ -1,4 +1,6 @@
-//TODO add all utils concerning processing words
+//TODO add more
+
+// Utility methods concerning processing words
 
 //DATA EXTRACTION functions from API-calls
 
