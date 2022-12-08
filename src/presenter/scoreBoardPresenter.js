@@ -13,6 +13,7 @@ function ScoreBoard() {
 
     return <ScoreBoardView word = {givenWord}
                     definition = {definition}
-                    userWords = {userWords}/>;
+                    userWords = {userWords}
+                    incorrectUserWords = {incorrectUserWords}/>;
 }
 export default ScoreBoard;
