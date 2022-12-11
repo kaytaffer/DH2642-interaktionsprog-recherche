@@ -24,6 +24,8 @@ function WordInputView(props){
             <input type = "text"
                    placeholder="Give us your best Recherché synonyms.."
                    id="wordInput"
+                   autoFocus={true}
+                   autoComplete={"off"}
                    style={{ width:"270px" }}
                    value = {props.inputText}
                    onChange={textInputChangeACB}
