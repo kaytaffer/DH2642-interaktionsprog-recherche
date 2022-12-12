@@ -48,9 +48,9 @@ const frequencyFamily = atomFamily({
     default: word => getFrequency(word)
 })
 
-// All correct words entered by the user with their frequency
-export const enteredWordsWithFrequencyState = selector({
-    key: 'enteredWordsWithFrequencyState',
+// All correct words entered by the user with their score
+export const enteredWordsWithScoreState = selector({
+    key: 'enteredWordsWithScoreState',
     get: ({get}) => {
         function addFrequencyCB(synonym) {
             return createSynonymScoreObject(synonym, extractFrequency(get(frequencyFamily(synonym))));
@@ -65,4 +65,10 @@ export const incorrectWordsState = selector({
     get: ({get}) => {
         return compareWordsMismatch(get(enteredWordsState), get(synonymsState));
     }
+})
+
+// Users total score
+export const totalScoreState = atom({
+    key: 'totalScoreState',
+    default: 0
 })
