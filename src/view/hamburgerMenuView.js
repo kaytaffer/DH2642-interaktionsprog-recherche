@@ -5,15 +5,11 @@ function hamburgerMenuView(){
     function showMenuACB() {
         document.getElementById("hamburgerMenu").classList.add("show");
         document.getElementById("hamburgerMenuButton").classList.add("hide");
-        //document.getElementById("hamburgerMenu").style.display = "none";
-        //document.getElementById("hamburgerMenuButton").style.display = "block";
     }
 
     function hideMenuACB() {
         document.getElementById("hamburgerMenu").classList.remove("show");
         document.getElementById("hamburgerMenuButton").classList.remove("hide");
-        //document.getElementById("hamburgerMenu").style.display = "block";
-        //document.getElementById("hamburgerMenuButton").style.display = "none";
     }
 
     return (
