@@ -58,10 +58,10 @@ function compareWordsMatch(enteredWordsArray, givenWordSynonyms){
 //creates an array of the words the user entered which are NOT synonyms to the given word.
 function compareWordsMismatch(enteredWordsArray, givenWordSynonyms){
     function mismatchCheckerCB(word){
-        function isNotWord(synonym) {
-            return word !== synonym;
+        function isWord(synonym) {
+            return word === synonym;
         }
-        return (givenWordSynonyms.find(isNotWord));
+        return !(givenWordSynonyms.find(isWord));
     }
     return enteredWordsArray.filter(mismatchCheckerCB);
     
