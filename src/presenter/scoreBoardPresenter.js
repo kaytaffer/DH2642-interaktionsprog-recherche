@@ -8,7 +8,8 @@ import {
     enteredWordsWithScoreState,
     givenWordState,
     incorrectWordsState,
-    totalScoreState
+    totalScoreState,
+    synonymsState
 } from "../model/atoms.js";
 
 function ScoreBoard() {
@@ -16,6 +17,7 @@ function ScoreBoard() {
     const definition = useRecoilValue(definitionState);
     const userWords = useRecoilValue(enteredWordsWithScoreState);
     const incorrectUserWords = useRecoilValue(incorrectWordsState);
+    const givenWordSynonyms = useRecoilValue(synonymsState);
     const [scoreThisRound, setScoreThisRound] = useState(0);
     const [score, setScore] = useRecoilState(totalScoreState);
 
@@ -33,6 +35,7 @@ function ScoreBoard() {
                     definition = {definition}
                     userWords = {userWords}
                     incorrectUserWords = {incorrectUserWords}
+                    givenWordSynonyms = {givenWordSynonyms}
                     scoreThisRound = {scoreThisRound}
                     totalScore = {score}/>;
 }

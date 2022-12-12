@@ -44,14 +44,14 @@ function ScoreBoardView(props){
                 {props.definition.map(definitionCB)}
             </ol>
 
-            <b>Synonyms:</b>
+            <b>Correct synonyms:</b>
             <table className="centered">
                 <tbody>
                         {props.givenWordSynonyms.map(showSynonymsForGivenWordCB)}
                 </tbody>
             </table>
 
-
+            <b>Your synonyms:</b>
             <table className="centered">
                 <tbody>
                     {props.userWords.map(showCorrectSynonymsCB)}
