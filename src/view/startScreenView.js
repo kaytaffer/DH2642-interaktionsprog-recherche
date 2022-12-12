@@ -1,13 +1,10 @@
-function startScreenView(props){
+function StartScreenView(props){
 
-    function buttonClickedACB() {
+   function buttonClickedACB(){
         props.onGameStart();
     }
-
     return (
-        <div>
             <button onClick={buttonClickedACB}>Start game</button>
-        </div>
     );
 }
-export default startScreenView;
+export default StartScreenView;
