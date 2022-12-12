@@ -5,7 +5,7 @@ function ScoreBoardView(props){
         return (
             <tr key={synonymObject.word}>
                 <td>{synonymObject.word}</td>
-                <td>{synonymObject.points.toFixed(2)}</td>
+                <td>{synonymObject.points.toFixed(0)}</td>
             </tr>
             )
     }
@@ -44,20 +44,22 @@ function ScoreBoardView(props){
                 {props.definition.map(definitionCB)}
             </ol>
 
-            <b>Synonyms:</b>
+            <b>Correct synonyms:</b>
             <table className="centered">
                 <tbody>
                         {props.givenWordSynonyms.map(showSynonymsForGivenWordCB)}
                 </tbody>
             </table>
 
-
+            <b>Your synonyms:</b>
             <table className="centered">
                 <tbody>
                     {props.userWords.map(showCorrectSynonymsCB)}
                     {props.incorrectUserWords.map(showIncorrectSynonymsCB)}
                 </tbody>
             </table>
+            <p>Score this round: {props.scoreThisRound.toFixed(0)}</p>
+            <p>Total score: {props.totalScore.toFixed(0)}</p>
         </div>
     );
 }
