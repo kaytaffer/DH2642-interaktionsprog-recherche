@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import WordInputView from "../view/wordInputView.js";
 import {useRecoilValue, useRecoilState} from "recoil";
-import {enteredWordsState, givenWordState, synonymsState, definitionState} from "../model/atoms.js";
+import {enteredWordsState, givenWordState} from "../model/atoms.js";
 
 function WordInput() {
     const givenWord = useRecoilValue(givenWordState);
@@ -10,10 +10,9 @@ function WordInput() {
     const [newWord, setNewWord] = useState('');
 
     //Saves last text input from user in component state.
-    const handleTextChangeACB = event => {
+    const handleTextChangeACB = (event) => {
         setNewWord(event.target.value);
     };
-
     // CB checks if a word is already represented in the array with saved word from current game.
     // Ensures that no duplicate words are saved.
     const renderEnteredWordsCB = (word) => {

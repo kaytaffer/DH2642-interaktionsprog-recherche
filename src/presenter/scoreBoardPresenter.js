@@ -1,6 +1,7 @@
 //TODO present component scoreBoard
 import React, {useState} from "react";
 
+import {useNavigate} from "react-router-dom";
 import ScoreBoardView from "../view/scoreBoardView.js";
 import {useRecoilState, useRecoilValue} from "recoil";
 import {
@@ -20,14 +21,17 @@ function ScoreBoard() {
     const givenWordSynonyms = useRecoilValue(synonymsState);
     const [scoreThisRound, setScoreThisRound] = useState(0);
     const [score, setScore] = useRecoilState(totalScoreState);
+    const navigate = useNavigate();
 
     function sumScoreCB(sumSoFar, newElement){
         return sumSoFar + newElement.points;
     }
-
     function componentWasCreatedACB(){
         setScoreThisRound(userWords.reduce(sumScoreCB, 0));
         setScore(userWords.reduce(sumScoreCB, score));
+    }
+    function navigateToStartCB(){
+            navigate("/");
     }
     React.useEffect( componentWasCreatedACB, [] );
 
@@ -37,6 +41,7 @@ function ScoreBoard() {
                     incorrectUserWords = {incorrectUserWords}
                     givenWordSynonyms = {givenWordSynonyms}
                     scoreThisRound = {scoreThisRound}
-                    totalScore = {score}/>;
+                    totalScore = {score}
+                    onButtonClick = {navigateToStartCB}/>;
 }
 export default ScoreBoard;

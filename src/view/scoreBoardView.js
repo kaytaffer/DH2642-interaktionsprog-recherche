@@ -35,6 +35,11 @@ function ScoreBoardView(props){
         )
     }
 
+    function buttonClickedACB() {
+        props.onButtonClick()
+
+    }
+
     return (
         <div className="scoreBoard">
             <h1>[{props.word}]</h1>
@@ -60,6 +65,8 @@ function ScoreBoardView(props){
             </table>
             <p>Score this round: {props.scoreThisRound.toFixed(0)}</p>
             <p>Total score: {props.totalScore.toFixed(0)}</p>
+
+            <button onClick={buttonClickedACB}>Back to start</button>
         </div>
     );
 }

@@ -14,6 +14,7 @@ code {
 }
 
 .centered{
+  text-align: center;
   margin: 0 auto;
 }
 
@@ -21,3 +22,4 @@ code {
   color: darkred;
   text-decoration: line-through;
 }
+/* added   text-align: center; line 17. () */
