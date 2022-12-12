@@ -23,8 +23,11 @@ function extractDefinition(givenWordObject){
 function extractSynonyms(givenWordObject){
 
     function combineArraysCB(currentArray, newResults) {
+        function removeDuplicatesCB(element) {
+            return !currentArray.find((word) => {return word === element}) // returns false if word is already in array
+        }
         if(!newResults.synonyms) return currentArray;
-        return [...currentArray, ...newResults.synonyms];
+        return [...currentArray, ...newResults.synonyms.filter(removeDuplicatesCB)];
     }
     
     return givenWordObject.results.reduce(combineArraysCB, []);
