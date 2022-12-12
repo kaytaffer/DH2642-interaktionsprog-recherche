@@ -1,15 +1,18 @@
 import './App.css';
-import Game from "./presenter/gamePresenter";
 import React from "react";
 import { RecoilRoot } from 'recoil';
+import {Routes, Route} from "react-router-dom";
+import StartScreen from "./presenter/startScreenPresenter";
+import Game from "./presenter/gamePresenter";
 
 export default
 function App() {
-  return (
+    return(
       <RecoilRoot>
-        <div className="App">
-            <Game/>
-        </div>
+          <Routes>
+              <Route path ="/" element= {<StartScreen/>} />
+              <Route path = "/game" element={<Game/>} />
+          </Routes>
       </RecoilRoot>
   );
 }
