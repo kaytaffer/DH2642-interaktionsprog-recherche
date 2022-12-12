@@ -4,6 +4,7 @@ import ScoreBoard from "./scoreBoardPresenter";
 import {roundLength} from "../utilities/gameUtilities";
 import Countdown, {zeroPad} from "react-countdown";
 import StartScreen from "./startScreenPresenter";
+import Loading from "./loadingPresenter";
 
 //TODO wrapper for other sub-components
 
@@ -33,7 +34,7 @@ function Game() {
     )
     if(!roundOver) return (
         <div>
-            <React.Suspense fallback={<div> Loading... </div>}>
+            <React.Suspense fallback={<Loading/>}>
                 <Countdown date={Date.now() + roundLength * 1000} onComplete={roundOverACB}
                        precision={3} daysInHours={true} renderer={renderer}/>
                 <WordInput/>
@@ -42,7 +43,7 @@ function Game() {
     )
     return (
         <div>
-            <React.Suspense fallback={<div> Loading... </div>}>
+            <React.Suspense fallback={<Loading/>}>
                 <ScoreBoard/>
             </React.Suspense>
         </div>
