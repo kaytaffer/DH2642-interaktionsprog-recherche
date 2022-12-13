@@ -3,9 +3,22 @@ import {compareWordsMatch, compareWordsMismatch, createSynonymScoreObject, extra
 import {getRandomWord, getFrequency, getDefinitions, getSynonyms } from '../integration/API/wordsApiCall';
 import {extractGivenWord} from '../utilities/wordUtilities';
 
-export const givenWordPromiseState = atom({
+
+// Updates given word automatically when the game round is updated
+// To test a given word instead of a random set return like this:
+// return  getSearchedWord("word"),
+export const givenWordPromiseState = selector({
     key: 'givenWordPromiseState',
-    default: getRandomWord(),
+    get: ({get }) => {
+        get(gameRound);
+        return getRandomWord();
+    }
+})
+
+// Keeps track of number of game rounds played.
+export const gameRound = atom({
+    key: 'gameRound',
+    default: 1,
 })
 
 export const givenWordState = selector({
@@ -45,9 +58,9 @@ const frequencyFamily = atomFamily({
     default: word => getFrequency(word)
 })
 
-// All correct words entered by the user with their frequency
-export const enteredWordsWithFrequencyState = selector({
-    key: 'enteredWordsWithFrequencyState',
+// All correct words entered by the user with their score
+export const enteredWordsWithScoreState = selector({
+    key: 'enteredWordsWithScoreState',
     get: ({get}) => {
         function addFrequencyCB(synonym) {
             return createSynonymScoreObject(synonym, extractFrequency(get(frequencyFamily(synonym))));
@@ -62,4 +75,10 @@ export const incorrectWordsState = selector({
     get: ({get}) => {
         return compareWordsMismatch(get(enteredWordsState), get(synonymsState));
     }
+})
+
+// Users total score
+export const totalScoreState = atom({
+    key: 'totalScoreState',
+    default:[],
 })

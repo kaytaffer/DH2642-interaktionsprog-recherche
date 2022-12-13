@@ -3,20 +3,32 @@ import WordInput from "./wordInputPresenter";
 import ScoreBoard from "./scoreBoardPresenter";
 import {roundLength} from "../utilities/gameUtilities";
 import Countdown, {zeroPad} from "react-countdown";
-import StartScreen from "./startScreenPresenter";
+import Loading from "./loadingPresenter";
+import {gameRound} from "../model/atoms";
+import {useRecoilState, useSetRecoilState} from "recoil";
+import {enteredWordsState} from "../model/atoms";
+
 
 //TODO wrapper for other sub-components
 
 function Game() {
-    const [gameStarted, setGameStarted] = useState(false);
-    const [roundOver, setRoundOver] = useState(false);
 
-    function roundOverACB() {
-        setRoundOver(true);
+    const [currentGameRound, setCurrentGameRound] = useRecoilState(gameRound);
+    const [roundOver, setRoundOver] = useState(false);
+    const setEnteredWords = useSetRecoilState(enteredWordsState);
+
+
+    //Increases the game round (and therefore triggers a new given word) when player press the
+    //"Next word" button in scoreBoardView and deletes entered words from previous round.
+    function nextRoundACB(){
+        setCurrentGameRound(currentGameRound + 1);
+        setEnteredWords([]);
+        setRoundOver(false);
     }
 
-    function gameStartedACB() {
-        setGameStarted(true);
+    //sets roundOver to true when the time is out.
+    function roundOverACB() {
+        setRoundOver(true);
     }
 
     // Determines how the time is displayed. View issue? But dependent on react things
@@ -26,24 +38,17 @@ function Game() {
         </span>
     );
 
-    if(!gameStarted) return (
-        <div>
-            <StartScreen onGameStart={gameStartedACB}/>
-        </div>
-    )
     if(!roundOver) return (
-        <div>
-            <React.Suspense fallback={<div> Loading... </div>}>
+            <React.Suspense fallback={<Loading/>}>
                 <Countdown date={Date.now() + roundLength * 1000} onComplete={roundOverACB}
                        precision={3} daysInHours={true} renderer={renderer}/>
                 <WordInput/>
             </React.Suspense>
-        </div>
     )
     return (
         <div>
-            <React.Suspense fallback={<div> Loading... </div>}>
-                <ScoreBoard/>
+            <React.Suspense fallback={<Loading/>}>
+                <ScoreBoard onRoundOver = {nextRoundACB}/>
             </React.Suspense>
         </div>
     )

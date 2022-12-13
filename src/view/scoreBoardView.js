@@ -5,7 +5,7 @@ function ScoreBoardView(props){
         return (
             <tr key={synonymObject.word}>
                 <td>{synonymObject.word}</td>
-                <td>{synonymObject.points.toFixed(2)}</td>
+                <td>{synonymObject.points.toFixed(0)}</td>
             </tr>
             )
     }
@@ -23,18 +23,46 @@ function ScoreBoardView(props){
         return <li key={definition}>"{definition}"</li>
     }
 
+    // Displays all synonyms (for the given word) retrieved from the API.
+    function showSynonymsForGivenWordCB(synonym){
+        return (
+                <tr key ={synonym} >
+                    <td>
+                        <i>{synonym}</i>
+                    </td>
+                </tr>
+        )
+    }
+    function buttonClickACB(){
+        props.navigateToNextWord()
+    }
     return (
         <div className="scoreBoard">
             <h1>[{props.word}]</h1>
+
             <ol className="definition">
+                <i><b>Definition: </b></i>
                 {props.definition.map(definitionCB)}
             </ol>
+
+            <b>Correct synonyms:</b>
+            <table className="centered">
+                <tbody>
+                        {props.givenWordSynonyms.map(showSynonymsForGivenWordCB)}
+                </tbody>
+            </table>
+
+            <b>Your synonyms:</b>
             <table className="centered">
                 <tbody>
                     {props.userWords.map(showCorrectSynonymsCB)}
                     {props.incorrectUserWords.map(showIncorrectSynonymsCB)}
                 </tbody>
             </table>
+            <p>Score this round: {props.scoreThisRound.toFixed(0)}</p>
+            <p>Total score: {props.totalScore.toFixed(0)}</p>
+
+            <button onClick={buttonClickACB}>Next word</button>
         </div>
     );
 }

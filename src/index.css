@@ -14,10 +14,34 @@ code {
 }
 
 .centered{
+  text-align: center;
   margin: 0 auto;
 }
 
 .strikethrough{
   color: darkred;
   text-decoration: line-through;
+}
+/* added   text-align: center; line 17. () */
+
+#hamburgerMenu{
+  margin:0; top:0; left:0;
+  padding:0 20px;
+  position: fixed;
+  display: none;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+}
+
+#hamburgerMenuButton{
+  position: fixed;
+  top:0; left:0;
+}
+
+.show{
+  display: block!important;
+}
+
+.hide{
+  display: none!important;
 }
