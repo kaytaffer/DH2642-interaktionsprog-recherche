@@ -3,7 +3,6 @@ import StartScreenView from "../view/startScreenView";
 import {useNavigate} from "react-router-dom";
 
 function StartScreen() {
-
     const navigate = useNavigate()
 
     function navigateToGameCB(){
