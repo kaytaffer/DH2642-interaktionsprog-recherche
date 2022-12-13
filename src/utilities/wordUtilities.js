@@ -46,27 +46,26 @@ function extractFrequency (wordFrequencyObject){
 
 //creates an array of the words the user entered which are synonyms to the given word.
 function compareWordsMatch(enteredWordsArray, givenWordSynonyms){
-    function isASynonymCB(word) {
-        function isWord(synonym) {
-            //console.log("Compare word and syn:", word, synonym, (word === synonym));
+    function removeNonSynonymsCB(word) {
+        function isWordCB(synonym) {
             return word === synonym;
         }
-        return givenWordSynonyms.find(isWord);
+        return givenWordSynonyms.find(isWordCB);
 
     }
     
-    return enteredWordsArray.filter(isASynonymCB);
+    return enteredWordsArray.filter(removeNonSynonymsCB);
 }
 
 //creates an array of the words the user entered which are NOT synonyms to the given word.
 function compareWordsMismatch(enteredWordsArray, givenWordSynonyms){
-    function mismatchCheckerCB(word){
-        function isWord(synonym) {
+    function removeSynonymsCB(word){
+        function isWordCB(synonym) {
             return word === synonym;
         }
-        return !(givenWordSynonyms.find(isWord));
+        return !(givenWordSynonyms.find(isWordCB));
     }
-    return enteredWordsArray.filter(mismatchCheckerCB);
+    return enteredWordsArray.filter(removeSynonymsCB);
     
 }
 
