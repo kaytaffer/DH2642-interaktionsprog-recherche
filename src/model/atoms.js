@@ -1,14 +1,24 @@
 import { atom, atomFamily, selector } from 'recoil';
 import {compareWordsMatch, compareWordsMismatch, createSynonymScoreObject, extractDefinition, extractFrequency, extractSynonyms} from "../utilities/wordUtilities";
-import {getSearchedWord, getRandomWord, getFrequency } from '../integration/API/wordsApiCall';
+import {getRandomWord, getFrequency } from '../integration/API/wordsApiCall';
 import {extractGivenWord} from '../utilities/wordUtilities';
 
-// To test a given word instead of a random
-// set default like this:
-// default : getSearchedWord("word"),
-export const givenWordPromiseState = atom({
+
+// Updates given word automatically when the game round is updated
+// To test a given word instead of a random set return like this:
+// return  getSearchedWord("word"),
+export const givenWordPromiseState = selector({
     key: 'givenWordPromiseState',
-    default: getRandomWord(),
+    get: ({get }) => {
+        get(gameRound);
+        return getRandomWord();
+    }
+})
+
+// Keeps track of number of game rounds played.
+export const gameRound = atom({
+    key: 'gameRound',
+    default: 1,
 })
 
 export const givenWordState = selector({
@@ -70,5 +80,5 @@ export const incorrectWordsState = selector({
 // Users total score
 export const totalScoreState = atom({
     key: 'totalScoreState',
-    default: 0
+    default:[],
 })

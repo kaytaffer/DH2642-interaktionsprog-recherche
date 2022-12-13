@@ -31,15 +31,11 @@ function ScoreBoardView(props){
                         <i>{synonym}</i>
                     </td>
                 </tr>
-
         )
     }
-
-    function buttonClickedACB() {
-        props.onButtonClick()
-
+    function buttonClickACB(){
+        props.navigateToNextWord()
     }
-
     return (
         <div className="scoreBoard">
             <h1>[{props.word}]</h1>
@@ -66,7 +62,7 @@ function ScoreBoardView(props){
             <p>Score this round: {props.scoreThisRound.toFixed(0)}</p>
             <p>Total score: {props.totalScore.toFixed(0)}</p>
 
-            <button onClick={buttonClickedACB}>Back to start</button>
+            <button onClick={buttonClickACB}>Next word</button>
         </div>
     );
 }

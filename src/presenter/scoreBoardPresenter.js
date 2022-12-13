@@ -1,7 +1,6 @@
 //TODO present component scoreBoard
 import React, {useState} from "react";
 
-import {useNavigate} from "react-router-dom";
 import ScoreBoardView from "../view/scoreBoardView.js";
 import {useRecoilState, useRecoilValue} from "recoil";
 import {
@@ -10,10 +9,10 @@ import {
     givenWordState,
     incorrectWordsState,
     totalScoreState,
-    synonymsState
+    synonymsState,
 } from "../model/atoms.js";
 
-function ScoreBoard() {
+function ScoreBoard(props) {
     const givenWord = useRecoilValue(givenWordState);
     const definition = useRecoilValue(definitionState);
     const userWords = useRecoilValue(enteredWordsWithScoreState);
@@ -21,18 +20,24 @@ function ScoreBoard() {
     const givenWordSynonyms = useRecoilValue(synonymsState);
     const [scoreThisRound, setScoreThisRound] = useState(0);
     const [score, setScore] = useRecoilState(totalScoreState);
-    const navigate = useNavigate();
 
+    //Sums the total score for correct synonyms for all rounds.
+    function sumCB(sumSoFar, point){
+        return sumSoFar + point;
+    }
+    //Sums the score for correct synonyms in the current round.
     function sumScoreCB(sumSoFar, newElement){
         return sumSoFar + newElement.points;
     }
+
+    //Sums the points related to each synonym in the current round
+    //and saves it in component and recoil states.
     function componentWasCreatedACB(){
-        setScoreThisRound(userWords.reduce(sumScoreCB, 0));
-        setScore(userWords.reduce(sumScoreCB, score));
+        const roundScore = userWords.reduce(sumScoreCB, 0);
+        setScoreThisRound(roundScore);
+        setScore([...score, roundScore]);
     }
-    function navigateToStartCB(){
-            navigate("/");
-    }
+
     React.useEffect( componentWasCreatedACB, [] );
 
     return <ScoreBoardView word = {givenWord}
@@ -41,7 +46,7 @@ function ScoreBoard() {
                     incorrectUserWords = {incorrectUserWords}
                     givenWordSynonyms = {givenWordSynonyms}
                     scoreThisRound = {scoreThisRound}
-                    totalScore = {score}
-                    onButtonClick = {navigateToStartCB}/>;
+                    totalScore = {score.reduce(sumCB,0)}
+                    navigateToNextWord = {props.onRoundOver}/>;
 }
 export default ScoreBoard;

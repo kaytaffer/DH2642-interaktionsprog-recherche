@@ -1,6 +1,7 @@
 function StartScreenView(props){
 
    function buttonClickedACB(){
+       console.log("startScreenView")
         props.onGameStart();
     }
     return (
