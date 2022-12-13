@@ -5,6 +5,7 @@
 //DATA EXTRACTION functions from API-calls
 
 import {calculateScoreFromFrequency} from "./gameUtilities";
+import {getDefinitions, getSynonyms} from '../integration/API/wordsApiCall';
 
 //picks out the word string for the given word object.
 function extractGivenWord(givenWordObject){
@@ -12,58 +13,58 @@ function extractGivenWord(givenWordObject){
 }
 
 //picks out the definition for the given word.
-function extractDefinition(givenWordObject){
+function extractDefinition(givenWordDefinitionObject){
     function combineDefinitionCB(currentArray, newResult){
-        return [...currentArray, newResult.definition]
+        if(!newResult.text)
+            return currentArray;
+        return [...currentArray, newResult.text];
     }
-    return givenWordObject.results.reduce(combineDefinitionCB, []);
+    return givenWordDefinitionObject.reduce(combineDefinitionCB, []);
 }
 
-//picks out the synonym array for the given word.
-function extractSynonyms(givenWordObject){
-
-    function combineArraysCB(currentArray, newResults) {
-        if(!newResults.synonyms) return currentArray;
-        return [...currentArray, ...newResults.synonyms];
-    }
-    
-    return givenWordObject.results.reduce(combineArraysCB, []);
+/**
+ * TODO: Change this function to work with new API.
+ * API call will return ONE array
+ * No need to combine many array.
+ * Just call API fetch
+ */
+function extractSynonyms(givenWordSynonymObject){
+    return givenWordSynonymObject[0].words;
 }
 
 //picks out the number of times the word is likely to appear in any English corpus, per million words.
 // If it does not have a frequency according to the API, returns a default value.
 function extractFrequency (wordFrequencyObject){
-    if(!wordFrequencyObject.frequency){
+    if(!wordFrequencyObject){
         return 50;
     }  //TODO is 50 reasonable?
-    return wordFrequencyObject.frequency.perMillion;
+    return wordFrequencyObject.totalCount;
 }
 
 //DATA PROCESSING functions below:
 
 //creates an array of the words the user entered which are synonyms to the given word.
 function compareWordsMatch(enteredWordsArray, givenWordSynonyms){
-    function isASynonymCB(word) {
-        function isWord(synonym) {
-            //console.log("Compare word and syn:", word, synonym, (word === synonym));
+    function removeNonSynonymsCB(word) {
+        function isWordCB(synonym) {
             return word === synonym;
         }
-        return givenWordSynonyms.find(isWord);
+        return givenWordSynonyms.find(isWordCB);
 
     }
     
-    return enteredWordsArray.filter(isASynonymCB);
+    return enteredWordsArray.filter(removeNonSynonymsCB);
 }
 
 //creates an array of the words the user entered which are NOT synonyms to the given word.
 function compareWordsMismatch(enteredWordsArray, givenWordSynonyms){
-    function mismatchCheckerCB(word){
-        function isNotWord(synonym) {
+    function removeSynonymsCB(word){
+        function isWord(synonym) {
             return word !== synonym;
         }
-        return (givenWordSynonyms.find(isNotWord));
+        return !(givenWordSynonyms.find(isWord));
     }
-    return enteredWordsArray.filter(mismatchCheckerCB);
+    return enteredWordsArray.filter(removeSynonymsCB);
     
 }
 

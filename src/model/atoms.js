@@ -1,11 +1,8 @@
 import { atom, atomFamily, selector } from 'recoil';
 import {compareWordsMatch, compareWordsMismatch, createSynonymScoreObject, extractDefinition, extractFrequency, extractSynonyms} from "../utilities/wordUtilities";
-import {getSearchedWord, getRandomWord, getFrequency } from '../integration/API/wordsApiCall';
+import {getRandomWord, getFrequency, getDefinitions, getSynonyms } from '../integration/API/wordsApiCall';
 import {extractGivenWord} from '../utilities/wordUtilities';
 
-// To test a given word instead of a random
-// set default like this:
-// default : getSearchedWord("word"),
 export const givenWordPromiseState = atom({
     key: 'givenWordPromiseState',
     default: getRandomWord(),
@@ -22,19 +19,19 @@ export const givenWordState = selector({
 // Will contain all synonyms of that word
 export const synonymsState = selector({
     key: 'synonymsState',
-    get: ({get}) => {
-        return extractSynonyms(get(givenWordPromiseState));
-    }
-})
+    get: async ({get}) => {
+        return extractSynonyms(await getSynonyms(get(givenWordPromiseState)));
+     },
+   })
 
 // Derived state of the given word
 // Will contain the definition of that word
 export const definitionState = selector({
     key: 'definitionState',
-    get: ({get}) => {
-        return extractDefinition(get(givenWordPromiseState));
-    }
-})
+    get: async ({get}) => {
+         return extractDefinition(await getDefinitions(get(givenWordPromiseState)));
+      },
+    })
 
 // All words entered by the user
 export const enteredWordsState = atom({
