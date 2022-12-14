@@ -8,6 +8,7 @@ import HamburgerMenu from "./presenter/hamburgerMenuPresenter";
 import About from "./presenter/aboutPresenter";
 import Rules from "./presenter/rulesPresenter";
 import HighScore from "./presenter/highScorePresenter";
+import GameScore from "./presenter/gameScorePresenter";
 
 export default
 function App() {
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/about" element={<About/>} />
                     <Route path="/rules" element={<Rules/>} />
                     <Route path="/highscore" element={<HighScore/>} />
+                    <Route path="/gamescore" element={<GameScore/>} />
                 </Routes>
             </div>
         </div>
