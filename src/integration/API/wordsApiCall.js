@@ -1,19 +1,18 @@
 import {wordnik_BASE_URL_WORDS,wordnik_BASE_URL_WORD, wordnik_API_KEY } from "./apiConfig.js"
+import {RecoilState, useRecoilRefresher_UNSTABLE} from 'recoil';
+import { givenWordPromiseState } from "../../model/atoms.js";
 
-function treatHTTPResponseACB(response){
+function treatResponseACB(response){
     console.log("response",response)
     if (!response.ok)
         throw Error("Something horrible happened @ api-call, server returned: " + response.status);
     else return response.json();
 }
 
-function handleErrors(response) {
-    if (!response.ok) {
-        throw Error(response.statusText);
-    }
-    return response;
+function treatErrorACB(error){
+    console.log(error);
+    return error;
 }
-
 const apiParam ={
     /**
      * TODO: Fix GET method, and add headers
@@ -27,7 +26,7 @@ const apiParam ={
 }
 
 function apiCall(URL){
-    return fetch(URL,apiParam).then(treatHTTPResponseACB);
+    return fetch(URL,apiParam).then(treatResponseACB).catch(treatErrorACB);
 }
 
 /**
@@ -38,7 +37,26 @@ function apiCall(URL){
  * (*) -1 values are ignored. Can be removed but kept them if
  *     we want to easily change their values.
  */
+
+/*async function getWordData(){
+
+        const wordResponse = getRandomWord();
+
+        Promise.all([
+            getSynonyms(wordResponse.word),
+            getDefinitions(wordResponse.word)
+        ]).then (allResponses => {
+            wordResponse.word = allResponses[0]
+            const synonymResponse = allResponses[1]
+            const definitionResponse = allResponses[2]
+        }).catch(error =>{
+            console.log(error);
+        })
+}
+*/
+
 function getRandomWord(){
+    
     console.log("getRandomWord was called");
     return apiCall(wordnik_BASE_URL_WORDS + "randomWord?"+
         "hasDictionaryDef=true" +
@@ -95,7 +113,7 @@ function getSynonyms(word){
     console.log("getSynonyms was called")
     return apiCall(wordnik_BASE_URL_WORD + word.word + "/relatedWords?" + 
     "useCanonical=false" +              //maybe set to true
-    "&relationshipTypes=synonym" +
+    "&relationshipTypes=synonym" + 
     "&limitPerRelationshipType=10" +    // (1)
     "&api_key=" + wordnik_API_KEY);
 }

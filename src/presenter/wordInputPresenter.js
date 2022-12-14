@@ -2,10 +2,12 @@
 import React, {useState} from "react";
 import WordInputView from "../view/wordInputView.js";
 import {useRecoilValue, useRecoilState} from "recoil";
-import {enteredWordsState, givenWordState} from "../model/atoms.js";
+import {enteredWordsState, givenWordState, synonymsState, definitionState, givenWordPromiseState} from "../model/atoms.js";
 
 function WordInput() {
     const givenWord = useRecoilValue(givenWordState);
+    const synonym = useRecoilValue(synonymsState);      // quick fix to fetch everything at the same time (*).
+    const definition = useRecoilValue(definitionState); // (*)
     const [enteredWords, setEnteredWords] = useRecoilState(enteredWordsState);
     const [newWord, setNewWord] = useState('');
 
@@ -23,7 +25,7 @@ function WordInput() {
     const performAddWordACB = () => {
         if(!enteredWords.find(renderEnteredWordsCB))
         setEnteredWords([...enteredWords, newWord]);
-
+        
         setNewWord('');
     };
 
