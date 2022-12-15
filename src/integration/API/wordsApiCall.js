@@ -3,14 +3,14 @@ import {RecoilState, useRecoilRefresher_UNSTABLE} from 'recoil';
 import { givenWordPromiseState } from "../../model/atoms.js";
 
 function treatResponseACB(response){
-    console.log("response",response)
+    //console.log("response",response)
     if (!response.ok)
         throw Error("Something horrible happened @ api-call, server returned: " + response.status);
     else return response.json();
 }
 
 function treatErrorACB(error){
-    console.log(error);
+    //console.log(error);
     return error;
 }
 const apiParam ={
@@ -57,7 +57,7 @@ function apiCall(URL){
 
 function getRandomWord(){
     
-    console.log("getRandomWord was called");
+    //console.log("getRandomWord was called");
     return apiCall(wordnik_BASE_URL_WORDS + "randomWord?"+
         "hasDictionaryDef=true" +
         "&excludePartOfSpeech=family-name%2C%20given-name%2Carticle&"+ // (1)
@@ -78,7 +78,7 @@ function getRandomWord(){
  * 
  */
 function getFrequency(word){
-    console.log("getFrequency was called");
+    //console.log("getFrequency was called");
     let startYear = "2000";
     let endYear = "2022";
     return apiCall(wordnik_BASE_URL_WORD + word.word + "/frequency?" +
@@ -95,8 +95,8 @@ function getFrequency(word){
  * attribute.
  */
 function getDefinitions(word){
-    console.log("getDefinition was called")
-    return apiCall(wordnik_BASE_URL_WORD  + word.word + "/definitions?" +
+    //console.log("getDefinition was called")
+    return apiCall(wordnik_BASE_URL_WORD  + word + "/definitions?" +
     "limit=5" +                                                // (1)
     "&includeRelated=false" + 
     "&useCanonical=false" +     
@@ -110,8 +110,8 @@ function getDefinitions(word){
  * Return one object where all the synonyms is in an array called "words".
  */
 function getSynonyms(word){
-    console.log("getSynonyms was called")
-    return apiCall(wordnik_BASE_URL_WORD + word.word + "/relatedWords?" + 
+    //console.log("getSynonyms was called")
+    return apiCall(wordnik_BASE_URL_WORD + word + "/relatedWords?" +
     "useCanonical=false" +              //maybe set to true
     "&relationshipTypes=synonym" + 
     "&limitPerRelationshipType=10" +    // (1)

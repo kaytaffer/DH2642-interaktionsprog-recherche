@@ -1,19 +1,42 @@
-import { atom, atomFamily, selector } from 'recoil';
+import {atom, atomFamily, selector, waitForAll} from 'recoil';
 import {compareWordsMatch, compareWordsMismatch, createSynonymScoreObject, extractDefinition, extractFrequency, extractSynonyms} from "../utilities/wordUtilities";
 import {getRandomWord, getFrequency, getDefinitions, getSynonyms } from '../integration/API/wordsApiCall';
 import {extractGivenWord} from '../utilities/wordUtilities';
 
 
-// Updates given word automatically when the game round is updated
-// To test a given word instead of a random (getRandomWord();)  set return like this:
-// return  getSearchedWord("word"),
-export const givenWordPromiseState = selector({
+const givenWordPromiseState = selector({
     key: 'givenWordPromiseState',
-    get: ({get }) => {
-        get(gameRound);
-        return getRandomWord();
-    }
-})
+    get: async ({get}) => {
+        const round = get(gameRound); //to get new word when new gameround
+
+        console.log("********** gameround: " + round);
+        let limit = 10;
+        while(limit > 0) {
+            limit--;
+            try {
+                const givenWord = extractGivenWord(await getRandomWord());
+                console.log(givenWord);
+                const definitions = await getDefinitions(givenWord);
+                const synonyms = await getSynonyms(givenWord);
+                // console.log(definitions);
+                // console.log(synonyms);
+
+                return {
+                    givenWord,
+                    definitions: extractDefinition(definitions),
+                    synonyms: extractSynonyms(synonyms)
+                };
+            }
+            catch (error) {
+                console.log("ERROR from get in selector givenWordPromiseState, getting new word")
+                //console.log(error)
+            }
+        }
+
+
+    },
+});
+
 
 // Keeps track of number of game rounds played.
 export const gameRound = atom({
@@ -24,7 +47,7 @@ export const gameRound = atom({
 export const givenWordState = selector({
     key : 'givenWordState',
     get : ({get}) => {
-        return extractGivenWord(get(givenWordPromiseState));
+        return get(givenWordPromiseState).givenWord;
     }
 })
 
@@ -32,18 +55,18 @@ export const givenWordState = selector({
 // Will contain all synonyms of that word
 export const synonymsState = selector({
     key: 'synonymsState',
-    get: async ({get}) => {
-        return extractSynonyms(await getSynonyms(get(givenWordPromiseState)));
-     },
+    get : ({get}) => {
+        return get(givenWordPromiseState).synonyms;
+    }
    })
 
 // Derived state of the given word
 // Will contain the definition of that word
 export const definitionState = selector({
     key: 'definitionState',
-    get: async ({get}) => {
-         return extractDefinition(await getDefinitions(get(givenWordPromiseState)));
-      },
+    get : ({get}) => {
+        return get(givenWordPromiseState).definitions;
+    }
     })
 
 // All words entered by the user
