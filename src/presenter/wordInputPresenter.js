@@ -18,7 +18,7 @@ function WordInput() {
     // CB checks if a word is already represented in the array with saved word from current game.
     // Ensures that no duplicate words are saved.
     const renderEnteredWordsCB = (word) => {
-        return word === newWord;
+        return word.toLowerCase() === newWord.toLowerCase();
     }
     //Saves unique entered word from users when keyboard key "Enter" or "Send" button is activated,
     //and then clear the input box.
