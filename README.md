@@ -43,7 +43,7 @@ on a different page. Another page would contain the rules for the different game
 
 `App.css` - Defines styles for our classes. 
 
-`App.js` -  Renders the game within the `RecoilRoot`.
+`App.js` -  Renders the game within the `RecoilRoot`. Also defines routes to the different pages' URLs with React Route.
 
 `index.css` - Defines styles for our classes.
 
@@ -67,15 +67,28 @@ on a different page. Another page would contain the rules for the different game
 
 ### presenter
 
+`aboutPresenter.js` - Passes props to `aboutView.js`.
+
 `gamePresenter.js` - Wrapper for other sub-components and implements a third party component countdown timer `Countdown`.
 
+`gameScorePresenter.js` - Passes props to `gameScoreView.js`.
+
+`hamburgerMenuPresenter.js` - Renders `hamburgerMenuView.js`.
+
 `highScorePresenter.js` - Passes props to`highScoreView.js`.
+
+`loadingPresenter.js` - Renders `loadingView.js`.
+
+`pageNotFoundPresenter.js` - Renders `pageNotFoundView.js`.
+
+`rulesPresenter.js` - Passes props to `rulesView.js`.
 
 `scoreBoardPresenter.js` - Passes props to `scoreBoardView.js`.
 
 `startScreenPresenter.js` - Passes props to `startScreenView.js`.
 
 `wordInputPresenter.js` - Passes props to `wordInputView.js`.
+
 
 ### utilities
 
@@ -85,7 +98,19 @@ on a different page. Another page would contain the rules for the different game
 
 ### view
 
+`aboutView.js` - Shows information about the game project and it's creators. 
+
+`gameScoreView.js` - Shows the total score from the completed game.
+
+`hamburgerMenuView.js` - Shows menu for navigation to the different pages' URLs.
+
 `highScoreView.js` - Shows the all time high score.
+
+`loadingView.js` - Temporary view that appears while we wait for other views to be rendered.
+
+`PageNotFoundView.js` - Shows error page when user goes to a /path that doesn't exist
+
+`rulesView.js` - Shows the rules of the game.
 
 `scoreBoardView.js` - Shows our final score board. 
 
