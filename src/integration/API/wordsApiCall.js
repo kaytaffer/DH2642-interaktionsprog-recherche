@@ -10,8 +10,7 @@ function treatResponseACB(response){
 }
 
 function treatErrorACB(error){
-    //console.log(error);
-    return error;
+    console.log(error);
 }
 const apiParam ={
     /**
