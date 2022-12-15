@@ -24,7 +24,7 @@ function extractDefinition(givenWordDefinitionObject){
 function extractSynonyms(givenWordSynonymObject){
     function removeDuplicates(arrayOfSynonyms) {
         return arrayOfSynonyms.filter((item, index) => arrayOfSynonyms.indexOf(item) === index);
-        }
+    }
     return removeDuplicates(givenWordSynonymObject[0].words);
 }
 
