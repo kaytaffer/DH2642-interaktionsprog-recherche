@@ -42,7 +42,7 @@ function extractFrequency (wordFrequencyObject){
 function compareWordsMatch(enteredWordsArray, givenWordSynonyms){
     function removeNonSynonymsCB(word) {
         function isWordCB(synonym) {
-            return word === synonym;
+            return word.toLowerCase() === synonym.toLowerCase();
         }
         return givenWordSynonyms.find(isWordCB);
 
@@ -55,7 +55,7 @@ function compareWordsMatch(enteredWordsArray, givenWordSynonyms){
 function compareWordsMismatch(enteredWordsArray, givenWordSynonyms){
     function removeSynonymsCB(word){
         function isWordCB(synonym) {
-            return word === synonym;
+            return word.toLowerCase() === synonym.toLowerCase();
         }
         return !(givenWordSynonyms.find(isWordCB));
     }
