@@ -1,5 +1,4 @@
 import {wordnik_BASE_URL_WORDS,wordnik_BASE_URL_WORD, wordnik_API_KEY } from "./apiConfig.js"
-import {RecoilState, useRecoilRefresher_UNSTABLE} from 'recoil';
 import { givenWordPromiseState } from "../../model/atoms.js";
 
 function treatResponseACB(response){
@@ -37,23 +36,6 @@ function apiCall(URL){
  *     we want to easily change their values.
  */
 
-/*async function getWordData(){
-
-        const wordResponse = getRandomWord();
-
-        Promise.all([
-            getSynonyms(wordResponse.word),
-            getDefinitions(wordResponse.word)
-        ]).then (allResponses => {
-            wordResponse.word = allResponses[0]
-            const synonymResponse = allResponses[1]
-            const definitionResponse = allResponses[2]
-        }).catch(error =>{
-            console.log(error);
-        })
-}
-*/
-
 function getRandomWord(){
     
     //console.log("getRandomWord was called");
@@ -77,10 +59,9 @@ function getRandomWord(){
  * 
  */
 function getFrequency(word){
-    //console.log("getFrequency was called");
     let startYear = "2000";
     let endYear = "2022";
-    return apiCall(wordnik_BASE_URL_WORD + word.word + "/frequency?" +
+    return apiCall(wordnik_BASE_URL_WORD + word + "/frequency?" +
         "useCanonical=false"+           //maybe set to true
         "&startYear=" + startYear + 
         "&endYear="+    endYear+
@@ -95,12 +76,12 @@ function getFrequency(word){
  */
 function getDefinitions(word){
     //console.log("getDefinition was called")
-    return apiCall(wordnik_BASE_URL_WORD  + word + "/definitions?" +
-    "limit=5" +                                                // (1)
-    "&includeRelated=false" + 
-    "&useCanonical=false" +     
-    "&includeTags=false" +
-    "&api_key=" + wordnik_API_KEY);
+        return apiCall(wordnik_BASE_URL_WORD + word + "/definitions?" +
+            "limit=5" +                                                // (1)
+            "&includeRelated=false" +
+            "&useCanonical=false" +
+            "&includeTags=false" +
+            "&api_key=" + wordnik_API_KEY);
 }
 /**
  * DOC getSynonyms:
@@ -112,8 +93,8 @@ function getSynonyms(word){
     //console.log("getSynonyms was called")
     return apiCall(wordnik_BASE_URL_WORD + word + "/relatedWords?" +
     "useCanonical=false" +              //maybe set to true
-    "&relationshipTypes=synonym" + 
-    "&limitPerRelationshipType=10" +    // (1)
+    "&relationshipTypes=synonym" +
+    "&limitPerRelationshipType=1000" +    // (1)
     "&api_key=" + wordnik_API_KEY);
 }
 
