@@ -43,7 +43,7 @@ on a different page. Another page would contain the rules for the different game
 
 `App.css` - Defines styles for our classes. 
 
-`App.js` -  Renders the game within the `RecoilRoot`
+`App.js` -  Renders the game within the `RecoilRoot`.
 
 `index.css` - Defines styles for our classes.
 
@@ -53,25 +53,29 @@ on a different page. Another page would contain the rules for the different game
 
 **API**
 
-`wordsApiCall.js` - Manages calls to WordsAPI. Requires `apiConfig.js`
+`wordsApiCall.js` - Manages calls to WordsAPI. Requires `apiConfig.js`.
 
 **Firebase**
 
-`firebaseModel.js` - Initializes Firebase and our Realtime Database. Requires `firebaseConfig.js` 
+`firebaseModel.js` - **Deprecated.** Initializes Firebase and our Realtime Database. Requires `firebaseConfig.js`.
 
 ### model
 
-`atoms.js` - Recoil handles our Application State from here
+`atoms.js` - Recoil handles our Application State from here.
+
+`persistenceAtoms.js` : Initializes Firebase and our Realtime Database. Handles all interfacing between database and Recoil atoms. Contains atom of highscores, synced to database.
 
 ### presenter
 
 `gamePresenter.js` - Wrapper for other sub-components and implements a third party component countdown timer `Countdown`.
 
-`scoreBoardPresenter.js` - Passes props to `scoreBoardView.js`
+`highScorePresenter.js` - Passes props to`highScoreView.js`.
 
-`startScreenPresenter.js` - Passes props to `startScreenView.js`
+`scoreBoardPresenter.js` - Passes props to `scoreBoardView.js`.
 
-`wordInputPresenter.js` - Passes props to `wordInputView.js` 
+`startScreenPresenter.js` - Passes props to `startScreenView.js`.
+
+`wordInputPresenter.js` - Passes props to `wordInputView.js`.
 
 ### utilities
 
@@ -81,8 +85,11 @@ on a different page. Another page would contain the rules for the different game
 
 ### view
 
+`highScoreView.js` - Shows the all time high score.
+
 `scoreBoardView.js` - Shows our final score board. 
 
 `startScreenView.js` - Shows the button that starts the game.
 
 `wordInputView.js` - Shows the given word and takes input from user.
+
