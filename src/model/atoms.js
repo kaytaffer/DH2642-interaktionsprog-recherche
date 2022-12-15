@@ -5,7 +5,7 @@ import {extractGivenWord} from '../utilities/wordUtilities';
 
 
 // Updates given word automatically when the game round is updated
-// To test a given word instead of a random set return like this:
+// To test a given word instead of a random (getRandomWord();)  set return like this:
 // return  getSearchedWord("word"),
 export const givenWordPromiseState = selector({
     key: 'givenWordPromiseState',

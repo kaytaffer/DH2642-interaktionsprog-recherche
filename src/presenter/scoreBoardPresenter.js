@@ -1,6 +1,6 @@
 //TODO present component scoreBoard
 import React, {useState} from "react";
-
+import {useNavigate} from "react-router-dom";
 import ScoreBoardView from "../view/scoreBoardView.js";
 import {useRecoilState, useRecoilValue} from "recoil";
 import {
@@ -9,7 +9,7 @@ import {
     givenWordState,
     incorrectWordsState,
     totalScoreState,
-    synonymsState,
+    synonymsState, gameRound,
 } from "../model/atoms.js";
 
 function ScoreBoard(props) {
@@ -20,11 +20,16 @@ function ScoreBoard(props) {
     const givenWordSynonyms = useRecoilValue(synonymsState);
     const [scoreThisRound, setScoreThisRound] = useState(0);
     const [score, setScore] = useRecoilState(totalScoreState);
+    const currentGameRound = useRecoilValue(gameRound);
+    const navigate = useNavigate()
+
 
     //Sums the total score for correct synonyms for all rounds.
+    // TODO selector
     function sumCB(sumSoFar, point){
         return sumSoFar + point;
     }
+
     //Sums the score for correct synonyms in the current round.
     function sumScoreCB(sumSoFar, newElement){
         return sumSoFar + newElement.points;
@@ -38,6 +43,16 @@ function ScoreBoard(props) {
         setScore([...score, roundScore]);
     }
 
+    //Navigates to a page that shows values from the completed game round
+    function navigateToGameScoreACB(){
+        navigate("/gamescore")
+    }
+
+    //Navigates to start page
+    function navigateToStartACB(){
+        navigate("/")
+    }
+
     React.useEffect( componentWasCreatedACB, [] );
 
     return <ScoreBoardView word = {givenWord}
@@ -47,6 +62,9 @@ function ScoreBoard(props) {
                     givenWordSynonyms = {givenWordSynonyms}
                     scoreThisRound = {scoreThisRound}
                     totalScore = {score.reduce(sumCB,0)}
-                    navigateToNextWord = {props.onRoundOver}/>;
+                    navigateToNextWord = {props.onRoundOver}
+                    navigateToStart ={navigateToStartACB}
+                    navigateToGameScore = {navigateToGameScoreACB}
+                    lastRound = {currentGameRound > 4}/>;
 }
 export default ScoreBoard;
