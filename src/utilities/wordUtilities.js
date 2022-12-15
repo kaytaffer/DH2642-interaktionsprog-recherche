@@ -7,12 +7,11 @@
 import {calculateScoreFromFrequency} from "./gameUtilities";
 import {getDefinitions, getSynonyms} from '../integration/API/wordsApiCall';
 
-//picks out the word string for the given word object.
+
 function extractGivenWord(givenWordObject){
     return givenWordObject.word;
 }
 
-//picks out the definition for the given word.
 function extractDefinition(givenWordDefinitionObject){
     function combineDefinitionCB(currentArray, newResult){
         if(!newResult.text)
@@ -22,18 +21,14 @@ function extractDefinition(givenWordDefinitionObject){
     return givenWordDefinitionObject.reduce(combineDefinitionCB, []);
 }
 
-/**
- * TODO: Change this function to work with new API.
- * API call will return ONE array
- * No need to combine many array.
- * Just call API fetch
- */
 function extractSynonyms(givenWordSynonymObject){
-    return givenWordSynonymObject[0].words;
+    function removeDuplicates(arrayOfSynonyms) {
+        return arrayOfSynonyms.filter((item, index) => arrayOfSynonyms.indexOf(item) === index);
+        }
+    return removeDuplicates(givenWordSynonymObject[0].words);
 }
 
-//picks out the number of times the word is likely to appear in any English corpus, per million words.
-// If it does not have a frequency according to the API, returns a default value.
+//returns the total word usage (higher number = more common)
 function extractFrequency (wordFrequencyObject){
     if(!wordFrequencyObject){
         return 50;
