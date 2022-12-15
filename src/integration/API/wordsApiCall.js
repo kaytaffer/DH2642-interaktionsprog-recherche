@@ -60,7 +60,7 @@ function getRandomWord(){
     return apiCall(wordnik_BASE_URL_WORDS + "randomWord?"+
         "hasDictionaryDef=true" +
         "&excludePartOfSpeech=family-name%2C%20given-name%2Carticle&"+ // (1)
-        "minCorpusCount=50000" +                                       // (2)
+        "minCorpusCount=25000" +                                       // (2)
         "&maxCorpusCount=-1" +                                         // (*)                             
         "&minDictionaryCount=1"+    
         "&maxDictionaryCount=-1" +                                     // (*)
@@ -80,7 +80,7 @@ function getFrequency(word){
     //console.log("getFrequency was called");
     let startYear = "2000";
     let endYear = "2022";
-    return apiCall(wordnik_BASE_URL_WORD + word.word + "/frequency?" +
+    return apiCall(wordnik_BASE_URL_WORD + word + "/frequency?" +
         "useCanonical=false"+           //maybe set to true
         "&startYear=" + startYear + 
         "&endYear="+    endYear+
@@ -113,7 +113,7 @@ function getSynonyms(word){
     return apiCall(wordnik_BASE_URL_WORD + word + "/relatedWords?" +
     "useCanonical=false" +              //maybe set to true
     "&relationshipTypes=synonym" + 
-    "&limitPerRelationshipType=10" +    // (1)
+    "&limitPerRelationshipType=1000" +    // (1)
     "&api_key=" + wordnik_API_KEY);
 }
 

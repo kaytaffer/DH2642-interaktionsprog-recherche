@@ -30,7 +30,7 @@ function extractSynonyms(givenWordSynonymObject){
 
 //returns the total word usage (higher number = more common)
 function extractFrequency (wordFrequencyObject){
-    if(!wordFrequencyObject){
+    if(!wordFrequencyObject || wordFrequencyObject.totalCount===0){
         return 50;
     }  //TODO is 50 reasonable?
     return wordFrequencyObject.totalCount;
