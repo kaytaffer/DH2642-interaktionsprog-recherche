@@ -52,7 +52,7 @@ function ScoreBoardView(props){
                 {props.definition.map(definitionCB)}
             </ol>
 
-            <b>Correct synonyms:</b>
+            <b>Example synonyms:</b>
             <table className="centered">
                 <tbody>
                         {props.givenWordSynonyms.map(showSynonymsForGivenWordCB)}
