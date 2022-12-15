@@ -9,7 +9,7 @@ function highScoreView(props){
     }
 
     return (
-        <div>
+        <div id="highScores">
             <h1>High Scores</h1>
             <table>
                 <tbody>

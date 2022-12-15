@@ -1,7 +1,7 @@
 function rulesView(){
 
     return (
-        <div>
+        <div id="rules">
             <h1>Rules</h1>
             <p>This page will show rules</p>
         </div>

@@ -22,8 +22,38 @@ code {
   color: darkred;
   text-decoration: line-through;
 }
-/* added   text-align: center; line 17. () */
 
+/* Loading component */
+.loading {}
+
+
+/* ---------- Links (everywhere) ---------- */
+
+/* unvisited link */
+a:link {}
+
+/* mouse over link */
+a:hover {}
+
+/* visited link  a:visited {}, selected link  a:active {} */
+
+
+/* ---------- Links (everywhere) ---------- */
+h1{}
+/* h2, h3 etc to h6*/
+
+
+/* ---------- Standard buttons ---------- */
+button.button {}
+
+/* mouse over button */
+button.button:hover {}
+
+
+/* container for topbar, hamburgermenu and content */
+.container {}
+
+/* ---------- Hamburger menu ---------- */
 #hamburgerMenu{
   margin:0; top:0; left:0;
   padding:0 20px;
@@ -33,10 +63,38 @@ code {
   background: rgba(0,0,0,0.2);
 }
 
-#hamburgerMenuButton{
-  position: fixed;
-  top:0; left:0;
-}
+/* Button to close hamburger menu (in hamburger menu) */
+#openHamburgerMenuButton {}
+
+/* Container for all links in hamburger menu */
+#hamburgerMenu ul {}
+
+/* Container for individual link in hamburger menu */
+#hamburgerMenu li {}
+
+
+/* ---------- Top bar ---------- */
+#topBar {}
+
+/* Recherché title at top */
+#topBar h1 {}
+
+/* Button to open hamburger menu (in topBar) */
+#openHamburgerMenuButton{}
+
+
+/* ---------- Content, container for all page content ---------- */
+#content {}
+
+/* individual pages: #start, #game, #about, #rules, #highScores, #gameScore, #pageNotFound */
+
+/* individual game parts: #wordInput #scoreBoard*/
+
+/* Big given word shown in wordInput and scoreBoard */
+h1.givenWord {}
+
+/* Input box where user enters synonyms */
+input.wordInput {}
 
 .show{
   display: block!important;

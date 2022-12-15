@@ -4,7 +4,9 @@ function StartScreenView(props){
         props.onGameStart();
     }
     return (
-            <button onClick={buttonClickedACB}>Start game</button>
+        <div id="start">
+            <button className="button" onClick={buttonClickedACB}>Start game</button>
+        </div>
     );
 }
 export default StartScreenView;
