@@ -1,6 +1,6 @@
 # Recherche
 
-A nerdy wordy game about finding rare synonyms.
+A nerdy wordy game about finding rare synonyms, intended for English-speking lexicophiles.
 
 
 [Find the game here](https://recherche-1.web.app/)

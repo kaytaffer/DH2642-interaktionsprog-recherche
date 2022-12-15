@@ -42,7 +42,7 @@ function getRandomWord(){
     return apiCall(wordnik_BASE_URL_WORDS + "randomWord?"+
         "hasDictionaryDef=true" +
         "&excludePartOfSpeech=family-name%2C%20given-name%2Carticle&"+ // (1)
-        "minCorpusCount=50000" +                                       // (2)
+        "minCorpusCount=25000" +                                       // (2)
         "&maxCorpusCount=-1" +                                         // (*)                             
         "&minDictionaryCount=1"+    
         "&maxDictionaryCount=-1" +                                     // (*)
@@ -93,7 +93,7 @@ function getSynonyms(word){
     //console.log("getSynonyms was called")
     return apiCall(wordnik_BASE_URL_WORD + word + "/relatedWords?" +
     "useCanonical=false" +              //maybe set to true
-    "&relationshipTypes=synonym" +
+    "&relationshipTypes=synonym" + 
     "&limitPerRelationshipType=1000" +    // (1)
     "&api_key=" + wordnik_API_KEY);
 }

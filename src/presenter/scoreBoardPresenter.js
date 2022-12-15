@@ -22,6 +22,13 @@ function ScoreBoard(props) {
     const [score, setScore] = useRecoilState(totalScoreState);
     const currentGameRound = useRecoilValue(gameRound);
     const navigate = useNavigate()
+    const arrayOfExampleSynonyms = getMultipleRandom(givenWordSynonyms);
+
+    function getMultipleRandom(newArray) {
+        const shuffled = [...newArray].sort(() => 0.5 - Math.random());
+      
+        return shuffled.slice(0, 4);
+      }
 
 
     //Sums the total score for correct synonyms for all rounds.
@@ -59,7 +66,7 @@ function ScoreBoard(props) {
                     definition = {definition}
                     userWords = {userWords}
                     incorrectUserWords = {incorrectUserWords}
-                    givenWordSynonyms = {givenWordSynonyms}
+                    givenWordSynonyms = {arrayOfExampleSynonyms}
                     scoreThisRound = {scoreThisRound}
                     totalScore = {score.reduce(sumCB,0)}
                     navigateToNextWord = {props.onRoundOver}

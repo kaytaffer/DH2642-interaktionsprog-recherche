@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom"; //TODO is this import ok in view? can presenter do this?
-
-function hamburgerMenuView(){
+function hamburgerMenuView(props){
 
     function showMenuACB() {
         document.getElementById("hamburgerMenu").classList.add("show");
@@ -18,10 +16,7 @@ function hamburgerMenuView(){
             <div id="hamburgerMenu">
                 <button id="hamburgerMenuButton" onClick={hideMenuACB}>x</button>
                 <ul>
-                    <li><Link to="/">Start</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/rules">Rules</Link></li>
-                    <li><Link to="/highscore">High Scores</Link></li>
+                    {props.children.map(child => <li key={child.props.children}>{child}</li>)}
                 </ul>
             </div>
         </div>

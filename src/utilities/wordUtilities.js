@@ -30,7 +30,7 @@ function extractSynonyms(givenWordSynonymObject){
 
 //returns the total word usage (higher number = more common)
 function extractFrequency (wordFrequencyObject){
-    if(!wordFrequencyObject){
+    if(!wordFrequencyObject || wordFrequencyObject.totalCount===0){
         return 50;
     }  //TODO is 50 reasonable?
     return wordFrequencyObject.totalCount;
@@ -42,7 +42,7 @@ function extractFrequency (wordFrequencyObject){
 function compareWordsMatch(enteredWordsArray, givenWordSynonyms){
     function removeNonSynonymsCB(word) {
         function isWordCB(synonym) {
-            return word === synonym;
+            return word.toLowerCase() === synonym.toLowerCase();
         }
         return givenWordSynonyms.find(isWordCB);
 
@@ -55,7 +55,7 @@ function compareWordsMatch(enteredWordsArray, givenWordSynonyms){
 function compareWordsMismatch(enteredWordsArray, givenWordSynonyms){
     function removeSynonymsCB(word){
         function isWordCB(synonym) {
-            return word === synonym;
+            return word.toLowerCase() === synonym.toLowerCase();
         }
         return !(givenWordSynonyms.find(isWordCB));
     }
