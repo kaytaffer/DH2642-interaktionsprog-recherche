@@ -1,11 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 import HighScoreView from "../view/highScoreView";
+import {useRecoilValue} from "recoil";
+import {highScoreState} from "../model/persistenceAtoms";
 
 function HighScore() {
-    const highScore = {
-        highScoreNames: ['dogge', 'test'],
-        highScores: [-1, 3]
-    }
+    const highScore = useRecoilValue(highScoreState)
 
     function combinedHighScores(){
         function combineCB(element, index) {
