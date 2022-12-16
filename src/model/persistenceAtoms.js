@@ -1,11 +1,12 @@
 //RELEVANT IMPORTS
 import {atom, useRecoilValue} from 'recoil';
 import {
-    checkEmptyFirebaseDBPath,
+    checkEmptyFirebaseDBPath, fireBDataB,
     onLocalChange,
     subscribeToDBPath,
     unsubscribeToDBPath
 } from "../integration/firebase/firebaseModel";
+import {get, ref, set} from "firebase/database";
 
 //RECOIL EFFECTS:
 
@@ -16,8 +17,7 @@ const syncStorageEffect = () => ({setSelf, onSet, trigger}) => {
 
 // Initialize atom value to the remote storage state if there is one
     if (trigger === 'get') { // Avoid expensive initialization
-        setSelf(checkEmptyFirebaseDBPath(databasePath));
-        //setSelf({highScoreNames: ['barse'],            highScores: [-1]});
+        checkEmptyFirebaseDBPath(databasePath, setSelf)
     }
 
     //Subscribes to changes in the database on the relevant path
@@ -33,10 +33,7 @@ const syncStorageEffect = () => ({setSelf, onSet, trigger}) => {
 //The highscore atom containing the local highScore.
 export const highScoreState = atom({
     key: 'highScoreState',
-    default: {
-        highScoreNames: ['dogge',],
-        highScores: [-1]
-    },
+    default: [],
     effects: [syncStorageEffect()]
 })
 

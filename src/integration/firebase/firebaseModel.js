@@ -19,19 +19,16 @@ export const fireBDataB = getDatabase();
 // ACB updates atom value according to changes in firebase given a snapshot of the database state
 function onDatabaseChangeACB(snapshot) {
     if (snapshot.exists()) {
-        return {highScoreNames: snapshot.val().highScoreNames,
-            highScores: snapshot.val().highScores}
+        return snapshot.val()
     } else {
         console.log("When trying to find persistent high score no data was available");
-        return {highScoreNames: ['nemo',],
-            highScores: [-1,]};
+        return [];
     }
 }
 
-export function checkEmptyFirebaseDBPath(databasePath){
-        function treatSnapshotACB(snapshot){
-
-        return onDatabaseChangeACB(snapshot)
+export function checkEmptyFirebaseDBPath(databasePath, callback){
+    function treatSnapshotACB(snapshot){
+        callback(onDatabaseChangeACB(snapshot))
     }
     return get(ref(fireBDataB, databasePath)).then(treatSnapshotACB).catch((error) => {
         console.error(error);
@@ -48,11 +45,7 @@ export function unsubscribeToDBPath (databasePath) {
 
 //On changes in the atom, updates the persistent database.
 export function onLocalChange(databasePath, highScoreObject){
-    return set(ref(fireBDataB, databasePath), {
-        highScoreNames: Object.assign({}, highScoreObject.highScoreNames),
-        highScores: Object.assign({}, highScoreObject.highScores)}).catch(error => {
-        console.error(error);
-    })
+    return set(ref(fireBDataB, databasePath), highScoreObject)
 }
 
 /* TODO authentication:
