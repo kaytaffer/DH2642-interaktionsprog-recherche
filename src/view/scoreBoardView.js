@@ -49,7 +49,7 @@ function ScoreBoardView(props){
         <div id="scoreBoard">
             <h1 className="givenWord">[{props.word}]</h1>
 
-            <b>Your synonyms:</b>
+            <h3>Your synonyms:</h3>
             <table className="userSynonyms">
                 <tbody>
                     {props.userWords.map(showCorrectSynonymsCB)}
