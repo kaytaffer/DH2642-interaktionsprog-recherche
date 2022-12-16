@@ -19,8 +19,12 @@ function ScoreBoardView(props){
         )
     }
 
+    //Replaces unwanted words within < > from the definition.
     function definitionCB(definition) {
-        return <li key={definition}>"{definition}"</li>
+
+        const newDefinition = definition.replace(/<(.*?)>/gi, "");
+
+        return <li key={definition}>"{newDefinition}"</li>
     }
 
     // Displays all synonyms (for the given word) retrieved from the API.
