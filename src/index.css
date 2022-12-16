@@ -1,6 +1,7 @@
 
 :root {
   --backgroundColor: #101326;
+  --darkBackgroundcolor: #040615;
   --lightBackgroundColor: #3B3E4D;
   --textColor: #FFFFFF;
   --lightAccentColor: #ffcb4b;
@@ -95,9 +96,10 @@ button:hover {
   position: fixed;
   display: none;
   height: 100%;
-  background: rgba(0,0,0,0.2);
+  background: var(--darkBackgroundcolor);
   box-sizing: border-box;
   font-size: 25px;
+  z-index: 1;
 }
 
 /* Button to close hamburger menu (in hamburger menu) */
@@ -118,6 +120,11 @@ button:hover {
   list-style-type: none;
   padding:0;
   font-family: var(--serifFont);
+}
+
+/* class to show hamburger menu */
+#hamburgerMenu.show{
+  display: block!important;
 }
 
 #hamburgerMenu a {
@@ -146,6 +153,10 @@ button:hover {
 
 /* Recherché title at top */
 #topBar h1 {}
+
+#topBar.hide > * {
+  display: none;
+}
 
 /* Button to open hamburger menu (in topBar) */
 #openHamburgerMenuButton{
@@ -253,12 +264,4 @@ table.userSynonyms {
 }
 table.userSynonyms td {
   padding:3px 9px;
-}
-
-.show{
-  display: block!important;
-}
-
-.hide{
-  display: none!important;
 }

@@ -10,11 +10,18 @@ function hamburgerMenuView(props){
         document.getElementById("topBar").classList.remove("hide");
     }
 
+    document.addEventListener('click', e => {
+        if (!document.getElementById('hamburgerMenu').contains(e.target)
+        && !document.getElementById('openHamburgerMenuButton').contains(e.target)){
+            hideMenuACB();
+        }
+    });
+
     return (
             <div id="hamburgerMenu">
                 <button id="closeHamburgerMenuButton" onClick={hideMenuACB}>x</button>
                 <ul>
-                    {props.children.map(child => <li key={child.props.children}>{child}</li>)}
+                    {props.children.map(child => <li key={child.props.children} onClick={hideMenuACB}>{child}</li>)}
                 </ul>
             </div>
     );
