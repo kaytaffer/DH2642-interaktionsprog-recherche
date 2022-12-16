@@ -23,13 +23,14 @@ function onDatabaseChangeACB(snapshot) {
             highScores: snapshot.val().highScores}
     } else {
         console.log("When trying to find persistent high score no data was available");
-        return {highScoreNames: 'nemo',
-                highScores: -1};
+        return {highScoreNames: ['nemo',],
+            highScores: [-1,]};
     }
 }
 
 export function checkEmptyFirebaseDBPath(databasePath){
-    function treatSnapshotACB(snapshot){
+        function treatSnapshotACB(snapshot){
+
         return onDatabaseChangeACB(snapshot)
     }
     return get(ref(fireBDataB, databasePath)).then(treatSnapshotACB).catch((error) => {
