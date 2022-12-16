@@ -1,14 +1,14 @@
 
 :root {
   --backgroundColor: #101326;
-  --darkBackgroundcolor: #040615;
-  --darkBackgroundcolorLowOpacity: rgba(4,6,21,0.4);
+  --darkBackgroundcolor: #0a0d21;
+  --darkBackgroundcolorLowOpacity: rgba(10,13,33,0.4);
   --lightBackgroundColor: #3B3E4D;
   --textColor: #FFFFFF;
   --lightAccentColor: #ffcb4b;
   --darkAccentColor: #6e63f2;
   --errorColor: #f36767;
-  --borderColor: #3B3E4D;
+  --borderColor: #656777;
   --serifFont: 'Roboto Serif', serif;
   --monoFont: 'Roboto Mono', monospace;
   --sansFont: 'Roboto Flex', sans-serif;
@@ -249,9 +249,9 @@ input.wordInput {
 input.wordInput::placeholder {
   color: rgba(255,255,255,0.3)
 }
-input.wordInput:focus::placeholder {
-  color: rgba(255,255,255,0.1)
-}
+/*input.wordInput:focus::placeholder {*/
+/*  color: rgba(255,255,255,0.1)*/
+/*}*/
 
 /* round information in word input */
 .roundContainer {
@@ -261,7 +261,7 @@ input.wordInput:focus::placeholder {
 }
 .roundDescription, .timeDescription {
   font-family: var(--monoFont);
-  color: var(--lightBackgroundColor);
+  color: var(--borderColor);
   font-style: italic;
   font-size: 14px;
 }
