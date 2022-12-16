@@ -1,9 +1,23 @@
+
+:root {
+  --backgroundColor: #101326;
+  --lightBackgroundColor: #3B3E4D;
+  --textColor: #FFFFFF;
+  --lightAccentColor: #ffcb4b;
+  --darkAccentColor: #6e63f2;
+  --errorColor: #f36767;
+  --borderColor: rgba(255,255,255,0.09);
+  --serifFont: 'Roboto Serif', serif;
+  --monoFont: 'Roboto Mono', monospace;
+  --sansFont: 'Roboto Flex', sans-serif;
+}
+
 body {
-  background: teal;
+  background: var(--backgroundColor);
+  color: var(--textColor);
+  font-size: 19px;
+  font-family: var(--sansFont);
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -19,7 +33,7 @@ code {
 }
 
 .strikethrough{
-  color: darkred;
+  color: var(--errorColor);
   text-decoration: line-through;
 }
 
@@ -28,23 +42,37 @@ code {
 
 
 /* ---------- Links (everywhere) ---------- */
-
-/* unvisited link */
-a:link {}
+a {
+  color: var(--lightAccentColor);
+}
 
 /* mouse over link */
-a:hover {}
+a:hover {
+  color: var(--lightBackgroundColor);
+}
 
-/* visited link  a:visited {}, selected link  a:active {} */
+/* unvisited link a:link {}, visited link  a:visited {}, selected link  a:active {} */
 
 
 /* ---------- Links (everywhere) ---------- */
-h1{}
+h1{
+  font-family: var(--serifFont);
+}
 /* h2, h3 etc to h6*/
 
 
 /* ---------- Standard buttons ---------- */
-button.button {}
+button.button {
+  font-size: 14px;
+  color: var(--textColor);
+  background: var(--lightBackgroundColor);
+  border:1px solid var(--borderColor);
+  padding:10px 14px;
+  border-radius: 5px;
+  font-family: var(--monoFont);
+  font-style: italic;
+  font-weight: 600;
+}
 
 /* mouse over button */
 button.button:hover {}
@@ -62,13 +90,14 @@ button:hover {
 /* ---------- Hamburger menu ---------- */
 #hamburgerMenu{
   margin:0; top:0; left:0;
-  padding:20px;
-  width:250px;
+  padding:40px;
+  width:270px;
   position: fixed;
   display: none;
   height: 100%;
   background: rgba(0,0,0,0.2);
   box-sizing: border-box;
+  font-size: 25px;
 }
 
 /* Button to close hamburger menu (in hamburger menu) */
@@ -81,13 +110,27 @@ button:hover {
   font-size: 25px;
   border:none;
   background: none;
+  color: var(--textColor);
 }
 
 /* Container for all links in hamburger menu */
-#hamburgerMenu ul {}
+#hamburgerMenu ul {
+  list-style-type: none;
+  padding:0;
+  font-family: var(--serifFont);
+}
 
-/* Container for individual link in hamburger menu */
-#hamburgerMenu li {}
+#hamburgerMenu a {
+  text-decoration: none;
+}
+
+#hamburgerMenu a:link, #hamburgerMenu  a:visited, #hamburgerMenu  a:active {
+  color: var(--textColor)
+}
+
+#hamburgerMenu a:hover {
+  color: var(--lightBackgroundColor);
+}
 
 
 /* ---------- Top bar ---------- */
@@ -98,7 +141,7 @@ button:hover {
   display: grid;
   grid-template-columns: auto 1fr;
   align-content: center;
-  background: teal;
+  background: var(--backgroundColor)
 }
 
 /* Recherché title at top */
@@ -126,6 +169,24 @@ button:hover {
   display: grid;
   place-content: center;
   padding-bottom: 100px;
+  text-align: center;
+}
+
+#start button {
+  justify-self: center;
+}
+
+#start h1 {
+  margin-bottom: 0;
+  font-size: 40px;
+}
+
+p.instruction {
+  color: var(--lightAccentColor);
+  font-style: italic;
+  font-size: 24px;
+  margin:30px 0;
+  padding: 0 75px;
 }
 
 #about, #rules, #highScores, #pageNotFound {
@@ -142,10 +203,57 @@ button:hover {
 /* individual game parts: #wordInput #scoreBoard*/
 
 /* Big given word shown in wordInput and scoreBoard */
-h1.givenWord {}
+h1.givenWord {
+  font-size: 60px;
+}
+
+/* wordlist in wordinputview */
+ul.wordList {
+  list-style-type: none;
+  padding:0;
+  font-family: var(--serifFont);
+  font-style: italic;
+}
+
+/* list of definitions */
+ol.definitions {
+  text-align: left;
+}
+
+#scoreBoard button {
+  margin-bottom: 50px;
+}
 
 /* Input box where user enters synonyms */
-input.wordInput {}
+input.wordInput {
+  color: var(--textColor);
+  font-family: var(--monoFont);
+  font-size: 14px;
+  padding:10px 14px;
+  border-radius: 5px;
+  border:1px solid var(--borderColor);
+  background: var(--backgroundColor);
+}
+input.wordInput::placeholder {
+  color: rgba(255,255,255,0.3)
+}
+input.wordInput:focus::placeholder {
+  color: rgba(255,255,255,0.1)
+}
+
+/* scores in scoreboard */
+span.number {
+  font-family: var(--monoFont);
+  color: var(--darkAccentColor)
+}
+
+/* table in scoreboard */
+table.userSynonyms {
+  margin: 0 auto;
+}
+table.userSynonyms td {
+  padding:3px 9px;
+}
 
 .show{
   display: block!important;
