@@ -2,7 +2,7 @@ import firebaseConfig from "./firebaseConfig";
 
 import { initializeApp } from 'firebase/app';
 import {getDatabase, ref, get, set, onValue, off} from "firebase/database";
-import {getAuth, signInAnonymously} from "firebase/auth";
+//import {getAuth, signInAnonymously} from "firebase/auth";
 // TODO: Add other SDKs for Firebase products that we want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 //till exempel:
@@ -13,8 +13,6 @@ import {getAuth, signInAnonymously} from "firebase/auth";
 const app = initializeApp(firebaseConfig);
 export const fireBDataB = getDatabase();
 //const authentication = getAuth();
-
-
 
 // ACB updates atom value according to changes in firebase given a snapshot of the database state
 function onDatabaseChangeACB(snapshot) {
@@ -35,8 +33,11 @@ export function checkEmptyFirebaseDBPath(databasePath, callback){
     })
 }
 
-export function subscribeToDBPath(databasePath) {
-    onValue(ref(fireBDataB, databasePath), onDatabaseChangeACB);
+export function subscribeToDBPath(databasePath, callback) {
+    function treatSnapshotACB(snapshot){
+        callback(onDatabaseChangeACB(snapshot))
+    }
+    onValue(ref(fireBDataB, databasePath), treatSnapshotACB);
 }
 
 export function unsubscribeToDBPath (databasePath) {
