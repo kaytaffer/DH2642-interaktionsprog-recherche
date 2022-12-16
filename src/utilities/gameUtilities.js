@@ -2,7 +2,7 @@
 
 // Utility methods concerning game logic here:
 
-export const roundLength = 10;
+export const roundLength = 30;
 
 
 //TODO decide on final score rules
