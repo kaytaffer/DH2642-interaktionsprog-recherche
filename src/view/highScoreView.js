@@ -8,14 +8,16 @@ function highScoreView(props){
         </tr>
     }
 
+    /*.sort((a,b) => b.score - a.score).*/
     return (
         <div id="highScores">
             <h1>High Scores</h1>
             <table>
                 <tbody>
-                    {props.highScores.sort((a,b) => b.score - a.score).map(renderHighScoreTableRowCB)}
+                    {props.highScores.map(renderHighScoreTableRowCB)}
                 </tbody>
             </table>
+            <button onClick={props.addHighScore}>click</button>
         </div>
     );
 }
