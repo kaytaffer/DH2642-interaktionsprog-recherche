@@ -7,7 +7,7 @@
   --lightAccentColor: #ffcb4b;
   --darkAccentColor: #6e63f2;
   --errorColor: #f36767;
-  --borderColor: rgba(255,255,255,0.09);
+  --borderColor: #3B3E4D;
   --serifFont: 'Roboto Serif', serif;
   --monoFont: 'Roboto Mono', monospace;
   --sansFont: 'Roboto Flex', sans-serif;
@@ -250,6 +250,26 @@ input.wordInput::placeholder {
 }
 input.wordInput:focus::placeholder {
   color: rgba(255,255,255,0.1)
+}
+
+/* round information in word input */
+.roundContainer {
+  display: grid;
+  justify-content: center;
+  margin:10px 0;
+}
+.roundContainer span {
+  font-family: var(--monoFont);
+  color: var(--lightBackgroundColor);
+  font-style: italic;
+  font-size: 14px;
+}
+#roundProgressBar {
+  width:80px;
+  height: 10px;
+  border:1px solid var(--textColor);
+  margin: 3px auto;
+  border-radius: 3px;
 }
 
 /* scores in scoreboard */
