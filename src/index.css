@@ -2,6 +2,7 @@
 :root {
   --backgroundColor: #101326;
   --darkBackgroundcolor: #040615;
+  --darkBackgroundcolorLowOpacity: rgba(4,6,21,0.4);
   --lightBackgroundColor: #3B3E4D;
   --textColor: #FFFFFF;
   --lightAccentColor: #ffcb4b;
@@ -231,7 +232,7 @@ ol.definitions {
   text-align: left;
 }
 
-#scoreBoard button {
+#scoreBoard .button {
   margin-bottom: 50px;
 }
 
@@ -284,4 +285,38 @@ table.userSynonyms {
 }
 table.userSynonyms td {
   padding:3px 9px;
+}
+
+/* accordion for definition and example synonyms */
+.accordion {
+  background:var(--darkBackgroundcolor);
+  padding: 18px;
+  width:100%;
+  border:none; outline:none;
+  transition:0.4s;
+  text-align: left;
+  font-size: 20px;
+  font-family: var(--sansFont);
+  color: var(--textColor);
+}
+.active, .accordion:hover {
+  background: var(--darkBackgroundcolorLowOpacity);
+}
+.accordionPanel {
+  padding: 0 18px;
+  display: none;
+  overflow:hidden;
+  background: var(--darkBackgroundcolorLowOpacity);
+  margin-top:-2px;
+}
+.accordionPanel.view {
+  display: block;
+}
+.accordion:after {
+  content: '+'; /* Unicode character for "plus" sign (+) */
+  float: right;
+  margin-left: 5px;
+}
+.active:after {
+  content: "-"; /* Unicode character for "minus" sign (-) */
 }
