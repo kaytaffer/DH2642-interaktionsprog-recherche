@@ -5,7 +5,7 @@ function ScoreBoardView(props){
         return (
             <tr key={synonymObject.word}>
                 <td>{synonymObject.word}</td>
-                <td>{synonymObject.points.toFixed(0)}</td>
+                <td><span className="number">{synonymObject.points.toFixed(0)}</span></td>
             </tr>
             )
     }
@@ -26,11 +26,9 @@ function ScoreBoardView(props){
     // Displays all synonyms (for the given word) retrieved from the API.
     function showSynonymsForGivenWordCB(synonym){
         return (
-                <tr key ={synonym} >
-                    <td>
-                        <i>{synonym}</i>
-                    </td>
-                </tr>
+                <li key ={synonym}>
+                    {synonym}
+                </li>
         )
     }
     function navigateToNextWordACB(){
@@ -47,31 +45,34 @@ function ScoreBoardView(props){
         <div id="scoreBoard">
             <h1 className="givenWord">[{props.word}]</h1>
 
-            <ol className="definition">
-                <i><b>Definition: </b></i>
-                {props.definition.map(definitionCB)}
-            </ol>
-
-            <b>Example synonyms:</b>
-            <table className="centered">
-                <tbody>
-                        {props.givenWordSynonyms.map(showSynonymsForGivenWordCB)}
-                </tbody>
-            </table>
-
             <b>Your synonyms:</b>
-            <table className="centered">
+            <table className="userSynonyms">
                 <tbody>
                     {props.userWords.map(showCorrectSynonymsCB)}
                     {props.incorrectUserWords.map(showIncorrectSynonymsCB)}
                 </tbody>
             </table>
-            <p>Score this round: {props.scoreThisRound.toFixed(0)}</p>
-            <p>Total score: {props.totalScore.toFixed(0)}</p>
+            <p>
+                Score this round: <span className="number">{props.scoreThisRound.toFixed(0)}</span>
+            </p>
+            <p>
+                Total score: <span className="number">{props.totalScore.toFixed(0)}</span>
+            </p>
 
             <button className="button" onClick={navigateToNextWordACB} hidden={props.lastRound}>Next word</button>
             <button className="button" onClick={navigateToStartACB} hidden = {!props.lastRound}>Back to start!</button>
             <button className="button" onClick={navigateToGameScoreACB} hidden = {!props.lastRound}>Game Score</button>
+
+            <h3>Definitions:</h3>
+            <ol className="definitions">
+                {props.definition.map(definitionCB)}
+            </ol>
+
+            <h3>Example synonyms:</h3>
+            <ul className="wordList">
+                {props.givenWordSynonyms.map(showSynonymsForGivenWordCB)}
+            </ul>
+
         </div>
     );
 }

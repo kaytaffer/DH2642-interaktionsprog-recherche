@@ -13,7 +13,7 @@ function WordInputView(props){
         props.onAddEnteredWord();
     }
     function displayEnteredWordACB(word){
-        return <tr key ={word}><td>{word}</td></tr>;
+        return <li key={word}>{word}</li>;
     }
 
     return (
@@ -21,8 +21,11 @@ function WordInputView(props){
 
             <h1 className="givenWord">[{props.randomWord}]</h1>
 
+            <p className="instruction">Write as many synonyms as you can.
+                The rarer the synonym, the more points you get.</p>
+
             <input className="wordInput" type = "text"
-                   placeholder="Give us your best Recherché synonyms.."
+                   placeholder="Give us your best synonyms..."
                    id="wordInput"
                    autoFocus={true}
                    autoComplete={"off"}
@@ -30,13 +33,11 @@ function WordInputView(props){
                    value = {props.inputText}
                    onChange={textInputChangeACB}
                    onKeyDown={keyGoesDownACB}/>
-            <button onClick={sendButtonClickedACB}>Send</button>
+            <button className="button" onClick={sendButtonClickedACB}>Send</button>
 
-            <table className="centered">
-                <tbody>
+            <ul className="wordList">
                 {props.enteredWords.map(displayEnteredWordACB)}
-                </tbody>
-            </table>
+            </ul>
         </div>
     );
 }
