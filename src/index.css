@@ -1,12 +1,13 @@
 
 :root {
   --backgroundColor: #101326;
+  --darkBackgroundcolor: #040615;
   --lightBackgroundColor: #3B3E4D;
   --textColor: #FFFFFF;
   --lightAccentColor: #ffcb4b;
   --darkAccentColor: #6e63f2;
   --errorColor: #f36767;
-  --borderColor: rgba(255,255,255,0.09);
+  --borderColor: #3B3E4D;
   --serifFont: 'Roboto Serif', serif;
   --monoFont: 'Roboto Mono', monospace;
   --sansFont: 'Roboto Flex', sans-serif;
@@ -95,9 +96,10 @@ button:hover {
   position: fixed;
   display: none;
   height: 100%;
-  background: rgba(0,0,0,0.2);
+  background: var(--darkBackgroundcolor);
   box-sizing: border-box;
   font-size: 25px;
+  z-index: 1;
 }
 
 /* Button to close hamburger menu (in hamburger menu) */
@@ -118,6 +120,11 @@ button:hover {
   list-style-type: none;
   padding:0;
   font-family: var(--serifFont);
+}
+
+/* class to show hamburger menu */
+#hamburgerMenu.show{
+  display: block!important;
 }
 
 #hamburgerMenu a {
@@ -146,6 +153,10 @@ button:hover {
 
 /* Recherché title at top */
 #topBar h1 {}
+
+#topBar.hide > * {
+  display: none;
+}
 
 /* Button to open hamburger menu (in topBar) */
 #openHamburgerMenuButton{
@@ -241,6 +252,26 @@ input.wordInput:focus::placeholder {
   color: rgba(255,255,255,0.1)
 }
 
+/* round information in word input */
+.roundContainer {
+  display: grid;
+  justify-content: center;
+  margin:10px 0;
+}
+.roundContainer span {
+  font-family: var(--monoFont);
+  color: var(--lightBackgroundColor);
+  font-style: italic;
+  font-size: 14px;
+}
+#roundProgressBar {
+  width:80px;
+  height: 10px;
+  border:1px solid var(--textColor);
+  margin: 3px auto;
+  border-radius: 3px;
+}
+
 /* scores in scoreboard */
 span.number {
   font-family: var(--monoFont);
@@ -253,12 +284,4 @@ table.userSynonyms {
 }
 table.userSynonyms td {
   padding:3px 9px;
-}
-
-.show{
-  display: block!important;
-}
-
-.hide{
-  display: none!important;
 }

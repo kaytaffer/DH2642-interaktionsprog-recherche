@@ -2,14 +2,13 @@
 import React, {useState} from "react";
 import WordInputView from "../view/wordInputView.js";
 import {useRecoilValue, useRecoilState} from "recoil";
-import {enteredWordsState, givenWordState, synonymsState, definitionState, givenWordPromiseState} from "../model/atoms.js";
+import {enteredWordsState, gameRound, givenWordState} from "../model/atoms.js";
 
 function WordInput() {
     const givenWord = useRecoilValue(givenWordState);
-    const synonym = useRecoilValue(synonymsState);      // quick fix to fetch everything at the same time (*).
-    const definition = useRecoilValue(definitionState); // (*)
     const [enteredWords, setEnteredWords] = useRecoilState(enteredWordsState);
     const [newWord, setNewWord] = useState('');
+    const round = useRecoilValue(gameRound);
 
     //Saves last text input from user in component state.
     const handleTextChangeACB = (event) => {
@@ -34,7 +33,9 @@ function WordInput() {
                         inputText = {newWord}
                         onAddEnteredWord ={performAddWordACB}
                         onTextInputChange = {handleTextChangeACB}
-                        enteredWords = {enteredWords}/>
+                        enteredWords = {enteredWords}
+                        round = {round}
+                        maxRound = {5}/>
 
 }
 export default WordInput;

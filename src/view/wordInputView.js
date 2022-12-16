@@ -16,8 +16,24 @@ function WordInputView(props){
         return <li key={word}>{word}</li>;
     }
 
+    const gradientStyle = {background: "linear-gradient(90deg, #7165FA "
+            + (100 * props.round / props.maxRound)
+            + "%, rgba(217, 217, 217, 0) "
+            + (100 * props.round / props.maxRound)
+            + "%)"};
+    /*
+    * background: linear-gradient(90deg, #7165FA 70.67%, rgba(217, 217, 217, 0) 70.67%);
+    * */
+
     return (
         <div id="wordInput">
+
+            <div className="roundContainer">
+                <span>round {props.round} of {props.maxRound}</span>
+                <div id="roundProgressBar" style={gradientStyle}/>
+            </div>
+
+            {}
 
             <h1 className="givenWord">[{props.randomWord}]</h1>
 
