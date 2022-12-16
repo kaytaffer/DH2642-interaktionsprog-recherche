@@ -29,11 +29,14 @@ function WordInputView(props){
         <div id="wordInput">
 
             <div className="roundContainer">
-                <span>round {props.round} of {props.maxRound}</span>
+                <span className="roundDescription">round {props.round} of {props.maxRound}</span>
                 <div id="roundProgressBar" style={gradientStyle}/>
             </div>
 
-            {}
+            <div className="timeContainer">
+                <span className="timeDescription">time left</span>
+                <div className="time"> {props.children}</div>
+            </div>
 
             <h1 className="givenWord">[{props.randomWord}]</h1>
 
