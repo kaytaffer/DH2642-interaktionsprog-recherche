@@ -41,9 +41,10 @@ function Game() {
     if(!roundOver) return (
         <div id="game">
             <React.Suspense fallback={<Loading/>}>
-                <Countdown date={Date.now() + roundLength * 1000} onComplete={roundOverACB}
-                       precision={3} daysInHours={true} renderer={renderer}/>
-                <WordInput/>
+                <WordInput>
+                    <Countdown date={Date.now() + roundLength * 1000} onComplete={roundOverACB}
+                               precision={3} daysInHours={true} renderer={renderer}/>
+                </WordInput>
             </React.Suspense>
         </div>
     )
