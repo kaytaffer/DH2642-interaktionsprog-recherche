@@ -17,11 +17,11 @@ function WordInputView(props){
     }
 
     return (
-        <span className="App">
+        <div id="wordInput">
 
-            <h1>[{props.randomWord}]</h1>
+            <h1 className="givenWord">[{props.randomWord}]</h1>
 
-            <input type = "text"
+            <input className="wordInput" type = "text"
                    placeholder="Give us your best Recherché synonyms.."
                    id="wordInput"
                    autoFocus={true}
@@ -37,11 +37,7 @@ function WordInputView(props){
                 {props.enteredWords.map(displayEnteredWordACB)}
                 </tbody>
             </table>
-
-
-
-            </span>
-
+        </div>
     );
 }
 export default WordInputView;

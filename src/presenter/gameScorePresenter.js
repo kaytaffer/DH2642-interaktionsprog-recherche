@@ -23,12 +23,10 @@ function GameScore() {
     }
 
     return (
-        <div>
             <GameScoreView
                 navigateToStart ={navigateToStartACB}
                 totalScore = {score.reduce(sumCB,0)}
             />
-        </div>
     )
 }
 export default GameScore;

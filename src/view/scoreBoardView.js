@@ -44,8 +44,8 @@ function ScoreBoardView(props){
     }
 
     return (
-        <div className="scoreBoard">
-            <h1>[{props.word}]</h1>
+        <div id="scoreBoard">
+            <h1 className="givenWord">[{props.word}]</h1>
 
             <ol className="definition">
                 <i><b>Definition: </b></i>
@@ -69,9 +69,9 @@ function ScoreBoardView(props){
             <p>Score this round: {props.scoreThisRound.toFixed(0)}</p>
             <p>Total score: {props.totalScore.toFixed(0)}</p>
 
-            <button onClick={navigateToNextWordACB} hidden={props.lastRound}>Next word</button>
-            <button onClick={navigateToStartACB} hidden = {!props.lastRound}>Back to start!</button>
-            <button onClick={navigateToGameScoreACB} hidden = {!props.lastRound}>Game Score</button>
+            <button className="button" onClick={navigateToNextWordACB} hidden={props.lastRound}>Next word</button>
+            <button className="button" onClick={navigateToStartACB} hidden = {!props.lastRound}>Back to start!</button>
+            <button className="button" onClick={navigateToGameScoreACB} hidden = {!props.lastRound}>Game Score</button>
         </div>
     );
 }

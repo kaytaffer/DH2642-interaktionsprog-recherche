@@ -4,9 +4,7 @@ import AboutView from "../view/aboutView";
 function About() {
 
     return (
-        <div>
-            <AboutView/>
-        </div>
+        <AboutView/>
     )
 }
 export default About;
