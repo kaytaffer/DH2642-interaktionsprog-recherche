@@ -57,13 +57,13 @@ on a different page. Another page would contain the rules for the different game
 
 **Firebase**
 
-`firebaseModel.js` - **Deprecated.** Initializes Firebase and our Realtime Database. Requires `firebaseConfig.js`.
+`firebaseModel.js` - Initializes Firebase and our Realtime Database. Contains methods to edit the database. Requires `firebaseConfig.js`.
 
 ### model
 
 `atoms.js` - Recoil handles our Application State from here.
 
-`persistenceAtoms.js` : Initializes Firebase and our Realtime Database. Handles all interfacing between database and Recoil atoms. Contains atom of highscores, synced to database.
+`persistenceAtoms.js` : Contains those effects and atoms that are synced to persistence database.
 
 ### presenter
 
