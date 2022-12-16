@@ -1,7 +1,7 @@
 import firebaseConfig from "./firebaseConfig";
 
 import { initializeApp } from 'firebase/app';
-import {getDatabase, ref, get, set, onValue} from "firebase/database";
+import {getDatabase, ref, get, set, onValue, off} from "firebase/database";
 import {getAuth, signInAnonymously} from "firebase/auth";
 // TODO: Add other SDKs for Firebase products that we want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -23,6 +23,8 @@ function onDatabaseChangeACB(snapshot) {
             highScores: snapshot.val().highScores}
     } else {
         console.log("When trying to find persistent high score no data was available");
+        return {highScoreNames: 'nemo',
+                highScores: -1};
     }
 }
 
@@ -40,7 +42,7 @@ export function subscribeToDBPath(databasePath) {
 }
 
 export function unsubscribeToDBPath (databasePath) {
-    onValue(ref(fireBDataB, databasePath), null);
+    off(ref(fireBDataB, databasePath), onDatabaseChangeACB)
 }
 
 //On changes in the atom, updates the persistent database.
