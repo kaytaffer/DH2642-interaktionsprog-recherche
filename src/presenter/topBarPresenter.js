@@ -4,9 +4,7 @@ import TopBarView from "../view/topBarView";
 function TopBar() {
 
     return (
-        <div>
-            <TopBarView/>
-        </div>
+        <TopBarView/>
     )
 }
 export default TopBar;

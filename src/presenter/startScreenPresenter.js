@@ -25,9 +25,7 @@ function StartScreen() {
 
     }
     return (
-        <div>
-            <StartScreenView onGameStart = {startNewGameACB}/>
-        </div>
+        <StartScreenView onGameStart = {startNewGameACB}/>
     )
 }
 export default StartScreen;

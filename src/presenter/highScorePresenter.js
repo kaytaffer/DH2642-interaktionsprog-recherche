@@ -14,9 +14,7 @@ function HighScore() {
     }
 
     return (
-        <div>
-            <HighScoreView highScores={combinedHighScores()}/>
-        </div>
+        <HighScoreView highScores={combinedHighScores()}/>
     )
 }
 export default HighScore;

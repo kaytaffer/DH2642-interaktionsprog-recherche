@@ -4,9 +4,7 @@ import RulesView from "../view/rulesView";
 function Rules() {
 
     return (
-        <div>
-            <RulesView/>
-        </div>
+        <RulesView/>
     )
 }
 export default Rules;

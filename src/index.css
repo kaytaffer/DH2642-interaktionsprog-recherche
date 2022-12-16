@@ -1,6 +1,6 @@
 body {
   background: teal;
-  margin: 10px;
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -49,22 +49,39 @@ button.button {}
 /* mouse over button */
 button.button:hover {}
 
+/* mouse over all buttons */
+button:hover {
+  cursor:pointer;
+}
+
 
 /* container for topbar, hamburgermenu and content */
 .container {}
 
+
 /* ---------- Hamburger menu ---------- */
 #hamburgerMenu{
   margin:0; top:0; left:0;
-  padding:0 20px;
+  padding:20px;
+  width:250px;
   position: fixed;
   display: none;
   height: 100%;
   background: rgba(0,0,0,0.2);
+  box-sizing: border-box;
 }
 
 /* Button to close hamburger menu (in hamburger menu) */
-#openHamburgerMenuButton {}
+#closeHamburgerMenuButton {
+  float:right;
+}
+
+#openHamburgerMenuButton, #closeHamburgerMenuButton {
+  float:right;
+  font-size: 25px;
+  border:none;
+  background: none;
+}
 
 /* Container for all links in hamburger menu */
 #hamburgerMenu ul {}
@@ -74,17 +91,51 @@ button.button:hover {}
 
 
 /* ---------- Top bar ---------- */
-#topBar {}
+#topBar {
+  position: fixed;
+  top:0;
+  width:100%; height:100px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-content: center;
+  background: teal;
+}
 
 /* Recherché title at top */
 #topBar h1 {}
 
 /* Button to open hamburger menu (in topBar) */
-#openHamburgerMenuButton{}
+#openHamburgerMenuButton{
+  align-self: center;
+  margin: 0 20px;
+}
 
 
 /* ---------- Content, container for all page content ---------- */
-#content {}
+#content {
+  padding-top: 100px;
+  display: grid;
+  grid-template-columns: 600px;
+  justify-content: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+#start {
+  place-self: center;
+  display: grid;
+  place-content: center;
+  padding-bottom: 100px;
+}
+
+#about, #rules, #highScores, #pageNotFound {
+  padding:10vh 0;
+}
+
+#game, #gameScore {
+  padding:20vh 0;
+  text-align: center;
+}
 
 /* individual pages: #start, #game, #about, #rules, #highScores, #gameScore, #pageNotFound */
 

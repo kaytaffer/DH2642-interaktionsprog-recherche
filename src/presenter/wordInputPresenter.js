@@ -30,13 +30,11 @@ function WordInput() {
     };
 
 
-    return <div>
-        <WordInputView  randomWord = {givenWord}
+    return <WordInputView  randomWord = {givenWord}
                         inputText = {newWord}
                         onAddEnteredWord ={performAddWordACB}
                         onTextInputChange = {handleTextChangeACB}
                         enteredWords = {enteredWords}/>
-    </div>
 
 }
 export default WordInput;
