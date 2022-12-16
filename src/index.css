@@ -258,7 +258,7 @@ input.wordInput:focus::placeholder {
   justify-content: center;
   margin:10px 0;
 }
-.roundContainer span {
+.roundDescription, .timeDescription {
   font-family: var(--monoFont);
   color: var(--lightBackgroundColor);
   font-style: italic;
@@ -270,6 +270,10 @@ input.wordInput:focus::placeholder {
   border:1px solid var(--textColor);
   margin: 3px auto;
   border-radius: 3px;
+}
+.time {
+  font-family: var(--monoFont);
+  color:var(--darkAccentColor);
 }
 
 /* scores in scoreboard */
