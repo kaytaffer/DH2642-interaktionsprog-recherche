@@ -1,7 +1,6 @@
 import React from "react";
 import StartScreenView from "../view/startScreenView";
-import {useNavigate} from "react-router-dom";
-import { Link } from "react-router-dom";
+import {useNavigate,Link} from "react-router-dom";
 
 function StartScreen() {
     const navigate = useNavigate()
@@ -10,7 +9,6 @@ function StartScreen() {
     function startNewGameACB(){
         navigate("/game");
     }
-
     return (
         <StartScreenView onGameStart = {startNewGameACB}
                         Link={Link}/>

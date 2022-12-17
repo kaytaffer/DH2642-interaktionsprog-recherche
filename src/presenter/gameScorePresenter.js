@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import GameScoreView from "../view/gameScoreView";
 import {useNavigate} from "react-router-dom";
-import {totalScoreState} from "../model/atoms";
+import {totalScoreState,highestScoringSynonymState} from "../model/atoms";
 import {useRecoilState, useRecoilValue} from "recoil";
 import HighScoreInputView from "../view/highScoreInputView";
 import {highScoreState} from "../model/persistenceAtoms";
@@ -13,6 +13,7 @@ function GameScore() {
     const score = useRecoilValue(totalScoreState);
     const [newHighScorer, setNewHighScorer] = useState('');
     const [highScore, setHighScore] = useRecoilState(highScoreState);
+    const highestScoringSynonym = useRecoilValue(highestScoringSynonymState);
 
     //Navigates to start page
     function navigateToStartACB(){
@@ -34,6 +35,7 @@ function GameScore() {
             <GameScoreView
                 navigateToStart ={navigateToStartACB}
                 totalScore = {score}
+                highestScoringSynonym = {highestScoringSynonym}
             />
             {isHighScore(score.toFixed(0), highScore) && <HighScoreInputView
                 onAddEnteredName = {addHighScorerACB}
