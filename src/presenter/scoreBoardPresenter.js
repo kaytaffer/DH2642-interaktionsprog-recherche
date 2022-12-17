@@ -11,6 +11,7 @@ import {
     totalScoreState,
     synonymsState, gameRound,
 } from "../model/atoms.js";
+import Accordion from "./accordionPresenter";
 
 function ScoreBoard(props) {
     const givenWord = useRecoilValue(givenWordState);
@@ -72,6 +73,7 @@ function ScoreBoard(props) {
                     navigateToNextWord = {props.onRoundOver}
                     navigateToStart ={navigateToStartACB}
                     navigateToGameScore = {navigateToGameScoreACB}
-                    lastRound = {currentGameRound > 4}/>;
+                    lastRound = {currentGameRound > 4}
+                    Accordion = {Accordion}/>;
 }
 export default ScoreBoard;

@@ -60,6 +60,12 @@ a:hover {
 h1{
   font-family: var(--serifFont);
 }
+h2{
+  font-family: var(--monoFont);
+  font-size: 40px;
+  text-decoration: underline;
+  text-decoration-color: var(--darkAccentColor);
+}
 /* h2, h3 etc to h6*/
 
 
@@ -247,7 +253,7 @@ ol.definitions {
 }
 
 /* Input box where user enters synonyms */
-input.wordInput {
+.wordInput {
   color: var(--textColor);
   font-family: var(--monoFont);
   font-size: 14px;
@@ -330,4 +336,28 @@ table.userSynonyms td {
 }
 .active:after {
   content: "-";
+}
+
+#about > p, #rules > p {
+  font-size:25px;
+}
+
+/* example game in rules */
+.gameExample{
+  background: var(--darkBackgroundcolorLowOpacity);
+  padding:30px 40px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.gameExample button:hover {
+  cursor:auto;
+}
+
+/* button that is a direct child of rules */
+.rulesButtonContainer {
+  display: grid;
+}
+.rulesButtonContainer button {
+  justify-self: center;
 }
