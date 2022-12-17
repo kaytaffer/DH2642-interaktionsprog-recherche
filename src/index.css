@@ -209,6 +209,13 @@ button:hover {
   font-size: 40px;
 }
 
+.rulesFromStart {
+  margin-top:10px;
+}
+.rulesFromStart a:link, .rulesFromStart a:active, .rulesFromStart a:visited {
+  color: var(--borderColor);
+}
+
 p.instruction {
   color: var(--lightAccentColor);
   font-style: italic;
@@ -272,7 +279,7 @@ input.wordInput::placeholder {
   justify-content: center;
   margin:10px 0;
 }
-.roundDescription, .timeDescription {
+.roundDescription, .timeDescription, .rulesFromStart {
   font-family: var(--monoFont);
   color: var(--borderColor);
   font-style: italic;
