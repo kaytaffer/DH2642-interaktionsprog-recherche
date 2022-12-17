@@ -415,6 +415,36 @@ table.userSynonyms td {
   text-decoration:none;
 }
 
+/* high score page */
+#highScores {
+  display: grid;
+  align-content:start;
+}
+#highScores table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+#highScores tr {
+  border-radius: 10px;
+}
+#highScores td:first-child{
+  border-radius: 10px 0 0 10px;
+}
+#highScores td:last-child{
+  border-radius: 0 10px 10px 0;
+}
+#highScores td {
+  padding: 15px 20px;
+  background: var(--darkBackgroundcolor);
+}
+.highScorePosition{
+  font-family: var(--monoFont);
+  color: var(--lightAccentColor)
+}
+.highScoreScore{
+  font-family: var(--monoFont);
+  color: var(--darkAccentColor);
+}
 
 @media only screen and (max-width: 600px) {
   #topBar {
