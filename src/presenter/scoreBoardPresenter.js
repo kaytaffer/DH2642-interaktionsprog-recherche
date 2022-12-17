@@ -28,23 +28,22 @@ function ScoreBoard(props) {
     const currentGameRound = useRecoilValue(gameRound);
     const navigate = useNavigate()
     const arrayOfExampleSynonyms = getMultipleRandom(givenWordSynonyms);
-
-
+    const [sortedSynonyms, setSortedSynonyms] = useState([]);
 
     function getMultipleRandom(newArray) {
         const shuffled = [...newArray].sort(() => 0.5 - Math.random());
       
         return shuffled.slice(0, 4);
-      }
+    }
 
       //sorts the entered synonyms and saves the synonym with the highest score
-      function sortEnteredSynonyms(){
+    function sortEnteredSynonyms(){
         function compareSynonymsCB(synonymA,synonymB){
             return synonymA.points > synonymB.points ? -1 : 1
         }
           function saveHighestScoringSynonym(synonym){
-              if(synonym.points > highestScoringSynonym[0].points){
-                  setHighestScoringSynonym([synonym])
+              if(synonym.points > highestScoringSynonym.points){
+                  setHighestScoringSynonym(synonym);
               }
         }
         const sortedSynonymsArray = [...userWords].sort(compareSynonymsCB);
@@ -76,12 +75,14 @@ function ScoreBoard(props) {
         const roundScore = userWords.reduce(sumScoreCB, 0);
         setScoreThisRound(roundScore);
         setRoundScores([...roundScores, roundScore]);
+        setSortedSynonyms(sortEnteredSynonyms());
+
     }
     React.useEffect( componentWasCreatedACB, [] );
 
     return <ScoreBoardView word = {givenWord}
                     definition = {definition}
-                    userWords = {sortEnteredSynonyms()}
+                    userWords = {sortedSynonyms}
                     incorrectUserWords = {incorrectUserWords}
                     givenWordSynonyms = {arrayOfExampleSynonyms}
                     scoreThisRound = {scoreThisRound}

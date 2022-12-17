@@ -35,7 +35,7 @@ function GameScore() {
             <GameScoreView
                 navigateToStart ={navigateToStartACB}
                 totalScore = {score}
-                highestScoringSynonym = {highestScoringSynonym[0]}
+                highestScoringSynonym = {highestScoringSynonym}
             />
             {isHighScore(score.toFixed(0), highScore) && <HighScoreInputView
                 onAddEnteredName = {addHighScorerACB}
