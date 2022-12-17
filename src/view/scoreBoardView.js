@@ -1,4 +1,3 @@
-//TODO build a view for the score board
 function ScoreBoardView(props){
 
     function showCorrectSynonymsCB(synonymObject) {
@@ -38,9 +37,6 @@ function ScoreBoardView(props){
     function navigateToNextWordACB(){
         props.navigateToNextWord()
     }
-    function navigateToStartACB(){
-        props.navigateToStart()
-    }
     function navigateToGameScoreACB(){
         props.navigateToGameScore()
     }
@@ -64,18 +60,19 @@ function ScoreBoardView(props){
             </p>
 
             <button className="button" onClick={navigateToNextWordACB} hidden={props.lastRound}>Next word</button>
-            <button className="button" onClick={navigateToStartACB} hidden = {!props.lastRound}>Back to start!</button>
             <button className="button" onClick={navigateToGameScoreACB} hidden = {!props.lastRound}>Game Score</button>
 
-            <h3>Definitions:</h3>
-            <ol className="definitions">
-                {props.definition.map(definitionCB)}
-            </ol>
+            <props.Accordion title="Definitions">
+                <ol className="definitions">
+                    {props.definition.map(definitionCB)}
+                </ol>
+            </props.Accordion>
 
-            <h3>Example synonyms:</h3>
-            <ul className="wordList">
-                {props.givenWordSynonyms.map(showSynonymsForGivenWordCB)}
-            </ul>
+            <props.Accordion title="Example synonyms">
+                <ul className="wordList">
+                    {props.givenWordSynonyms.map(showSynonymsForGivenWordCB)}
+                </ul>
+            </props.Accordion>
 
         </div>
     );

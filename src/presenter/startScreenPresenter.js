@@ -2,14 +2,14 @@ import React from "react";
 import StartScreenView from "../view/startScreenView";
 import {useNavigate} from "react-router-dom";
 import {useRecoilRefresher_UNSTABLE, useSetRecoilState} from "recoil";
-import {givenWordState,enteredWordsState,totalScoreState,gameRound} from "../model/atoms";
+import {givenWordState,enteredWordsState,scoresPerRoundState,gameRound} from "../model/atoms";
 
 function StartScreen() {
 
     const navigate = useNavigate()
     const refreshGivenWord = useRecoilRefresher_UNSTABLE(givenWordState);
     const setEnteredWords = useSetRecoilState(enteredWordsState);
-    const setTotalScore = useSetRecoilState(totalScoreState);
+    const setTotalScore = useSetRecoilState(scoresPerRoundState);
     const setCurrentGameRound = useSetRecoilState(gameRound);
 
 
