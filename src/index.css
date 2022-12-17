@@ -225,11 +225,13 @@ p.instruction {
 }
 
 #about, #rules, #highScores, #pageNotFound {
-  padding:10vh 0;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
 }
 
 #game, #gameScore {
-  padding:20vh 0;
+  padding-top:20vh;
+  padding-bottom: 20vh;
   text-align: center;
 }
 
@@ -260,7 +262,13 @@ ol.definitions {
 }
 
 /* Input box where user enters synonyms */
-.wordInput {
+.inputContainer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding-left:70px;
+  padding-right:70px;
+}
+input.wordInput {
   color: var(--textColor);
   font-family: var(--monoFont);
   font-size: 14px;
@@ -372,7 +380,7 @@ table.userSynonyms td {
 /* person cards in about */
 #cardContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 10px;
 }
 #cardContainer .card {
@@ -405,4 +413,49 @@ table.userSynonyms td {
 
 #cardContainer .email a {
   text-decoration:none;
+}
+
+
+@media only screen and (max-width: 600px) {
+  #topBar {
+    height:75px;
+  }
+  #topBar h1 {
+    font-size: 25px;
+  }
+  #openHamburgerMenuButton, .buttonContainer {
+    margin: 0 10px;
+  }
+
+  #content {
+    grid-template-columns: 100vw;
+  }
+  #content > * {
+    padding-left: 20px; padding-right: 20px;
+    box-sizing: border-box;
+  }
+
+  h1.givenWord{
+    font-size:45px;
+  }
+
+  p.instruction {
+    font-size: 20px;
+  }
+
+  .inputContainer {
+    padding:0;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-row-gap: 5px;
+  }
+
+  input.wordInput {
+    font-size: 11px;
+  }
+
+  .inputContainer button {
+    justify-self: center;
+  }
+
 }
