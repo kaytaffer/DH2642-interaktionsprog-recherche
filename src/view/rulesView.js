@@ -10,7 +10,7 @@ function rulesView(props){
         <div id="rules">
             <h2>Rules</h2>
             <p>Recherché is a game about finding the most rare synonyms to a given word.
-                It consists of five rounds, and the goal is to get as many points as possible.</p>
+                It consists of {props.rounds} rounds, and the goal is to get as many points as possible.</p>
 
             <p>When you start a game, you'll see a word on the screen.</p>
             <div className="gameExample">
