@@ -2,7 +2,7 @@
 
 // Utility methods concerning game logic here:
 
-export const roundLength = 30;
+export const roundLength = 40;
 export const numberOfRounds = 5;
 const maxHighScoreHolders = 10;
 

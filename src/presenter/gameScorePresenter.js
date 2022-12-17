@@ -14,10 +14,16 @@ function GameScore() {
     const [newHighScorer, setNewHighScorer] = useState('');
     const [highScore, setHighScore] = useRecoilState(highScoreState);
     const highestScoringSynonym = useRecoilValue(highestScoringSynonymState);
+    const [notEnteredName, setNotEnteredName] = useState(true);
 
     //Navigates to start page
     function navigateToStartACB(){
         navigate("/");
+    }
+
+    //Navigates to high score page
+    function navigateToHighScoreACB(){
+        navigate("/highscore")
     }
 
     //triggers re-rendering of input text
@@ -28,16 +34,17 @@ function GameScore() {
     //Adds a new high score holder to the leaderboard.
     function addHighScorerACB(){
         setHighScore(addNewHighScore(highScore, newHighScorer, score.toFixed(0)));
-        navigate("/highscore")
+        setNotEnteredName(false);
     }
 
     return (<div id="gameScore">
             <GameScoreView
-                navigateToStart ={navigateToStartACB}
+                navigateToStart = {navigateToStartACB}
+                navigateToHighScore = {navigateToHighScoreACB}
                 totalScore = {score}
                 highestScoringSynonym = {highestScoringSynonym}
             />
-            {isHighScore(score.toFixed(0), highScore) && <HighScoreInputView
+            {isHighScore(score.toFixed(0), highScore) && notEnteredName &&<HighScoreInputView
                 onAddEnteredName = {addHighScorerACB}
                 onTextInputChange = {handleHighScorerTextChangeACB}
             />}
