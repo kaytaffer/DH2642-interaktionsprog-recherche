@@ -209,6 +209,13 @@ button:hover {
   font-size: 40px;
 }
 
+.rulesFromStart {
+  margin-top:10px;
+}
+.rulesFromStart a:link, .rulesFromStart a:active, .rulesFromStart a:visited {
+  color: var(--borderColor);
+}
+
 p.instruction {
   color: var(--lightAccentColor);
   font-style: italic;
@@ -272,7 +279,7 @@ input.wordInput::placeholder {
   justify-content: center;
   margin:10px 0;
 }
-.roundDescription, .timeDescription {
+.roundDescription, .timeDescription, .rulesFromStart {
   font-family: var(--monoFont);
   color: var(--borderColor);
   font-style: italic;
@@ -360,4 +367,42 @@ table.userSynonyms td {
 }
 .rulesButtonContainer button {
   justify-self: center;
+}
+
+/* person cards in about */
+#cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+#cardContainer .card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "image name"
+                      "image email";
+  grid-column-gap:10px;
+  align-content: center;
+  background:var(--darkBackgroundcolor);
+  border-radius: 10px;
+  padding: 10px;
+}
+#cardContainer .cardImageContainer {
+  grid-area:image;
+}
+#cardContainer img {
+  width:50px; height: 50px;
+}
+#cardContainer .name {
+  grid-area:name;
+  font-size: 20px;
+}
+#cardContainer .email {
+  grid-area: email;
+  font-family: var(--monoFont);
+  font-size: 14px;
+}
+
+#cardContainer .email a {
+  text-decoration:none;
 }

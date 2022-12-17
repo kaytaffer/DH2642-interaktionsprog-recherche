@@ -37,9 +37,6 @@ function ScoreBoardView(props){
     function navigateToNextWordACB(){
         props.navigateToNextWord()
     }
-    function navigateToStartACB(){
-        props.navigateToStart()
-    }
     function navigateToGameScoreACB(){
         props.navigateToGameScore()
     }

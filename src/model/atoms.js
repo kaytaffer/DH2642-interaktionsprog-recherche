@@ -1,4 +1,4 @@
-import {atom, atomFamily, selector, waitForAll} from 'recoil';
+import {atom, atomFamily, selector} from 'recoil';
 import {compareWordsMatch, compareWordsMismatch, createSynonymScoreObject, extractDefinition, extractFrequency, extractSynonyms} from "../utilities/wordUtilities";
 import {getRandomWord, getFrequency, getDefinitions, getSynonyms } from '../integration/API/wordsApiCall';
 import {extractGivenWord} from '../utilities/wordUtilities';
@@ -100,8 +100,16 @@ export const incorrectWordsState = selector({
     }
 })
 
-// Users total score
-export const totalScoreState = atom({
-    key: 'totalScoreState',
+// Users scores per round
+export const scoresPerRoundState = atom({
+    key: 'scoresPerRoundState',
     default:[],
+})
+
+// Users total score
+export const totalScoreState = selector({
+    key: 'totalScoreState',
+    get: ({get}) => {
+        return get(scoresPerRoundState).reduce((totalScore, newScore) => totalScore+newScore, 0)
+    }
 })

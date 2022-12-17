@@ -19,12 +19,6 @@ function GameScore() {
         navigate("/");
     }
 
-    //Sums the total score for correct synonyms for all rounds.
-    // TODO selector
-    function sumCB(sumSoFar, point){
-        return sumSoFar + point;
-    }
-
     //triggers re-rendering of input text
     const handleHighScorerTextChangeACB = (event) => {
         setNewHighScorer(event.target.value);
@@ -32,16 +26,16 @@ function GameScore() {
 
     //Adds a new high score holder to the leaderboard.
     function addHighScorerACB(){
-        setHighScore(addNewHighScore(highScore, newHighScorer, score.reduce(sumCB,0).toFixed(0)));
+        setHighScore(addNewHighScore(highScore, newHighScorer, score.toFixed(0)));
         navigate("/highscore")
     }
 
     return (<div>
             <GameScoreView
                 navigateToStart ={navigateToStartACB}
-                totalScore = {score.reduce(sumCB,0)}
+                totalScore = {score}
             />
-            {isHighScore(score.reduce(sumCB,0).toFixed(0), highScore) && <HighScoreInputView
+            {isHighScore(score.toFixed(0), highScore) && <HighScoreInputView
                 onAddEnteredName = {addHighScorerACB}
                 onTextInputChange = {handleHighScorerTextChangeACB}
             />}
