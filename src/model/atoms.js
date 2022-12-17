@@ -75,6 +75,12 @@ export const enteredWordsState = atom({
     default: []
 })
 
+// The highest-scoring synonym entered by the user
+export const highestScoringSynonymState = atom({
+    key: 'highestScoringSynonymState',
+    default: [{word: "none", points: 0}]
+})
+
 // Gets frequency for a specified word
 const frequencyFamily = atomFamily({
     key: 'frequency',

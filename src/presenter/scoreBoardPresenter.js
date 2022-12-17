@@ -10,6 +10,7 @@ import {
     incorrectWordsState,
     scoresPerRoundState,
     synonymsState, gameRound, totalScoreState,
+    highestScoringSynonymState,
 } from "../model/atoms.js";
 import Accordion from "./accordionPresenter";
 import {numberOfRounds} from "../utilities/gameUtilities";
@@ -22,10 +23,13 @@ function ScoreBoard(props) {
     const givenWordSynonyms = useRecoilValue(synonymsState);
     const [scoreThisRound, setScoreThisRound] = useState(0);
     const [roundScores, setRoundScores] = useRecoilState(scoresPerRoundState);
+    const [highestScoringSynonym, setHighestScoringSynonym] = useRecoilState(highestScoringSynonymState);
     const totalScore = useRecoilValue(totalScoreState);
     const currentGameRound = useRecoilValue(gameRound);
     const navigate = useNavigate()
     const arrayOfExampleSynonyms = getMultipleRandom(givenWordSynonyms);
+
+
 
     function getMultipleRandom(newArray) {
         const shuffled = [...newArray].sort(() => 0.5 - Math.random());
@@ -33,6 +37,23 @@ function ScoreBoard(props) {
         return shuffled.slice(0, 4);
       }
 
+      //sorts the entered synonyms and saves the synonym with the highest score
+      function sortEnteredSynonyms(){
+        function compareSynonymsCB(synonymA,synonymB){
+            return synonymA.points > synonymB.points ? -1 : 1
+        }
+          function saveHighestScoringSynonym(synonym){
+              if(synonym.points > highestScoringSynonym[0].points){
+                  setHighestScoringSynonym([synonym])
+              }
+        }
+        const sortedSynonymsArray = [...userWords].sort(compareSynonymsCB);
+            if(sortedSynonymsArray[0]){
+                saveHighestScoringSynonym(sortedSynonymsArray[0]);
+            }
+
+          return sortedSynonymsArray;
+      }
 
     //Navigates to a page that shows values from the completed game round
     function navigateToGameScoreACB(){
@@ -60,7 +81,7 @@ function ScoreBoard(props) {
 
     return <ScoreBoardView word = {givenWord}
                     definition = {definition}
-                    userWords = {userWords}
+                    userWords = {sortEnteredSynonyms()}
                     incorrectUserWords = {incorrectUserWords}
                     givenWordSynonyms = {arrayOfExampleSynonyms}
                     scoreThisRound = {scoreThisRound}

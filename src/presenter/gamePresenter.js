@@ -4,9 +4,9 @@ import ScoreBoard from "./scoreBoardPresenter";
 import {roundLength} from "../utilities/gameUtilities";
 import Countdown, {zeroPad} from "react-countdown";
 import Loading from "./loadingPresenter";
-import {gameRound} from "../model/atoms";
+import {gameRound, enteredWordsState}
+    from "../model/atoms";
 import {useRecoilState, useSetRecoilState} from "recoil";
-import {enteredWordsState} from "../model/atoms";
 
 
 //TODO wrapper for other sub-components
