@@ -3,6 +3,7 @@ import StartScreenView from "../view/startScreenView";
 import {useNavigate} from "react-router-dom";
 import {useRecoilRefresher_UNSTABLE, useSetRecoilState} from "recoil";
 import {givenWordState,enteredWordsState,scoresPerRoundState,gameRound} from "../model/atoms";
+import { Link } from "react-router-dom";
 
 function StartScreen() {
 
@@ -25,7 +26,8 @@ function StartScreen() {
 
     }
     return (
-        <StartScreenView onGameStart = {startNewGameACB}/>
+        <StartScreenView onGameStart = {startNewGameACB}
+                        Link={Link}/>
     )
 }
 export default StartScreen;
