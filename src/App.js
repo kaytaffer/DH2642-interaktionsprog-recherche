@@ -9,7 +9,7 @@ import About from "./presenter/aboutPresenter";
 import Rules from "./presenter/rulesPresenter";
 import HighScore from "./presenter/highScorePresenter";
 import GameScore from "./presenter/gameScorePresenter";
-import PageNotFound from "./presenter/PageNotFoundPresenter";
+import PageNotFound from "./presenter/pageNotFoundPresenter";
 import TopBar from "./presenter/topBarPresenter";
 
 export default
