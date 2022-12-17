@@ -4,8 +4,8 @@ import ScoreBoard from "./scoreBoardPresenter";
 import {roundLength} from "../utilities/gameUtilities";
 import Countdown, {zeroPad} from "react-countdown";
 import Loading from "./loadingPresenter";
-import {gameRound} from "../model/atoms";
-import {useRecoilState, useSetRecoilState} from "recoil";
+import {gameRound, givenWordState, scoresPerRoundState} from "../model/atoms";
+import {useRecoilRefresher_UNSTABLE, useRecoilState, useSetRecoilState} from "recoil";
 import {enteredWordsState} from "../model/atoms";
 
 
@@ -16,7 +16,8 @@ function Game() {
     const [currentGameRound, setCurrentGameRound] = useRecoilState(gameRound);
     const [roundOver, setRoundOver] = useState(false);
     const setEnteredWords = useSetRecoilState(enteredWordsState);
-
+    const refreshGivenWord = useRecoilRefresher_UNSTABLE(givenWordState);
+    const setTotalScore = useSetRecoilState(scoresPerRoundState);
 
     //Increases the game round (and therefore triggers a new given word) when player press the
     //"Next word" button in scoreBoardView and deletes entered words from previous round.
@@ -37,6 +38,14 @@ function Game() {
             {zeroPad(minutes)}:{zeroPad(seconds)}
         </span>
     );
+
+    function componentWasCreatedACB(){
+        refreshGivenWord();
+        setEnteredWords([]);
+        setTotalScore([0]);
+        setCurrentGameRound(1);
+    }
+    React.useEffect( componentWasCreatedACB, [] );
 
     if(!roundOver) return (
         <div id="game">
