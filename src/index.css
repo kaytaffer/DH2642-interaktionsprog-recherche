@@ -147,7 +147,7 @@ button:hover {
   top:0;
   width:100%; height:100px;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-content: center;
   background: var(--backgroundColor)
 }
@@ -155,16 +155,26 @@ button:hover {
 /* Recherché title at top */
 #topBar h1 {}
 
-#topBar.hide > * {
-  display: none;
+#topBar.hide #openHamburgerMenuButton, #topBar.hide h1 {
+  opacity:0;
 }
 
 /* Button to open hamburger menu (in topBar) */
 #openHamburgerMenuButton{
   align-self: center;
-  margin: 0 20px;
+  margin: 0 30px;
 }
 
+.buttonContainer{
+  align-self: center;
+  margin: 0 30px;
+}
+.buttonContainer span {
+  font-family: var(--monoFont);
+  font-size: 15px;
+  font-style: italic;
+  color:var(--borderColor)
+}
 
 /* ---------- Content, container for all page content ---------- */
 #content {
@@ -249,9 +259,6 @@ input.wordInput {
 input.wordInput::placeholder {
   color: rgba(255,255,255,0.3)
 }
-/*input.wordInput:focus::placeholder {*/
-/*  color: rgba(255,255,255,0.1)*/
-/*}*/
 
 /* round information in word input */
 .roundContainer {
@@ -317,10 +324,10 @@ table.userSynonyms td {
   display: block;
 }
 .accordion:after {
-  content: '+'; /* Unicode character for "plus" sign (+) */
+  content: '+';
   float: right;
   margin-left: 5px;
 }
 .active:after {
-  content: "-"; /* Unicode character for "minus" sign (-) */
+  content: "-";
 }

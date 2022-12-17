@@ -68,7 +68,6 @@ function ScoreBoardView(props){
             </p>
 
             <button className="button" onClick={navigateToNextWordACB} hidden={props.lastRound}>Next word</button>
-            <button className="button" onClick={navigateToStartACB} hidden = {!props.lastRound}>Back to start!</button>
             <button className="button" onClick={navigateToGameScoreACB} hidden = {!props.lastRound}>Game Score</button>
 
             {/* accordions created with https://www.w3schools.com/howto/howto_js_accordion.asp */}
