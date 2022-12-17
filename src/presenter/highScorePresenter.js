@@ -1,19 +1,12 @@
-import React, {useEffect} from "react";
 import HighScoreView from "../view/highScoreView";
-import {useRecoilState, useRecoilValue} from "recoil";
+import {useRecoilState} from "recoil";
 import {highScoreState} from "../model/persistenceAtoms";
 
 function HighScore() {
-    const [highScore, setHighScore] = useRecoilState(highScoreState)
-
-    console.log(highScore);
-
-    function test(){
-        setHighScore([...highScore, {name:'setfrompresenter', score:4}])
-    }
+    const [highScore, ] = useRecoilState(highScoreState)
 
     return (
-        <HighScoreView addHighScore={test} highScores={highScore}/>
+        <HighScoreView highScores={highScore}/>
     )
 }
 export default HighScore;

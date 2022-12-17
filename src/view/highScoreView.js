@@ -16,7 +16,6 @@ function highScoreView(props){
                     {[...props.highScores].sort((a,b) => b.score - a.score).map(renderHighScoreTableRowCB)}
                 </tbody>
             </table>
-            <button onClick={props.addHighScore}>click</button>
         </div>
     );
 }
