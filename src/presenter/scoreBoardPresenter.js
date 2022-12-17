@@ -8,9 +8,11 @@ import {
     enteredWordsWithScoreState,
     givenWordState,
     incorrectWordsState,
-    totalScoreState,
-    synonymsState, gameRound,
+    scoresPerRoundState,
+    synonymsState, gameRound, totalScoreState,
 } from "../model/atoms.js";
+import Accordion from "./accordionPresenter";
+import {numberOfRounds} from "../utilities/gameUtilities";
 
 function ScoreBoard(props) {
     const givenWord = useRecoilValue(givenWordState);
@@ -19,7 +21,8 @@ function ScoreBoard(props) {
     const incorrectUserWords = useRecoilValue(incorrectWordsState);
     const givenWordSynonyms = useRecoilValue(synonymsState);
     const [scoreThisRound, setScoreThisRound] = useState(0);
-    const [score, setScore] = useRecoilState(totalScoreState);
+    const [roundScores, setRoundScores] = useRecoilState(scoresPerRoundState);
+    const totalScore = useRecoilValue(totalScoreState);
     const currentGameRound = useRecoilValue(gameRound);
     const navigate = useNavigate()
     const arrayOfExampleSynonyms = getMultipleRandom(givenWordSynonyms);
@@ -31,10 +34,14 @@ function ScoreBoard(props) {
       }
 
 
-    //Sums the total score for correct synonyms for all rounds.
-    // TODO selector
-    function sumCB(sumSoFar, point){
-        return sumSoFar + point;
+    //Navigates to a page that shows values from the completed game round
+    function navigateToGameScoreACB(){
+        navigate("/gamescore")
+    }
+
+    //Navigates to start page
+    function navigateToStartACB(){
+        navigate("/")
     }
 
     //Sums the score for correct synonyms in the current round.
@@ -47,19 +54,8 @@ function ScoreBoard(props) {
     function componentWasCreatedACB(){
         const roundScore = userWords.reduce(sumScoreCB, 0);
         setScoreThisRound(roundScore);
-        setScore([...score, roundScore]);
+        setRoundScores([...roundScores, roundScore]);
     }
-
-    //Navigates to a page that shows values from the completed game round
-    function navigateToGameScoreACB(){
-        navigate("/gamescore")
-    }
-
-    //Navigates to start page
-    function navigateToStartACB(){
-        navigate("/")
-    }
-
     React.useEffect( componentWasCreatedACB, [] );
 
     return <ScoreBoardView word = {givenWord}
@@ -68,10 +64,11 @@ function ScoreBoard(props) {
                     incorrectUserWords = {incorrectUserWords}
                     givenWordSynonyms = {arrayOfExampleSynonyms}
                     scoreThisRound = {scoreThisRound}
-                    totalScore = {score.reduce(sumCB,0)}
+                    totalScore = {totalScore}
                     navigateToNextWord = {props.onRoundOver}
                     navigateToStart ={navigateToStartACB}
                     navigateToGameScore = {navigateToGameScoreACB}
-                    lastRound = {currentGameRound > 4}/>;
+                    lastRound = {currentGameRound === numberOfRounds}
+                    Accordion = {Accordion}/>;
 }
 export default ScoreBoard;

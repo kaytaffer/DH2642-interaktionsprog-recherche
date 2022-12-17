@@ -1,4 +1,3 @@
-//TODO build a view for the score board
 function ScoreBoardView(props){
 
     function showCorrectSynonymsCB(synonymObject) {
@@ -38,15 +37,8 @@ function ScoreBoardView(props){
     function navigateToNextWordACB(){
         props.navigateToNextWord()
     }
-    function navigateToStartACB(){
-        props.navigateToStart()
-    }
     function navigateToGameScoreACB(){
         props.navigateToGameScore()
-    }
-    function accordionClickACB(e) {
-        e.target.classList.toggle("active");
-        e.target.nextElementSibling.classList.toggle("view");
     }
 
     return (
@@ -68,24 +60,19 @@ function ScoreBoardView(props){
             </p>
 
             <button className="button" onClick={navigateToNextWordACB} hidden={props.lastRound}>Next word</button>
-            <button className="button" onClick={navigateToStartACB} hidden = {!props.lastRound}>Back to start!</button>
             <button className="button" onClick={navigateToGameScoreACB} hidden = {!props.lastRound}>Game Score</button>
 
-            {/* accordions created with https://www.w3schools.com/howto/howto_js_accordion.asp */}
-
-            <button className="accordion" onClick={accordionClickACB}>Definitions</button>
-            <div className="accordionPanel">
+            <props.Accordion title="Definitions">
                 <ol className="definitions">
                     {props.definition.map(definitionCB)}
                 </ol>
-            </div>
+            </props.Accordion>
 
-            <button className="accordion" onClick={accordionClickACB}>Example synonyms</button>
-            <div className="accordionPanel">
+            <props.Accordion title="Example synonyms">
                 <ul className="wordList">
                     {props.givenWordSynonyms.map(showSynonymsForGivenWordCB)}
                 </ul>
-            </div>
+            </props.Accordion>
 
         </div>
     );

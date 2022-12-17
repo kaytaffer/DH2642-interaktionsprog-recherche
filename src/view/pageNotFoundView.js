@@ -1,11 +1,9 @@
-import { Link } from "react-router-dom"; //TODO is this import ok in view? can presenter do this?
-
-function PageNotFoundView(){
-
+function PageNotFoundView(props){
     return (
         <div id="pageNotFound">
-            <h1>Page Not found</h1>
-            <Link to="/">Go to start</Link>
+            <h2>Page Not Found</h2>
+            <p>Sorry! The page <span className="number">{props.location}</span> does not exist.</p>
+            <p>Try <props.Link to="/">going back to start</props.Link>, or check out the links in the menu.</p>
         </div>
     );
 }

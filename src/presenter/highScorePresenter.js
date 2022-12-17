@@ -1,20 +1,12 @@
-import React, {useEffect} from "react";
 import HighScoreView from "../view/highScoreView";
-import {useRecoilValue} from "recoil";
+import {useRecoilState} from "recoil";
 import {highScoreState} from "../model/persistenceAtoms";
 
 function HighScore() {
-    const highScore = useRecoilValue(highScoreState)
-
-    function combinedHighScores(){
-        function combineCB(element, index) {
-            return {name: element, score: highScore.highScores[index]}
-        }
-        return highScore.highScoreNames.map(combineCB);
-    }
+    const [highScore, ] = useRecoilState(highScoreState)
 
     return (
-        <HighScoreView highScores={combinedHighScores()}/>
+        <HighScoreView highScores={highScore}/>
     )
 }
 export default HighScore;

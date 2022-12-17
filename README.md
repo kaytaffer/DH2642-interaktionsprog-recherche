@@ -103,7 +103,9 @@ These modes will be saved to a permanent leader board using the firebase realtim
 
 `hamburgerMenuView.js` - Shows menu for navigation to the different pages' URLs.
 
-`highScoreView.js` - Shows the all time high score.
+`highScoreView.js` - Shows the all time high scores.
+
+`highScoreInputView.js` - Shows an input box to enter player name for the high score table.
 
 `loadingView.js` - Temporary view that appears while we wait for other views to be rendered.
 
