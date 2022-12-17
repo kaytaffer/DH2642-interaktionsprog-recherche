@@ -18,8 +18,26 @@ export function calculateScoreFromFrequency(frequency){
  * new high score or there aren't yet the defined amount of high score holders.
  */
 export function isHighScore(score, highScores){
-    function isHighEnoughACB(currentHighScore){
-        return currentHighScore < score;
+    function isThereALowerHighScoreCB(currentHighScore){
+        return currentHighScore.score < score;
     }
-    return (highScores.length <= maxHighScoreHolders) || highScores.find(isHighEnoughACB);
+    return ((highScores.length < maxHighScoreHolders) || highScores.find(isThereALowerHighScoreCB));
+}
+
+/**
+ * Adds new post to the array of high scores, or if there are no free spaces removes whichever
+ * score is lowest to make space.
+ * @param highScoreArray an array of {name: String, score: int}-objects
+ * @param newHighScorer a String, representing the name to add
+ * @param newHighScore an int, representing the score to add
+ * @returns array of High Scores.
+ */
+export function addNewHighScore(highScoreArray, newHighScorer, newHighScore){
+    const newHighScoreObject = {name: newHighScorer, score:newHighScore}
+
+    if (highScoreArray.length < maxHighScoreHolders) return [...highScoreArray, newHighScoreObject]
+
+    let newHighScoreArray = [...highScoreArray].sort((a,b) => a.score - b.score)
+    newHighScoreArray[0] = newHighScoreObject
+    return newHighScoreArray
 }

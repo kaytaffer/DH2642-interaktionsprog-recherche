@@ -5,23 +5,18 @@ import {totalScoreState} from "../model/atoms";
 import {useRecoilState, useRecoilValue} from "recoil";
 import HighScoreInputView from "../view/highScoreInputView";
 import {highScoreState} from "../model/persistenceAtoms";
-import {isHighScore} from "../utilities/gameUtilities";
+import {addNewHighScore, isHighScore} from "../utilities/gameUtilities";
 
 function GameScore() {
 
     const navigate = useNavigate();
     const score = useRecoilValue(totalScoreState);
-    const [, setNewHighscorer] = useState('');
-    const [highScore, setHighScore] = useRecoilState(highScoreState)
+    const [newHighScorer, setNewHighScorer] = useState('');
+    const [highScore, setHighScore] = useRecoilState(highScoreState);
 
     //Navigates to start page
     function navigateToStartACB(){
         navigate("/");
-    }
-
-    //Navigates to high score page
-    function navigateToHighScoreACB(){
-        navigate("/highScore") //TODO maybe finish performAddHighScore with this
     }
 
     //Sums the total score for correct synonyms for all rounds.
@@ -30,25 +25,24 @@ function GameScore() {
         return sumSoFar + point;
     }
 
+    //triggers re-rendering of input text
     const handleHighScorerTextChangeACB = (event) => {
-        setNewHighscorer(event.target.value);
+        setNewHighScorer(event.target.value);
     };
 
-    const performAddHighScorerACB = () => {
-        /*TODO
-        if(!enteredWords.find(renderEnteredWordsCB))
-            setEnteredWords([...enteredWords, newWord]);
-
-        setNewWord('');     */
-    };
+    //Adds a new high score holder to the leaderboard.
+    function addHighScorerACB(){
+        setHighScore(addNewHighScore(highScore, newHighScorer, score.reduce(sumCB,0).toFixed(0)));
+        navigate("/highscore")
+    }
 
     return (<div>
             <GameScoreView
                 navigateToStart ={navigateToStartACB}
                 totalScore = {score.reduce(sumCB,0)}
             />
-            {isHighScore(score, highScore) && <HighScoreInputView
-                onAddEnteredName = {performAddHighScorerACB}
+            {isHighScore(score.reduce(sumCB,0).toFixed(0), highScore) && <HighScoreInputView
+                onAddEnteredName = {addHighScorerACB}
                 onTextInputChange = {handleHighScorerTextChangeACB}
             />}
         </div>
