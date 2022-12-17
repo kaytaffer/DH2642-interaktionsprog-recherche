@@ -5,8 +5,6 @@
 //DATA EXTRACTION functions from API-calls
 
 import {calculateScoreFromFrequency} from "./gameUtilities";
-import {getDefinitions, getSynonyms} from '../integration/API/wordsApiCall';
-
 
 function extractGivenWord(givenWordObject){
     return givenWordObject.word;
@@ -31,8 +29,8 @@ function extractSynonyms(givenWordSynonymObject){
 //returns the total word usage (higher number = more common)
 function extractFrequency (wordFrequencyObject){
     if(!wordFrequencyObject || wordFrequencyObject.totalCount===0){
-        return 50;
-    }  //TODO is 50 reasonable?
+        return 666666;
+    }
     return wordFrequencyObject.totalCount;
 }
 
