@@ -13,10 +13,6 @@ import {
 } from "../model/atoms";
 import {useRecoilRefresher_UNSTABLE, useRecoilState, useSetRecoilState} from "recoil";
 
-
-
-//TODO wrapper for other sub-components
-
 function Game() {
 
     const [currentGameRound, setCurrentGameRound] = useRecoilState(gameRound);
