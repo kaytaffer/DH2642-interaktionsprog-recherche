@@ -458,4 +458,8 @@ table.userSynonyms td {
     justify-self: center;
   }
 
+  #hamburgerMenu {
+    width:100vw;
+  }
+
 }
