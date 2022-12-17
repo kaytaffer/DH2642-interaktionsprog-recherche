@@ -30,7 +30,7 @@ function GameScore() {
         navigate("/highscore")
     }
 
-    return (<div>
+    return (<div id="gameScore">
             <GameScoreView
                 navigateToStart ={navigateToStartACB}
                 totalScore = {score}
