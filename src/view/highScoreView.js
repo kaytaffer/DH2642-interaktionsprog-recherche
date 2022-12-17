@@ -2,15 +2,15 @@ function highScoreView(props){
 
     function renderHighScoreTableRowCB(highScoreObject, index) {
         return <tr key={index}>
-            <td>{index + 1}.</td>
-            <td>{highScoreObject.name}</td>
-            <td>{highScoreObject.score}</td>
+            <td className="highScorePosition">{index + 1}.</td>
+            <td className="highScoreName">{highScoreObject.name}</td>
+            <td className="highScoreScore">{highScoreObject.score}</td>
         </tr>
     }
 
     return (
         <div id="highScores">
-            <h1>High Scores</h1>
+            <h2>High Scores</h2>
             <table>
                 <tbody>
                     {[...props.highScores].sort((a,b) => b.score - a.score).map(renderHighScoreTableRowCB)}
