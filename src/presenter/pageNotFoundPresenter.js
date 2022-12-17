@@ -1,5 +1,5 @@
 import React from "react";
-import PageNotFoundView from "../view/PageNotFoundView";
+import PageNotFoundView from "../view/pageNotFoundView";
 import { Link } from "react-router-dom";
 
 function PageNotFound() {
