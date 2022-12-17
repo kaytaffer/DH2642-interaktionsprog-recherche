@@ -44,6 +44,10 @@ function ScoreBoardView(props){
     function navigateToGameScoreACB(){
         props.navigateToGameScore()
     }
+    function accordionClickACB(e) {
+        e.target.classList.toggle("active");
+        e.target.nextElementSibling.classList.toggle("view");
+    }
 
     return (
         <div id="scoreBoard">
@@ -67,15 +71,21 @@ function ScoreBoardView(props){
             <button className="button" onClick={navigateToStartACB} hidden = {!props.lastRound}>Back to start!</button>
             <button className="button" onClick={navigateToGameScoreACB} hidden = {!props.lastRound}>Game Score</button>
 
-            <h3>Definitions:</h3>
-            <ol className="definitions">
-                {props.definition.map(definitionCB)}
-            </ol>
+            {/* accordions created with https://www.w3schools.com/howto/howto_js_accordion.asp */}
 
-            <h3>Example synonyms:</h3>
-            <ul className="wordList">
-                {props.givenWordSynonyms.map(showSynonymsForGivenWordCB)}
-            </ul>
+            <button className="accordion" onClick={accordionClickACB}>Definitions</button>
+            <div className="accordionPanel">
+                <ol className="definitions">
+                    {props.definition.map(definitionCB)}
+                </ol>
+            </div>
+
+            <button className="accordion" onClick={accordionClickACB}>Example synonyms</button>
+            <div className="accordionPanel">
+                <ul className="wordList">
+                    {props.givenWordSynonyms.map(showSynonymsForGivenWordCB)}
+                </ul>
+            </div>
 
         </div>
     );

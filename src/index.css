@@ -1,13 +1,14 @@
 
 :root {
   --backgroundColor: #101326;
-  --darkBackgroundcolor: #040615;
+  --darkBackgroundcolor: #0a0d21;
+  --darkBackgroundcolorLowOpacity: rgba(10,13,33,0.4);
   --lightBackgroundColor: #3B3E4D;
   --textColor: #FFFFFF;
   --lightAccentColor: #ffcb4b;
   --darkAccentColor: #6e63f2;
   --errorColor: #f36767;
-  --borderColor: #3B3E4D;
+  --borderColor: #656777;
   --serifFont: 'Roboto Serif', serif;
   --monoFont: 'Roboto Mono', monospace;
   --sansFont: 'Roboto Flex', sans-serif;
@@ -231,7 +232,7 @@ ol.definitions {
   text-align: left;
 }
 
-#scoreBoard button {
+#scoreBoard .button {
   margin-bottom: 50px;
 }
 
@@ -248,9 +249,9 @@ input.wordInput {
 input.wordInput::placeholder {
   color: rgba(255,255,255,0.3)
 }
-input.wordInput:focus::placeholder {
-  color: rgba(255,255,255,0.1)
-}
+/*input.wordInput:focus::placeholder {*/
+/*  color: rgba(255,255,255,0.1)*/
+/*}*/
 
 /* round information in word input */
 .roundContainer {
@@ -260,7 +261,7 @@ input.wordInput:focus::placeholder {
 }
 .roundDescription, .timeDescription {
   font-family: var(--monoFont);
-  color: var(--lightBackgroundColor);
+  color: var(--borderColor);
   font-style: italic;
   font-size: 14px;
 }
@@ -288,4 +289,38 @@ table.userSynonyms {
 }
 table.userSynonyms td {
   padding:3px 9px;
+}
+
+/* accordion for definition and example synonyms */
+.accordion {
+  background:var(--darkBackgroundcolor);
+  padding: 18px;
+  width:100%;
+  border:none; outline:none;
+  transition:0.4s;
+  text-align: left;
+  font-size: 20px;
+  font-family: var(--sansFont);
+  color: var(--textColor);
+}
+.active, .accordion:hover {
+  background: var(--darkBackgroundcolorLowOpacity);
+}
+.accordionPanel {
+  padding: 0 18px;
+  display: none;
+  overflow:hidden;
+  background: var(--darkBackgroundcolorLowOpacity);
+  margin-top:-2px;
+}
+.accordionPanel.view {
+  display: block;
+}
+.accordion:after {
+  content: '+'; /* Unicode character for "plus" sign (+) */
+  float: right;
+  margin-left: 5px;
+}
+.active:after {
+  content: "-"; /* Unicode character for "minus" sign (-) */
 }
