@@ -3,6 +3,7 @@
 // Utility methods concerning game logic here:
 
 export const roundLength = 30;
+export const numberOfRounds = 5;
 
 
 //TODO decide on final score rules

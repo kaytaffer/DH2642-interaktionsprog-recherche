@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import WordInputView from "../view/wordInputView.js";
 import {useRecoilValue, useRecoilState} from "recoil";
 import {enteredWordsState, gameRound, givenWordState} from "../model/atoms.js";
+import {numberOfRounds} from "../utilities/gameUtilities";
 
 function WordInput(props) {
     const givenWord = useRecoilValue(givenWordState);
@@ -35,7 +36,7 @@ function WordInput(props) {
                         onTextInputChange = {handleTextChangeACB}
                         enteredWords = {enteredWords}
                         round = {round}
-                        maxRound = {5}>
+                        maxRound = {numberOfRounds}>
                 {props.children}
             </WordInputView>
 

@@ -16,16 +16,10 @@ function GameScore() {
         navigate("/");
     }
 
-    //Sums the total score for correct synonyms for all rounds.
-    // TODO selector
-    function sumCB(sumSoFar, point){
-        return sumSoFar + point;
-    }
-
     return (
             <GameScoreView
                 navigateToStart ={navigateToStartACB}
-                totalScore = {score.reduce(sumCB,0)}
+                totalScore = {score}
             />
     )
 }
