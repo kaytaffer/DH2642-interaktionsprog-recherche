@@ -43,10 +43,6 @@ function Game() {
     );
 
     function componentWasCreatedACB(){
-        refreshGivenWord();
-        setEnteredWords([]);
-        setTotalScore([0]);
-        setCurrentGameRound(1);
         setHighestScoringSynonym({word: "none", points: 0});
     }
     React.useEffect( componentWasCreatedACB, [] );
