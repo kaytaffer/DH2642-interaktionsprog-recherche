@@ -6,7 +6,7 @@ function GameScoreView(props){
     }
 
     return (
-        <div id="gameScore">
+        <div>
             <h1>Game Score</h1>
             <p>Total score: <span className="number">{props.totalScore.toFixed(0)}</span></p>
             <p>Highest-scoring synonym: <span className="number">{props.highestScoringSynonym.word} {props.highestScoringSynonym.points.toFixed(0)} points</span></p>

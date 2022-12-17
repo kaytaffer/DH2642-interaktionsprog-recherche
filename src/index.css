@@ -209,6 +209,13 @@ button:hover {
   font-size: 40px;
 }
 
+.rulesFromStart {
+  margin-top:10px;
+}
+.rulesFromStart a:link, .rulesFromStart a:active, .rulesFromStart a:visited {
+  color: var(--borderColor);
+}
+
 p.instruction {
   color: var(--lightAccentColor);
   font-style: italic;
@@ -218,11 +225,13 @@ p.instruction {
 }
 
 #about, #rules, #highScores, #pageNotFound {
-  padding:10vh 0;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
 }
 
 #game, #gameScore {
-  padding:20vh 0;
+  padding-top:20vh;
+  padding-bottom: 20vh;
   text-align: center;
 }
 
@@ -253,7 +262,13 @@ ol.definitions {
 }
 
 /* Input box where user enters synonyms */
-.wordInput {
+.inputContainer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding-left:70px;
+  padding-right:70px;
+}
+input.wordInput {
   color: var(--textColor);
   font-family: var(--monoFont);
   font-size: 14px;
@@ -272,7 +287,7 @@ input.wordInput::placeholder {
   justify-content: center;
   margin:10px 0;
 }
-.roundDescription, .timeDescription {
+.roundDescription, .timeDescription, .rulesFromStart {
   font-family: var(--monoFont);
   color: var(--borderColor);
   font-style: italic;
@@ -360,4 +375,91 @@ table.userSynonyms td {
 }
 .rulesButtonContainer button {
   justify-self: center;
+}
+
+/* person cards in about */
+#cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+#cardContainer .card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "image name"
+                      "image email";
+  grid-column-gap:10px;
+  align-content: center;
+  background:var(--darkBackgroundcolor);
+  border-radius: 10px;
+  padding: 10px;
+}
+#cardContainer .cardImageContainer {
+  grid-area:image;
+}
+#cardContainer img {
+  width:50px; height: 50px;
+}
+#cardContainer .name {
+  grid-area:name;
+  font-size: 20px;
+}
+#cardContainer .email {
+  grid-area: email;
+  font-family: var(--monoFont);
+  font-size: 14px;
+}
+
+#cardContainer .email a {
+  text-decoration:none;
+}
+
+
+@media only screen and (max-width: 600px) {
+  #topBar {
+    height:75px;
+  }
+  #topBar h1 {
+    font-size: 25px;
+  }
+  #openHamburgerMenuButton, .buttonContainer {
+    margin: 0 10px;
+  }
+
+  #content {
+    grid-template-columns: 100vw;
+  }
+  #content > * {
+    padding-left: 20px; padding-right: 20px;
+    box-sizing: border-box;
+  }
+
+  h1.givenWord{
+    font-size:45px;
+  }
+
+  p.instruction {
+    font-size: 20px;
+  }
+
+  .inputContainer {
+    padding:0;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-row-gap: 5px;
+  }
+
+  input.wordInput {
+    font-size: 11px;
+  }
+
+  .inputContainer button {
+    justify-self: center;
+  }
+
+  #hamburgerMenu {
+    width:100vw;
+  }
+
 }

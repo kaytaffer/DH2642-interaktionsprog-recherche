@@ -25,12 +25,13 @@ function rulesView(props){
                 </div>
                 <h1 className="givenWord">[recherché]</h1>
 
-                <input className="wordInput" type = "text"
-                       placeholder="Give us your best synonyms..."
-                       id="wordInput"
-                       style={{ width:"270px" }}
-                        disabled={true}/>
-                <button className="button" disabled={true}>Send</button>
+                <div className="inputContainer">
+                    <input className="wordInput" type = "text"
+                           placeholder="Give us your best synonyms..."
+                           id="wordInput"
+                           disabled={true}/>
+                    <button className="button" disabled={true}>Send</button>
+                </div>
 
                 <ul className="wordList">
                     <li>obscure</li>

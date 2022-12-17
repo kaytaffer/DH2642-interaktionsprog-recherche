@@ -43,16 +43,17 @@ function WordInputView(props){
             <p className="instruction">Write as many synonyms as you can.
                 The rarer the synonym, the more points you get.</p>
 
-            <input className="wordInput" type = "text"
-                   placeholder="Give us your best synonyms..."
-                   id="wordInput"
-                   autoFocus={true}
-                   autoComplete={"off"}
-                   style={{ width:"270px" }}
-                   value = {props.inputText}
-                   onChange={textInputChangeACB}
-                   onKeyDown={keyGoesDownACB}/>
-            <button className="button" onClick={sendButtonClickedACB}>Send</button>
+            <div className="inputContainer">
+                <input className="wordInput" type = "text"
+                       placeholder="Give us your best synonyms..."
+                       id="wordInput"
+                       autoFocus={true}
+                       autoComplete={"off"}
+                       value = {props.inputText}
+                       onChange={textInputChangeACB}
+                       onKeyDown={keyGoesDownACB}/>
+                <button className="button" onClick={sendButtonClickedACB}>Send</button>
+            </div>
 
             <ul className="wordList">
                 {props.enteredWords.map(displayEnteredWordACB)}
