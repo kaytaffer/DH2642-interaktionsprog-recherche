@@ -104,7 +104,9 @@ on a different page. Another page would contain the rules for the different game
 
 `hamburgerMenuView.js` - Shows menu for navigation to the different pages' URLs.
 
-`highScoreView.js` - Shows the all time high score.
+`highScoreView.js` - Shows the all time high scores.
+
+`highScoreInputView.js` - Shows an input box to enter player name for the high score table.
 
 `loadingView.js` - Temporary view that appears while we wait for other views to be rendered.
 
