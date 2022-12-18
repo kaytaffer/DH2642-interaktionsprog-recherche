@@ -1,21 +1,20 @@
 import {wordnik_BASE_URL_WORDS,wordnik_BASE_URL_WORD, wordnik_API_KEY } from "./apiConfig.js"
-import { givenWordPromiseState } from "../../model/atoms.js";
 
-function treatResponseACB(response){
-    //console.log("response",response)
-    if (!response.ok)
-        throw Error("Something horrible happened @ api-call, server returned: " + response.status);
-    else return response.json();
+async function treatResponseACB(response){
+    if (response.ok){
+        return await response.json()
+    }
+    else throw new Error("@ api-call, server returned: " + response.status);
 }
 
 function treatErrorACB(error){
-    console.log(error);
+    console.log(error.message);
 }
 const apiParam ={
     /**
      * TODO: Fix GET method, and add headers
      * Did not find any documentation about this
-     * at https://developer.wordnik.com/docs
+     * at https://developer.wordnik.com/docs∂
      */
     "method": "GET",  // HTTP method
     "headers" : {

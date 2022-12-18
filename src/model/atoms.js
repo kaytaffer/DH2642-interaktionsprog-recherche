@@ -9,17 +9,13 @@ const givenWordPromiseState = selector({
     get: async ({get}) => {
         const round = get(gameRound); //to get new word when new gameround
 
-        //console.log("********** gameround: " + round);
         let limit = 10;
         while(limit > 0) {
             limit--;
             try {
                 const givenWord = extractGivenWord(await getRandomWord());
-                //console.log(givenWord);
                 const definitions = await getDefinitions(givenWord);
                 const synonyms = await getSynonyms(givenWord);
-                // console.log(definitions);
-                // console.log(synonyms);
 
                 return {
                     givenWord,
@@ -28,7 +24,6 @@ const givenWordPromiseState = selector({
                 };
             }
             catch (error) {
-                //console.log("ERROR from get in selector givenWordPromiseState, getting new word")
                 //console.log(error)
             }
         }
