@@ -267,6 +267,8 @@ ol.definitions {
   grid-template-columns: 1fr auto;
   padding-left:70px;
   padding-right:70px;
+  grid-gap: 10px;
+  margin-bottom: 10px;
 }
 input.wordInput {
   color: var(--textColor);

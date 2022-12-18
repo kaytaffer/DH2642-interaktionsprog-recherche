@@ -79,11 +79,11 @@ function rulesView(props){
                 </props.Accordion>
             </div>
 
-            <p>Rare words give higher scores. How rare a word is is determined by how often it
-            is used in the English language. Words that are not correct synonyms give no points.</p>
+            <p>Rare words give higher scores. The rarity of a word is determined by how often it
+                is used in the English language. Words that are not correct synonyms give no points.</p>
 
             <p>Along with the score, you can also see the definition of the word, and some example
-                synonyms. Click the title to see the content.</p>
+                synonyms.</p>
 
             <p>After four more rounds, the game is over. If your score was in the top 10, you can
             enter your name to be added to the {props.highScoreLink}.</p>
