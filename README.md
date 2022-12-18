@@ -54,7 +54,7 @@ These modes will be saved to a permanent leader board using the firebase realtim
 
 **Firebase**
 
-`firebaseModel.js` - Initializes Firebase and our Realtime Database. Contains methods to edit the database. Requires `firebaseConfig.js`.
+`firebasInitialization.js` - Initializes Firebase and our Realtime Database. Contains methods to edit the database. Requires `firebaseConfig.js`.
 
 ### model
 

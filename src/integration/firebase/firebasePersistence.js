@@ -1,6 +1,6 @@
 // ACB updates atom value according to changes in firebase given a snapshot of the database state
 import {get, off, onValue, ref, set} from "firebase/database";
-import {fireBDataB} from "./firebaseModel";
+import {fireBDataB} from "./firebasInitialization";
 
 function onDatabaseChangeACB(snapshot) {
     if (snapshot.exists()) {
