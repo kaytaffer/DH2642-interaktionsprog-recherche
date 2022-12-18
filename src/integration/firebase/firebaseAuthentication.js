@@ -15,15 +15,17 @@ export function signInUser(email, password){
     }).catch((error) => {throw error;});
 } //TODO better error handling for false logins
 
-//TODO enable, subscribe from atom effect
-onAuthStateChanged(fireBAuth, (user) => {
-    if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        // ...
-    } else {
-        // User is signed out
-        // ...
-    }
-});
+export function subscribeToAuthChange(callback) {
+    console.log("adding observer");
+    return onAuthStateChanged(fireBAuth, (user) => {
+         callback(user);
+    });
+}
+
+export function unsubscribeToAuthChange() {
+    onAuthStateChanged(fireBAuth, null);
+}
+
+export function currentUser() {
+    return fireBAuth.currentUser;
+}

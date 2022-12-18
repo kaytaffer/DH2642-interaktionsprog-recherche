@@ -2,6 +2,18 @@ import {atom, atomFamily, selector} from 'recoil';
 import {compareWordsMatch, compareWordsMismatch, createSynonymScoreObject, extractDefinition, extractFrequency, extractSynonyms} from "../utilities/wordUtilities";
 import {getRandomWord, getFrequency, getDefinitions, getSynonyms } from '../integration/API/wordsApiCall';
 import {extractGivenWord} from '../utilities/wordUtilities';
+import {
+    checkEmptyFirebaseDBPath,
+    onLocalChange,
+    subscribeToDBPath,
+    unsubscribeToDBPath
+} from "../integration/firebase/firebasePersistence";
+import {
+    currentUser,
+    subscribeToAuthChange,
+    unsubscribeToAuthChange
+} from "../integration/firebase/firebaseAuthentication";
+import {set} from "firebase/database";
 
 
 const givenWordPromiseState = selector({
@@ -112,5 +124,29 @@ export const totalScoreState = selector({
     key: 'totalScoreState',
     get: ({get}) => {
         return get(scoresPerRoundState).reduce((totalScore, newScore) => totalScore+newScore, 0)
+    }
+})
+
+const userIdStateEffect = () => ({setSelf, trigger}) => {
+    if (trigger === 'get') { // Avoid expensive initialization
+        setSelf(currentUser());
+    }
+    let unsubscribe = subscribeToAuthChange(setSelf);
+    return () => unsubscribe();
+};
+
+export const userState = atom({
+    key: 'userState',
+    default: {},
+    effects: [userIdStateEffect()],
+    dangerouslyAllowMutability: true
+})
+
+export const userIdState = selector({
+    key: 'userIdState',
+    get: ({get}) => {
+        if(get(userState))
+            return get(userState).uid;
+        else return null;
     }
 })
