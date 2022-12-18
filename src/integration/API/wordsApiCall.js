@@ -14,7 +14,7 @@ const apiParam ={
     /**
      * TODO: Fix GET method, and add headers
      * Did not find any documentation about this
-     * at https://developer.wordnik.com/docs∂
+     * at https://developer.wordnik.com/docs
      */
     "method": "GET",  // HTTP method
     "headers" : {
