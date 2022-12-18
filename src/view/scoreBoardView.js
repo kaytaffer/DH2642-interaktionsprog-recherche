@@ -43,6 +43,8 @@ function ScoreBoardView(props){
 
     return (
         <div id="scoreBoard">
+
+            <span className="roundDescription">round {props.round} of {props.maxRound}</span>
             <h1 className="givenWord">[{props.word}]</h1>
 
             <h3>Your synonyms:</h3>
