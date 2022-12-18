@@ -15,9 +15,7 @@ export function checkEmptyFirebaseDBPath(databasePath, callback){
     function treatSnapshotACB(snapshot){
         callback(onDatabaseChangeACB(snapshot))
     }
-    return get(ref(fireBDataB, databasePath)).then(treatSnapshotACB).catch((error) => {
-        console.error(error);
-    })
+    return get(ref(fireBDataB, databasePath)).then(treatSnapshotACB)
 }
 
 export function subscribeToDBPath(databasePath, callback) {

@@ -25,11 +25,14 @@ const syncStorageEffect = () => ({setSelf, onSet, trigger}) => {
 };
 */
 
-const syncStorageEffect = (databasePath) => ({setSelf, onSet, trigger}) => {
+const syncStorageEffect = (databasePath, defaultValue) => ({setSelf, onSet, trigger}) => {
 
 // Initialize atom value to the remote storage state if there is one
     if (trigger === 'get') { // Avoid expensive initialization
-        checkEmptyFirebaseDBPath(databasePath, setSelf)
+        checkEmptyFirebaseDBPath(databasePath, setSelf).catch( () =>
+        {
+            setSelf(defaultValue)
+        })
     }
 
     //Subscribes to changes in the database on the relevant path
@@ -46,11 +49,11 @@ const syncStorageEffect = (databasePath) => ({setSelf, onSet, trigger}) => {
 export const highScoreState = atom({
     key: 'highScoreState',
     default: [],
-    effects: [syncStorageEffect('/highScore/')]
+    effects: [syncStorageEffect('/highScore/'), []]
 })
 
 export const mostRechercheWordState = atomFamily({
     key: 'mostRechercheWord',
     default: null,
-    effects: userID => [syncStorageEffect('/users/' + userID + '/rechercheWord/')]
+    effects: userID => [syncStorageEffect('/users/' + userID + '/rechercheWord/', null)]
 });
