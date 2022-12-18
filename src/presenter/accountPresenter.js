@@ -1,5 +1,5 @@
 import React from "react";
-import AccountView from "../view/authenticationView";
+import AccountView from "../view/accountView";
 
 function Account() {
 
