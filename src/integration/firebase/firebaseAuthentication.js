@@ -1,5 +1,5 @@
 import {fireBAuth} from "./firebasInitialization";
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged }
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut}
     from "firebase/auth";
 
 export function createNewUser(email, password){
@@ -28,4 +28,8 @@ export function unsubscribeToAuthChange() {
 
 export function currentUser() {
     return fireBAuth.currentUser;
+}
+
+export function signOutUser() {
+    return signOut(fireBAuth).catch((error) => { console.log(error) });
 }

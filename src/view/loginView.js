@@ -19,7 +19,7 @@ function LoginView(props) {
             <input type="email" id="loginEmail" placeholder="email"/>
             <label>Password</label>
             <input type="password" id="loginPassword" placeholder="password"/>
-            <input type="submit" id="submit"/>
+            <input type="submit" id="submitLogin"/>
         </form>
 
         <h2>Create Account</h2>
@@ -28,7 +28,7 @@ function LoginView(props) {
             <input type="email" id="createAccountEmail" placeholder="email"/>
             <label>Password</label>
             <input type="password" id="createAccountPassword" placeholder="password"/>
-            <input type="submit" id="submit"/>
+            <input type="submit" id="submitCreateAccount"/>
         </form>
     </div>
 }

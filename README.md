@@ -66,6 +66,8 @@ These modes will be saved to a permanent leader board using the firebase realtim
 
 `aboutPresenter.js` - Passes props to `aboutView.js`.
 
+`accountPresenter.js` - Passes props to `accountView.js` or `loginView.js` depending on if user is logged in.
+
 `gamePresenter.js` - Wrapper for other sub-components and implements a third party component countdown timer `Countdown`.
 
 `gameScorePresenter.js` - Passes props to `gameScoreView.js`.
@@ -99,6 +101,8 @@ These modes will be saved to a permanent leader board using the firebase realtim
 
 `aboutView.js` - Shows information about the game project and it's creators. 
 
+`accountView.js` - Shows user-specific information.
+
 `gameScoreView.js` - Shows the total score from the completed game.
 
 `hamburgerMenuView.js` - Shows menu for navigation to the different pages' URLs.
@@ -108,6 +112,8 @@ These modes will be saved to a permanent leader board using the firebase realtim
 `highScoreInputView.js` - Shows an input box to enter player name for the high score table.
 
 `loadingView.js` - Temporary view that appears while we wait for other views to be rendered.
+
+`loginView.js` - Shows forms for user to log in or sign up with new account.
 
 `pageNotFoundView.js` - Shows error page when user goes to a /path that doesn't exist
 
