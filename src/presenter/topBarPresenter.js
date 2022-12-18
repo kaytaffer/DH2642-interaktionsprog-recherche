@@ -1,9 +1,12 @@
 import React from "react";
 import TopBarView from "../view/topBarView";
 import {useNavigate} from "react-router-dom";
+import {useRecoilValue} from "recoil";
+import {userState} from "../model/atoms";
 
 function TopBar() {
     const navigate = useNavigate();
+    const user = useRecoilValue(userState)
 
     return (
         <TopBarView
@@ -11,7 +14,7 @@ function TopBar() {
             onBackToStart = {() => {navigate('/')}}
             onLogIn = {() => {navigate('/login')}}
             onAccount = {() => {navigate('/account')}}
-            userLoggedIn = {false /*TODO*/}
+            userLoggedIn = {user}
         />
     )
 }
