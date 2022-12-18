@@ -13,7 +13,6 @@ export function createNewUser(name, email, password){
 
 export function signInUser(email, password){
     return signInWithEmailAndPassword(fireBAuth, email, password).then((userCredential) => {
-        console.log("from fbAuth: " +  userCredential.user)
         return userCredential.user; // Signed in
     }).catch((error) => {throw error;});
 } //TODO better error handling for false logins
