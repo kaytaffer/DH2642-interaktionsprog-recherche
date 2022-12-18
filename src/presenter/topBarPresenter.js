@@ -9,6 +9,9 @@ function TopBar() {
         <TopBarView
             showBackToStart = {window.location.pathname === '/game'}
             onBackToStart = {() => {navigate('/')}}
+            onLogIn = {() => {navigate('/login')}}
+            onAccount = {() => {navigate('/account')}}
+            userLoggedIn = {false /*TODO*/}
         />
     )
 }
