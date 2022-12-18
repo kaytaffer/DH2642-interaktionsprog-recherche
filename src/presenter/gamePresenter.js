@@ -9,7 +9,7 @@ import {
     givenWordState,
     scoresPerRoundState,
     enteredWordsState,
-    highestScoringSynonymState
+    bestSynonymThisGameState
 } from "../model/atoms";
 import {useRecoilRefresher_UNSTABLE, useRecoilState, useSetRecoilState} from "recoil";
 
@@ -20,7 +20,7 @@ function Game() {
     const setEnteredWords = useSetRecoilState(enteredWordsState);
     const refreshGivenWord = useRecoilRefresher_UNSTABLE(givenWordState);
     const setTotalScore = useSetRecoilState(scoresPerRoundState);
-    const setHighestScoringSynonym = useSetRecoilState(highestScoringSynonymState);
+    const setHighestScoringSynonym = useSetRecoilState(bestSynonymThisGameState);
 
     //Increases the game round (and therefore triggers a new given word) when player press the
     //"Next word" button in scoreBoardView and deletes entered words from previous round.

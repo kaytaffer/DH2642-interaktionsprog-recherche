@@ -6,7 +6,7 @@ function HighScore() {
     const [highScore, ] = useRecoilState(highScoreState)
 
     return (
-        <HighScoreView highScores={highScore}/>
+        highScore && <HighScoreView highScores={highScore}/>
     )
 }
 export default HighScore;

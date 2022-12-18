@@ -2,18 +2,7 @@ import {atom, atomFamily, selector} from 'recoil';
 import {compareWordsMatch, compareWordsMismatch, createSynonymScoreObject, extractDefinition, extractFrequency, extractSynonyms} from "../utilities/wordUtilities";
 import {getRandomWord, getFrequency, getDefinitions, getSynonyms } from '../integration/API/wordsApiCall';
 import {extractGivenWord} from '../utilities/wordUtilities';
-import {
-    checkEmptyFirebaseDBPath,
-    onLocalChange,
-    subscribeToDBPath,
-    unsubscribeToDBPath
-} from "../integration/firebase/firebasePersistence";
-import {
-    currentUser,
-    subscribeToAuthChange,
-    unsubscribeToAuthChange
-} from "../integration/firebase/firebaseAuthentication";
-import {set} from "firebase/database";
+import {currentUser, subscribeToAuthChange,} from "../integration/firebase/firebaseAuthentication";
 
 
 const givenWordPromiseState = selector({
@@ -39,8 +28,6 @@ const givenWordPromiseState = selector({
                 //console.log(error)
             }
         }
-
-
     },
 });
 
@@ -83,8 +70,8 @@ export const enteredWordsState = atom({
 })
 
 // The highest-scoring synonym entered by the user
-export const highestScoringSynonymState = atom({
-    key: 'highestScoringSynonymState',
+export const bestSynonymThisGameState = atom({
+    key: 'bestSynonymThisGameState',
     default: {word: "none", points: 0}
 })
 
@@ -129,7 +116,6 @@ export const totalScoreState = selector({
 
 const userIdStateEffect = () => ({setSelf, trigger}) => {
     if (trigger === 'get') { // Avoid expensive initialization
-        console.log("getting current user")
         setSelf(currentUser());
     }
     let unsubscribe = subscribeToAuthChange(setSelf);
@@ -169,3 +155,4 @@ export const userDisplayNameState = selector({
         else return null;
     }
 })
+

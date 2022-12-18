@@ -19,7 +19,6 @@ export function signInUser(email, password){
 } //TODO better error handling for false logins
 
 export function subscribeToAuthChange(callback) {
-    console.log("adding observer");
     return onAuthStateChanged(fireBAuth, (user) => {
          callback(user);
     });
@@ -37,14 +36,11 @@ export function signOutUser() {
     return signOut(fireBAuth).catch((error) => { console.log(error) });
 }
 
-
 export function setUserDisplayName(name) {
     updateProfile(fireBAuth.currentUser, {displayName: name})
         .then(() => {
             // Profile updated!
             // ...
         })
-        .catch((error) => {
-            console.log(error)
-        });
+        .catch((error) => {console.log(error)});
 }

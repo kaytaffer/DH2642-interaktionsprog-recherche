@@ -1,4 +1,3 @@
-//TODO present component scoreBoard
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import ScoreBoardView from "../view/scoreBoardView.js";
@@ -10,10 +9,11 @@ import {
     incorrectWordsState,
     scoresPerRoundState,
     synonymsState, gameRound, totalScoreState,
-    highestScoringSynonymState,
+    bestSynonymThisGameState, userIdState,
 } from "../model/atoms.js";
 import Accordion from "./accordionPresenter";
 import {numberOfRounds} from "../utilities/gameUtilities";
+import {mostRechercheWordState} from "../model/persistenceAtoms";
 
 function ScoreBoard(props) {
     const givenWord = useRecoilValue(givenWordState);
@@ -23,12 +23,14 @@ function ScoreBoard(props) {
     const givenWordSynonyms = useRecoilValue(synonymsState);
     const [scoreThisRound, setScoreThisRound] = useState(0);
     const [roundScores, setRoundScores] = useRecoilState(scoresPerRoundState);
-    const [highestScoringSynonym, setHighestScoringSynonym] = useRecoilState(highestScoringSynonymState);
+    const [highestScoringSynonym, setHighestScoringSynonym] = useRecoilState(bestSynonymThisGameState);
     const totalScore = useRecoilValue(totalScoreState);
     const currentGameRound = useRecoilValue(gameRound);
     const navigate = useNavigate()
     const arrayOfExampleSynonyms = getMultipleRandom(givenWordSynonyms);
     const [sortedSynonyms, setSortedSynonyms] = useState([]);
+    const userId = useRecoilValue(userIdState);
+    const [mostRechercheWord, setMostRechercheWord] = useRecoilState(mostRechercheWordState(userId));
 
     function getMultipleRandom(newArray) {
         const shuffled = [...newArray].sort(() => 0.5 - Math.random());
@@ -44,6 +46,9 @@ function ScoreBoard(props) {
           function saveHighestScoringSynonym(synonym){
               if(synonym.points > highestScoringSynonym.points){
                   setHighestScoringSynonym(synonym);
+                  if (!mostRechercheWord || mostRechercheWord.points < synonym.points)
+                      console.log(mostRechercheWord);
+                      setMostRechercheWord(synonym);
               }
         }
         const sortedSynonymsArray = [...userWords].sort(compareSynonymsCB);
@@ -76,7 +81,6 @@ function ScoreBoard(props) {
         setScoreThisRound(roundScore);
         setRoundScores([...roundScores, roundScore]);
         setSortedSynonyms(sortEnteredSynonyms());
-
     }
     React.useEffect( componentWasCreatedACB, [] );
 

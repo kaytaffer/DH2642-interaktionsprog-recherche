@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import GameScoreView from "../view/gameScoreView";
 import {useNavigate} from "react-router-dom";
-import {totalScoreState,highestScoringSynonymState} from "../model/atoms";
+import {totalScoreState,bestSynonymThisGameState} from "../model/atoms";
 import {useRecoilState, useRecoilValue} from "recoil";
 import HighScoreInputView from "../view/highScoreInputView";
 import {highScoreState} from "../model/persistenceAtoms";
@@ -13,7 +13,7 @@ function GameScore() {
     const score = useRecoilValue(totalScoreState);
     const [newHighScorer, setNewHighScorer] = useState('');
     const [highScore, setHighScore] = useRecoilState(highScoreState);
-    const highestScoringSynonym = useRecoilValue(highestScoringSynonymState);
+    const highestScoringSynonym = useRecoilValue(bestSynonymThisGameState);
     const [notEnteredName, setNotEnteredName] = useState(true);
 
     //Navigates to start page

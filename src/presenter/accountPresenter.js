@@ -16,8 +16,6 @@ function Account() {
     const currentUserEmail = useRecoilValue(userEmailState);
     const currentUserNickname = useRecoilValue(userDisplayNameState);
 
-    console.log(currentUser)
-
     function logInACB(email, password) {
         try {
             const user = signInUser(email, password);
@@ -26,14 +24,11 @@ function Account() {
     }
 
     function createAccountACB(name, email, password) {
-        try {
-            const user = createNewUser(name, email, password);
-            console.log(user);
+        try { createNewUser(name, email, password);
         }catch (error){ console.log(error);}
     }
 
     function changeDisplayNameACB(name) {
-        console.log("changing display name")
         setUserDisplayName(name)
     }
 

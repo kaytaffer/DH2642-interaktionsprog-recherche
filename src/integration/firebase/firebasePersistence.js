@@ -6,8 +6,8 @@ function onDatabaseChangeACB(snapshot) {
     if (snapshot.exists()) {
         return snapshot.val()
     } else {
-        console.log("When trying to find persistent high score no data was available");
-        return [];
+        console.log("When trying to find persistent content no data was available");
+        return null;
     }
 }
 
@@ -32,6 +32,6 @@ export function unsubscribeToDBPath (databasePath) {
 }
 
 //On changes in the atom, updates the persistent database.
-export function onLocalChange(databasePath, highScoreObject){
-    return set(ref(fireBDataB, databasePath), highScoreObject)
+export function onLocalChange(databasePath, valueToWrite){
+    return set(ref(fireBDataB, databasePath), valueToWrite)
 }
