@@ -24,10 +24,6 @@ export function subscribeToAuthChange(callback) {
     });
 }
 
-export function unsubscribeToAuthChange() {
-    onAuthStateChanged(fireBAuth, null);
-}
-
 export function currentUser() {
     return fireBAuth.currentUser;
 }

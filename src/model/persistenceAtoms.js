@@ -45,11 +45,11 @@ const syncStorageEffect = (databasePath, defaultValue) => ({setSelf, onSet, trig
     return () => unsubscribeToDBPath(databasePath);
 };
 
-//The highscore atom containing the local highScore.
+//The highScore atom containing the local highScore.
 export const highScoreState = atom({
     key: 'highScoreState',
     default: [],
-    effects: [syncStorageEffect('/highScore/'), []]
+    effects: [syncStorageEffect('/highScore/', [])]
 })
 
 export const mostRechercheWordState = atomFamily({

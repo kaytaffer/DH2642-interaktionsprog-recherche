@@ -1,4 +1,3 @@
-import './App.css';
 import Game from "./presenter/gamePresenter";
 import React from "react";
 import { RecoilRoot } from 'recoil';

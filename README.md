@@ -1,6 +1,6 @@
 # Recherche
 
-A nerdy wordy game about finding rare synonyms, intended for English-speking lexicophiles.
+A nerdy wordy game about finding rare synonyms, intended for English-speaking lexicophiles.
 
 
 [Find the game here](https://recherche-1.web.app/)
@@ -38,8 +38,6 @@ These modes will be saved to a permanent leader board using the firebase realtim
 
 ## File structure (src)
 
-`App.css` - Defines styles for our classes. 
-
 `App.js` -  Renders the game within the `RecoilRoot`. Also defines routes to the different pages' URLs with React Route.
 
 `index.css` - Defines styles for our classes.
@@ -68,7 +66,7 @@ These modes will be saved to a permanent leader board using the firebase realtim
 
 `accountPresenter.js` - Passes props to `accountView.js` or `loginView.js` depending on if user is logged in.
 
-`gamePresenter.js` - Wrapper for other sub-components and implements a third party component countdown timer `Countdown`.
+`gamePresenter.js` - Wrapper for other subcomponents and implements a third party component countdown timer `Countdown`.
 
 `gameScorePresenter.js` - Passes props to `gameScoreView.js`.
 
@@ -107,7 +105,7 @@ These modes will be saved to a permanent leader board using the firebase realtim
 
 `hamburgerMenuView.js` - Shows menu for navigation to the different pages' URLs.
 
-`highScoreView.js` - Shows the all time high scores.
+`highScoreView.js` - Shows the all-time high scores.
 
 `highScoreInputView.js` - Shows an input box to enter player name for the high score table.
 

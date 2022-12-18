@@ -29,7 +29,7 @@ function apiCall(URL){
 /**
  * DOC getRandom: 
  * https://developer.wordnik.com/docs#!/words/getRandomWord
- * (1) ExcludePartOfSpeech, vilka ordklasser som ska exkluderas
+ * (1) ExcludePartOfSpeech, the classes of word to be excluded
  * (2) minCorpusCount bigger value = more common words
  * (*) -1 values are ignored. Can be removed but kept them if
  *     we want to easily change their values.
@@ -54,7 +54,7 @@ function getRandomWord(){
  * DOC getFrequency:
  * https://developer.wordnik.com/docs#!/word/getWordFrequency
  * Returns word usage between *startYear* and *endYear*.
- * We are intersted in the totalCount.
+ * We are interested in the totalCount.
  * 
  */
 function getFrequency(word){
@@ -70,7 +70,7 @@ function getFrequency(word){
  * DOC getDefinitions: 
  * https://developer.wordnik.com/docs#!/word/getDefinitions
  * (1) how many definitions to return.
- * Returns multible object where we are intersted in the "text"
+ * Returns multiple object where we are interested in the "text"
  * attribute.
  */
 function getDefinitions(word){

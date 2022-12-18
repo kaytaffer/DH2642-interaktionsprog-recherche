@@ -8,7 +8,7 @@ import {currentUser, subscribeToAuthChange,} from "../integration/firebase/fireb
 const givenWordPromiseState = selector({
     key: 'givenWordPromiseState',
     get: async ({get}) => {
-        const round = get(gameRound); //to get new word when new gameround
+        get(gameRound); //to get new word when new game round
 
         let limit = 10;
         while(limit > 0) {

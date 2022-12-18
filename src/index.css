@@ -29,11 +29,6 @@ code {
     monospace;
 }
 
-.centered{
-  text-align: center;
-  margin: 0 auto;
-}
-
 .strikethrough{
   color: var(--errorColor);
   text-decoration: line-through;
@@ -90,11 +85,6 @@ button:hover {
   cursor:pointer;
 }
 
-
-/* container for topbar, hamburgermenu and content */
-.container {}
-
-
 /* ---------- Hamburger menu ---------- */
 #hamburgerMenu{
   margin:0; top:0; left:0;
@@ -107,11 +97,6 @@ button:hover {
   box-sizing: border-box;
   font-size: 25px;
   z-index: 1;
-}
-
-/* Button to close hamburger menu (in hamburger menu) */
-#closeHamburgerMenuButton {
-  float:right;
 }
 
 #openHamburgerMenuButton, #closeHamburgerMenuButton {
@@ -244,7 +229,7 @@ h1.givenWord {
   font-size: 60px;
 }
 
-/* wordlist in wordinputview */
+/* wordlist in wordInputView */
 ul.wordList {
   list-style-type: none;
   padding:0;

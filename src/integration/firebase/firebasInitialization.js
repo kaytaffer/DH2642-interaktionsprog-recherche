@@ -6,11 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // TODO: Add other SDKs for Firebase products that we want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-//till exempel:
+//for example:
 //import { getAnalytics } from "firebase/analytics";
 
 //FIREBASE SETUP
 //initializes firebase and relevant SDK:s
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 export const fireBDataB = getDatabase();
 export const fireBAuth = getAuth();
+

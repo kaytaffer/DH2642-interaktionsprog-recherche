@@ -13,7 +13,7 @@ function highScoreInputView(props){
 
     return (
         <div id="newHighScore">
-            <h1>An eloge for a new High Score!</h1>
+            <h1>A new High Score!</h1>
             <input className="wordInput" type = "text"
                    placeholder="Name for the leaderboard..."
                    id="nameInput"

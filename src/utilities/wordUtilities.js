@@ -29,7 +29,7 @@ function extractSynonyms(givenWordSynonymObject){
 //returns the total word usage (higher number = more common)
 function extractFrequency (wordFrequencyObject){
     if(!wordFrequencyObject || wordFrequencyObject.totalCount===0){
-        return 666666;
+        return 666667;
     }
     return wordFrequencyObject.totalCount;
 }
