@@ -124,4 +124,4 @@ These modes will be saved to a permanent leader board using the firebase realtim
 ## Setup to run app on localhost/3300
 * Have Node.js installed
 * Copy contents of git repository to local directory
-* from the local directory, in the terminal, type and run `npm install firebase`, `npm install recoil` & `npm i -D react-router-dom`. When this id done, run `npm start`. 
+* from the local directory, in the terminal, type and run `npm install firebase`, `npm install recoil`, `npm install firebaseui --save` & `npm i -D react-router-dom`. When this id done, run `npm start`. 

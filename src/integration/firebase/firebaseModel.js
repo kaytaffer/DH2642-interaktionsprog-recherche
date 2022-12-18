@@ -2,7 +2,9 @@ import firebaseConfig from "./firebaseConfig";
 
 import { initializeApp } from 'firebase/app';
 import {getDatabase, ref, get, set, onValue, off} from "firebase/database";
-//import {getAuth, signInAnonymously} from "firebase/auth";
+import {getAuth} from "firebase/auth";
+let firebase = require('firebase');
+let firebaseui = require('firebaseui');
 // TODO: Add other SDKs for Firebase products that we want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 //till exempel:
@@ -10,9 +12,12 @@ import {getDatabase, ref, get, set, onValue, off} from "firebase/database";
 
 //FIREBASE SETUP
 //initializes firebase and relevant SDK:s
+
 const app = initializeApp(firebaseConfig);
 export const fireBDataB = getDatabase();
+export let authenticationUI = new firebaseui.auth.AuthUI(firebase.auth());
 //const authentication = getAuth();
+
 
 // ACB updates atom value according to changes in firebase given a snapshot of the database state
 function onDatabaseChangeACB(snapshot) {
@@ -50,14 +55,4 @@ export function onLocalChange(databasePath, highScoreObject){
 }
 
 /* TODO authentication:
-signInAnonymously(authentication)
-    .then(() => {
-        // Signed in..
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ...
-    });
 */
-
