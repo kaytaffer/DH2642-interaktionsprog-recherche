@@ -13,7 +13,7 @@ function highScoreInputView(props){
 
     return (
         <div id="newHighScore">
-            <h1>An eloge for a nova High Score!</h1>
+            <h1>An eloge for a new High Score!</h1>
             <input className="wordInput" type = "text"
                    placeholder="Name for the leaderboard..."
                    id="nameInput"
@@ -22,8 +22,10 @@ function highScoreInputView(props){
                    style={{ width:"270px" }}
                    value = {props.displayName}
                    onChange={textInputChangeACB}
-                   onKeyDown={keyGoesDownACB}/>
-            <button className="button" onClick={sendButtonClickedACB}>Send</button>
+                   onKeyDown={keyGoesDownACB}
+                   hidden ={props.onEnteredName}/>
+            <button className="button" onClick={sendButtonClickedACB} hidden={props.onEnteredName}>Save</button>
+            <p hidden = {!props.onEnteredName}>Name saved to high score list!</p>
         </div>
     );
 }

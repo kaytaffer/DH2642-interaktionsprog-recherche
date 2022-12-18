@@ -6,20 +6,16 @@ import Countdown, {zeroPad} from "react-countdown";
 import Loading from "./loadingPresenter";
 import {
     gameRound,
-    givenWordState,
-    scoresPerRoundState,
     enteredWordsState,
     bestSynonymThisGameState
 } from "../model/atoms";
-import {useRecoilRefresher_UNSTABLE, useRecoilState, useSetRecoilState} from "recoil";
+import {useRecoilState, useSetRecoilState} from "recoil";
 
 function Game() {
 
     const [currentGameRound, setCurrentGameRound] = useRecoilState(gameRound);
     const [roundOver, setRoundOver] = useState(false);
     const setEnteredWords = useSetRecoilState(enteredWordsState);
-    const refreshGivenWord = useRecoilRefresher_UNSTABLE(givenWordState);
-    const setTotalScore = useSetRecoilState(scoresPerRoundState);
     const setHighestScoringSynonym = useSetRecoilState(bestSynonymThisGameState);
 
     //Increases the game round (and therefore triggers a new given word) when player press the
@@ -50,7 +46,7 @@ function Game() {
     if(!roundOver) return (
         <div id="game">
             <React.Suspense fallback={<Loading/>}>
-                <WordInput>
+                <WordInput endGameRound = {roundOverACB}>
                     <Countdown date={Date.now() + roundLength * 1000} onComplete={roundOverACB}
                                precision={3} daysInHours={true} renderer={renderer}/>
                 </WordInput>

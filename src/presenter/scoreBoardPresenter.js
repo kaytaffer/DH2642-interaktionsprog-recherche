@@ -83,7 +83,10 @@ function ScoreBoard(props) {
     }
     React.useEffect( componentWasCreatedACB, [] );
 
-    return <ScoreBoardView word = {givenWord}
+    return <ScoreBoardView
+                    round = {currentGameRound}
+                    maxRound = {numberOfRounds}
+                    word = {givenWord}
                     definition = {definition}
                     userWords = {sortedSynonyms}
                     incorrectUserWords = {incorrectUserWords}

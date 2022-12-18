@@ -44,11 +44,13 @@ function GameScore() {
                 navigateToHighScore = {navigateToHighScoreACB}
                 totalScore = {score}
                 highestScoringSynonym = {highestScoringSynonym}
+                nameSavedToHighScore = {!notEnteredName}
             />
-            {isHighScore(score.toFixed(0), highScore) && notEnteredName &&<HighScoreInputView
+            {isHighScore(score.toFixed(0), highScore)  && <HighScoreInputView
                 displayName = {displayName}
                 onAddEnteredName = {addHighScorerACB}
                 onTextInputChange = {handleHighScorerTextChangeACB}
+                onEnteredName = {!notEnteredName}
             />}
         </div>
     )

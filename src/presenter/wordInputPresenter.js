@@ -36,7 +36,8 @@ function WordInput(props) {
                         onTextInputChange = {handleTextChangeACB}
                         enteredWords = {enteredWords}
                         round = {round}
-                        maxRound = {numberOfRounds}>
+                        maxRound = {numberOfRounds}
+                        endGameRound = {props.endGameRound}>
                 {props.children}
             </WordInputView>
 

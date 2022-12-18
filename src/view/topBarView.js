@@ -27,7 +27,7 @@ function TopBarView(props){
     return (
         <div id="topBar">
             <button id="openHamburgerMenuButton" onClick={showMenuACB}>☰</button>
-            <h1>Recherché</h1>
+            <h1 onClick={props.onBackToStart}>Recherché</h1>
             {rightButton()}
         </div>
     );

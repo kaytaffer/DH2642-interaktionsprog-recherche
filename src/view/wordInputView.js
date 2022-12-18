@@ -15,6 +15,9 @@ function WordInputView(props){
     function displayEnteredWordACB(word){
         return <li key={word}>{word}</li>;
     }
+    function endGameRoundACB(){
+        props.endGameRound()
+    }
 
     const gradientStyle = {background: "linear-gradient(90deg, #7165FA "
             + (100 * props.round / props.maxRound)
@@ -54,6 +57,7 @@ function WordInputView(props){
                        onKeyDown={keyGoesDownACB}/>
                 <button className="button" onClick={sendButtonClickedACB}>Send</button>
             </div>
+            <button className="button" onClick={endGameRoundACB}>End round</button>
 
             <ul className="wordList">
                 {props.enteredWords.map(displayEnteredWordACB)}
