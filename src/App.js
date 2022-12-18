@@ -11,6 +11,8 @@ import HighScore from "./presenter/highScorePresenter";
 import GameScore from "./presenter/gameScorePresenter";
 import PageNotFound from "./presenter/pageNotFoundPresenter";
 import TopBar from "./presenter/topBarPresenter";
+import Authentication from "./presenter/authenticationPresenter";
+import Account from "./presenter/accountPresenter";
 
 export default
 function App() {
@@ -28,6 +30,8 @@ function App() {
                         <Route path="/rules" element={<Rules/>} />
                         <Route path="/highscore" element={<HighScore/>} />
                         <Route path="/gamescore" element={<GameScore/>} />
+                        <Route path="/authentication" element={<Authentication/>}/>
+                        <Route path="/account" element={<Account/>}/>
                         <Route path="*" element={<PageNotFound/>}/>
                     </Routes>
                 </div>
