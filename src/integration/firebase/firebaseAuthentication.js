@@ -1,11 +1,14 @@
 import {fireBAuth} from "./firebasInitialization";
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut}
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile}
     from "firebase/auth";
 
-export function createNewUser(email, password){
-    return createUserWithEmailAndPassword(fireBAuth, email, password).then((userCredential) => {
-        return userCredential.user;// Signed in
-    }).catch((error) => { throw error;});
+export function createNewUser(name, email, password){
+    return createUserWithEmailAndPassword(fireBAuth, email, password)
+                .then((userCredential) => {
+                    updateProfile(fireBAuth.currentUser, {displayName: name})
+                        .then(() => {/* Profile updated!*/});
+                    return userCredential.user;// Signed in
+                }).catch((error) => { throw error;});
 }//TODO better error handling for already existing creations -> redirect to login
 
 export function signInUser(email, password){
@@ -32,4 +35,16 @@ export function currentUser() {
 
 export function signOutUser() {
     return signOut(fireBAuth).catch((error) => { console.log(error) });
+}
+
+
+export function setUserDisplayName(name) {
+    updateProfile(fireBAuth.currentUser, {displayName: name})
+        .then(() => {
+            // Profile updated!
+            // ...
+        })
+        .catch((error) => {
+            console.log(error)
+        });
 }

@@ -8,7 +8,8 @@ function LoginView(props) {
 
     function createAccountACB(e) {
         e.preventDefault();
-        props.onCreateAccount(document.getElementById("createAccountEmail").value,
+        props.onCreateAccount(document.getElementById("createAccountName").value,
+            document.getElementById("createAccountEmail").value,
             document.getElementById("createAccountPassword").value);
     }
 
@@ -24,6 +25,8 @@ function LoginView(props) {
 
         <h2>Create Account</h2>
         <form onSubmit={createAccountACB}>
+            <label>Name</label>
+            <input type="name" id="createAccountName" placeholder="name"/>
             <label>Email</label>
             <input type="email" id="createAccountEmail" placeholder="email"/>
             <label>Password</label>

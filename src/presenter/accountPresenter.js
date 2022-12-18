@@ -1,14 +1,22 @@
 import React from "react";
 import AccountView from "../view/accountView";
 import {useRecoilValue} from "recoil";
-import {userIdState, userState} from "../model/atoms";
-import {createNewUser, signInUser, signOutUser} from "../integration/firebase/firebaseAuthentication";
+import {userEmailState, userIdState, userDisplayNameState, userState} from "../model/atoms";
+import {
+    createNewUser,
+    setUserDisplayName,
+    signInUser,
+    signOutUser
+} from "../integration/firebase/firebaseAuthentication";
 import LoginView from "../view/loginView";
 
 function Account() {
     const currentUser = useRecoilValue(userState);
     const currentUserId = useRecoilValue(userIdState);
+    const currentUserEmail = useRecoilValue(userEmailState);
+    const currentUserNickname = useRecoilValue(userDisplayNameState);
 
+    console.log(currentUser)
 
     function logInACB(email, password) {
         try {
@@ -17,15 +25,23 @@ function Account() {
         }catch (error){ console.log(error);}
     }
 
-    function createAccountACB(email, password) {
+    function createAccountACB(name, email, password) {
         try {
-            const user = createNewUser(email, password);
+            const user = createNewUser(name, email, password);
             console.log(user);
         }catch (error){ console.log(error);}
     }
 
+    function changeDisplayNameACB(name) {
+        console.log("changing display name")
+        setUserDisplayName(name)
+    }
+
     return ( <div>
         {currentUser &&<AccountView userId={currentUserId}
+                                    userEmail={currentUserEmail}
+                                    userDisplayName={currentUserNickname}
+                                    onChangeDisplayName={changeDisplayNameACB}
                                     onSignOut={signOutUser}/>}
         {!currentUser && <LoginView onLogin={logInACB}
                                     onCreateAccount={createAccountACB}/>}

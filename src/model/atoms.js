@@ -129,6 +129,7 @@ export const totalScoreState = selector({
 
 const userIdStateEffect = () => ({setSelf, trigger}) => {
     if (trigger === 'get') { // Avoid expensive initialization
+        console.log("getting current user")
         setSelf(currentUser());
     }
     let unsubscribe = subscribeToAuthChange(setSelf);
@@ -147,6 +148,24 @@ export const userIdState = selector({
     get: ({get}) => {
         if(get(userState))
             return get(userState).uid;
+        else return null;
+    }
+})
+
+export const userEmailState = selector({
+    key: 'userEmailState',
+    get: ({get}) => {
+        if(get(userState))
+            return get(userState).email;
+        else return null;
+    }
+})
+
+export const userDisplayNameState = selector({
+    key: 'userDisplayNameState',
+    get: ({get}) => {
+        if(get(userState))
+            return get(userState).displayName;
         else return null;
     }
 })
