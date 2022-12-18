@@ -59,8 +59,8 @@ function ScoreBoardView(props){
                 Total score: <span className="number">{props.totalScore.toFixed(0)}</span>
             </p>
 
-            <button className="button" onClick={navigateToNextWordACB} hidden={props.lastRound}>Next word</button>
-            <button className="button" onClick={navigateToGameScoreACB} hidden = {!props.lastRound}>Game Score</button>
+            <button className="button" onClick={navigateToNextWordACB} hidden={props.lastRound}>Next round</button>
+            <button className="button" onClick={navigateToGameScoreACB} hidden = {!props.lastRound}>Game Score!</button>
 
             <props.Accordion title="Definitions">
                 <ol className="definitions">
