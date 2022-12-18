@@ -1,11 +1,7 @@
 //RELEVANT IMPORTS
 import {atom} from 'recoil';
-import {
-    checkEmptyFirebaseDBPath,
-    onLocalChange,
-    subscribeToDBPath,
-    unsubscribeToDBPath
-} from "../integration/firebase/firebaseModel";
+import {checkEmptyFirebaseDBPath, onLocalChange, subscribeToDBPath,unsubscribeToDBPath}
+    from "../integration/firebase/firebasePersistence";
 
 //RECOIL EFFECTS:
 

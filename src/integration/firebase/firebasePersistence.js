@@ -1,25 +1,7 @@
-import firebaseConfig from "./firebaseConfig";
-
-import { initializeApp } from 'firebase/app';
-import {getDatabase, ref, get, set, onValue, off} from "firebase/database";
-import {getAuth} from "firebase/auth";
-let firebase = require('firebase');
-let firebaseui = require('firebaseui');
-// TODO: Add other SDKs for Firebase products that we want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-//till exempel:
-//import { getAnalytics } from "firebase/analytics";
-
-//FIREBASE SETUP
-//initializes firebase and relevant SDK:s
-
-const app = initializeApp(firebaseConfig);
-export const fireBDataB = getDatabase();
-export let authenticationUI = new firebaseui.auth.AuthUI(firebase.auth());
-//const authentication = getAuth();
-
-
 // ACB updates atom value according to changes in firebase given a snapshot of the database state
+import {get, off, onValue, ref, set} from "firebase/database";
+import {fireBDataB} from "./firebasInitialization";
+
 function onDatabaseChangeACB(snapshot) {
     if (snapshot.exists()) {
         return snapshot.val()
@@ -53,6 +35,3 @@ export function unsubscribeToDBPath (databasePath) {
 export function onLocalChange(databasePath, highScoreObject){
     return set(ref(fireBDataB, databasePath), highScoreObject)
 }
-
-/* TODO authentication:
-*/
