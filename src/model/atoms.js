@@ -10,7 +10,7 @@ const givenWordPromiseState = selector({
     get: async ({get}) => {
         get(gameRound); //to get new word when new game round
 
-        let limit = 10;
+        let limit = 50;
         while(limit > 0) {
             limit--;
             try {
@@ -25,7 +25,7 @@ const givenWordPromiseState = selector({
                 };
             }
             catch (error) {
-                //console.log(error)
+                console.log("Getting new word...");
             }
         }
     },
