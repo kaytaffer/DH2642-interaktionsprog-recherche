@@ -9,7 +9,7 @@ function TopBarView(props){
         if(props.showBackToStart)
             return (
                 <div className="buttonContainer">
-                    <span>exit game</span> <button className="button" onClick={props.onBackToStart}>X</button>
+                    <span hidden={!props.showExplanation}>exit game</span> <button className="button" onClick={props.onBackToStart}>X</button>
                 </div>)
         if(props.userLoggedIn)
             return (
