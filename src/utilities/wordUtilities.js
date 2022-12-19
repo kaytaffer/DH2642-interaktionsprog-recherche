@@ -1,5 +1,3 @@
-//TODO add more
-
 // Utility methods concerning processing words
 
 //DATA EXTRACTION functions from API-calls

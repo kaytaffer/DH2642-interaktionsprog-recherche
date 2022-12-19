@@ -1,5 +1,3 @@
-//TODO add more
-
 // Utility methods concerning game logic here:
 
 export const roundLength = 40;

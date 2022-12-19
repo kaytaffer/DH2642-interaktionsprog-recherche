@@ -10,13 +10,13 @@ export function createNewUser(name, email, password){
                                 return userCredential.user; /*signed in*/
                             })
                 })
-}//TODO better error handling for already existing creations -> redirect to login
+}
 
 export function signInUser(email, password){
     return signInWithEmailAndPassword(fireBAuth, email, password).then((userCredential) => {
         return userCredential.user; // Signed in
     })
-} //TODO better error handling for false logins
+}
 
 export function subscribeToAuthChange(callback) {
     return onAuthStateChanged(fireBAuth, (user) => {
