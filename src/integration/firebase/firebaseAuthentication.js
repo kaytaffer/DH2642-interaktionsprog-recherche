@@ -5,7 +5,6 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateC
 export function createNewUser(name, email, password){
     return createUserWithEmailAndPassword(fireBAuth, email, password)
                 .then((userCredential) => {
-                    console.log("did we get here");
                     updateProfile(fireBAuth.currentUser, {displayName: name})
                             .then(() => {
                                 return userCredential.user; /*signed in*/
