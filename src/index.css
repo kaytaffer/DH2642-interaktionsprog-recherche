@@ -144,7 +144,9 @@ button:hover {
 }
 
 /* Recherché title at top */
-#topBar h1 {}
+#topBar h1:hover {
+  cursor:pointer;
+}
 
 #topBar.hide #openHamburgerMenuButton, #topBar.hide h1 {
   opacity:0;
