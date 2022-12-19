@@ -8,7 +8,7 @@ import {
     signOutUser
 } from "../integration/firebase/firebaseAuthentication";
 import LoginView from "../view/loginView";
-import {mostRechercheWordState} from "../model/persistenceAtoms";
+import {mostRechercheWordState, usersBestGameState} from "../model/persistenceAtoms";
 
 function Account() {
     const currentUser = useRecoilValue(userState);
@@ -17,6 +17,7 @@ function Account() {
     const currentUserNickname = useRecoilValue(userDisplayNameState);
     const bestWord = useRecoilValue(mostRechercheWordState(currentUserId))
     const [error, setError] = useState(null);
+    const bestGame = useRecoilValue(usersBestGameState(currentUserId));
 
     function logInACB(email, password) {
         signInUser(email, password)
@@ -66,6 +67,7 @@ function Account() {
                                     userEmail={currentUserEmail}
                                     userDisplayName={currentUserNickname}
                                     bestWord = {bestWord}
+                                    bestGame = {bestGame}
                                     onSignOut={signOutUser}/>}
         {!currentUser && <LoginView onLogin={logInACB}
                                     onCreateAccount={createAccountACB}

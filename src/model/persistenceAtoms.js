@@ -57,3 +57,9 @@ export const mostRechercheWordState = atomFamily({
     default: null,
     effects: userID => [syncStorageEffect('/users/' + userID + '/rechercheWord/', null)]
 });
+
+export const usersBestGameState = atomFamily({
+    key: 'usersBestGameState',
+    default: null,
+    effects: userID => [syncStorageEffect('/users/' + userID + '/bestGame/', null)]
+});
