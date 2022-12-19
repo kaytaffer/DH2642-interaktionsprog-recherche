@@ -46,7 +46,7 @@ function ScoreBoard(props) {
           function saveHighestScoringSynonym(synonym){
               if(synonym.points > highestScoringSynonym.points){
                   setHighestScoringSynonym(synonym);
-                  if (!mostRechercheWord || mostRechercheWord.points < synonym.points)
+                  if (userId && (!mostRechercheWord || parseInt(mostRechercheWord.points) < parseInt(synonym.points)))
                       setMostRechercheWord(synonym);
               }
         }

@@ -19,7 +19,7 @@ export function calculateScoreFromFrequency(frequency){
  */
 export function isHighScore(score, highScores){
     function isThereALowerHighScoreCB(currentHighScore){
-        return currentHighScore.score < score;
+        return parseInt(currentHighScore.score) < parseInt(score);
     }
     return ((highScores.length < maxHighScoreHolders) || highScores.find(isThereALowerHighScoreCB));
 }

@@ -1,7 +1,7 @@
 function highScoreInputView(props){
 
-    function textInputChangeACB(event){
-        props.onTextInputChange(event)
+    function textInputChangeACB(){
+        props.onTextInputChange(document.getElementById("nameInput").value)
     }
     function sendButtonClickedACB(){
         props.onAddEnteredName();
@@ -20,7 +20,7 @@ function highScoreInputView(props){
                    autoFocus={true}
                    autoComplete={"off"}
                    style={{ width:"270px" }}
-                   value = {props.displayName}
+                   value = {props.nameInputValue}
                    onChange={textInputChangeACB}
                    onKeyDown={keyGoesDownACB}
                    hidden ={props.onEnteredName}/>

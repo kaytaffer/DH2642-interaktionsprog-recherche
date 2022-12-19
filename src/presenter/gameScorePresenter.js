@@ -11,11 +11,11 @@ function GameScore() {
 
     const navigate = useNavigate();
     const score = useRecoilValue(totalScoreState);
-    const [newHighScorer, setNewHighScorer] = useState('');
     const [highScore, setHighScore] = useRecoilState(highScoreState);
     const highestScoringSynonym = useRecoilValue(bestSynonymThisGameState);
     const [notEnteredName, setNotEnteredName] = useState(true);
     const displayName = useRecoilValue(userDisplayNameState);
+    const [newHighScorer, setNewHighScorer] = useState(displayName) || '';
 
     //Navigates to start page
     function navigateToStartACB(){
@@ -28,8 +28,8 @@ function GameScore() {
     }
 
     //triggers re-rendering of input text
-    const handleHighScorerTextChangeACB = (event) => {
-        setNewHighScorer(event.target.value);
+    const handleHighScorerTextChangeACB = (name) => {
+        setNewHighScorer(name);
     };
 
     //Adds a new high score holder to the leaderboard.
@@ -47,7 +47,7 @@ function GameScore() {
                 nameSavedToHighScore = {!notEnteredName}
             />
             {isHighScore(score.toFixed(0), highScore)  && <HighScoreInputView
-                displayName = {displayName}
+                nameInputValue = {newHighScorer}
                 onAddEnteredName = {addHighScorerACB}
                 onTextInputChange = {handleHighScorerTextChangeACB}
                 onEnteredName = {!notEnteredName}
