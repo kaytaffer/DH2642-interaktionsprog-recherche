@@ -1,8 +1,9 @@
 import React from "react";
 import StartScreenView from "../view/startScreenView";
 import {useNavigate,Link} from "react-router-dom";
-import {useRecoilRefresher_UNSTABLE, useSetRecoilState} from "recoil";
+import {useRecoilRefresher_UNSTABLE, useRecoilValue, useSetRecoilState} from "recoil";
 import {enteredWordsState, gameRound, givenWordState, scoresPerRoundState} from "../model/atoms";
+import {userState} from "../model/atoms";
 
 function StartScreen() {
     const navigate = useNavigate()
@@ -10,6 +11,7 @@ function StartScreen() {
     const setTotalScore = useSetRecoilState(scoresPerRoundState);
     const setEnteredWords = useSetRecoilState(enteredWordsState);
     const setCurrentGameRound = useSetRecoilState(gameRound);
+    const userStatus = useRecoilValue(userState)
 
     //Navigates to game and refreshes the necessary states.
     function startNewGameACB(){
@@ -21,7 +23,8 @@ function StartScreen() {
     }
     return (
         <StartScreenView onGameStart = {startNewGameACB}
-                        Link={Link}/>
+                        Link={Link}
+                         userIsLoggedIn = {userStatus}/>
     )
 }
 export default StartScreen;
