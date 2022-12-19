@@ -47,7 +47,7 @@ function GameScore() {
                 nameSavedToHighScore = {!notEnteredName}
             />
             {isHighScore(score.toFixed(0), highScore)  && <HighScoreInputView
-                nameInputValue = {newHighScorer}
+                nameInputValue = {newHighScorer || ''}
                 onAddEnteredName = {addHighScorerACB}
                 onTextInputChange = {handleHighScorerTextChangeACB}
                 onEnteredName = {!notEnteredName}

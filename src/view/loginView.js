@@ -16,23 +16,33 @@ function LoginView(props) {
     return <div id="login">
         <h2>Login</h2>
         <form onSubmit={loginACB}>
-            <label>Email</label>
-            <input type="email" id="loginEmail" placeholder="email"/>
-            <label>Password</label>
-            <input type="password" id="loginPassword" placeholder="password"/>
-            <input type="submit" id="submitLogin"/>
+            <div>
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="email" className="loginInput"/>
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="password" className="loginInput"/>
+            </div>
+            <input type="submit" id="submitLogin" className="button"/>
         </form>
         {props.error && props.error.form === 'login' && <p className="error">{props.error.error}</p>}
 
         <h2>Create Account</h2>
         <form onSubmit={createAccountACB}>
-            <label>Name</label>
-            <input type="name" id="createAccountName" placeholder="name"/>
-            <label>Email</label>
-            <input type="email" id="createAccountEmail" placeholder="email"/>
-            <label>Password</label>
-            <input type="password" id="createAccountPassword" placeholder="password"/>
-            <input type="submit" id="submitCreateAccount"/>
+            <div>
+                <label>Name</label>
+                <input type="name" id="createAccountName" placeholder="name" className="loginInput"/>
+            </div>
+            <div>
+                <label>Email</label>
+                <input type="email" id="createAccountEmail" placeholder="email" className="loginInput"/>
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="password" id="createAccountPassword" placeholder="password" className="loginInput"/>
+            </div>
+            <input type="submit" id="submitCreateAccount" className="button"/>
         </form>
         {props.error && props.error.form === 'createAccount' && <p className="error">{props.error.error}</p>}
     </div>
