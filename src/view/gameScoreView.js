@@ -12,10 +12,28 @@ function GameScoreView(props){
     return (
         <div>
             <h1>Game Score</h1>
-            <p>Total score: <span className="number">{props.totalScore.toFixed(0)}</span></p>
-            <p>Highest-scoring synonym: <span className="number">{props.highestScoringSynonym.word} {props.highestScoringSynonym.points.toFixed(0)} points</span></p>
-            <span><button className="button" onClick={navigateToStartACB}>Back to start!</button>
-                <button className="button" onClick={navigateToHighScoreACB}>To High Scores!</button></span>
+
+            <div className="containerForAllStats">
+                <div className="statContainer">
+                    <h4>total score:</h4>
+                    <div className="innerStatContainer">
+                        <h1 className="totalScore">{props.totalScore.toFixed(0)}</h1>
+                    </div>
+                </div>
+
+                <div className="statContainer">
+                    <h4>best word:</h4>
+                    <div className="innerStatContainer">
+                        <h1 className="bestWord">{props.highestScoringSynonym.word}</h1>
+                        <span className="points number"> {props.totalScore.toFixed(0)} points</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className="buttonContainer">
+                <button className="button" onClick={navigateToStartACB}>Back to start!</button>
+                <button className="button" onClick={navigateToHighScoreACB}>To High Scores!</button>
+            </div>
         </div>
     );
 }

@@ -222,6 +222,11 @@ p.instruction {
   text-align: center;
 }
 
+#gameScore button {
+  justify-self: center;
+  margin:10px;
+}
+
 /* individual pages: #start, #game, #about, #rules, #highScores, #gameScore, #pageNotFound */
 
 /* individual game parts: #wordInput #scoreBoard*/
@@ -450,19 +455,32 @@ table.userSynonyms td {
 #account h3 {
   margin-top: 0;
 }
-#account h4 {
+
+/* stats */
+.containerForAllStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+  justify-items: stretch;
+}
+.statContainer h4 {
   font-size: 15px;
   margin-bottom: 0;
   font-family: var(--monoFont);
   font-style: italic;
   padding-left: 10px;
 }
-.bestWordContainer {
+.innerStatContainer {
   background: var(--darkBackgroundcolor);
   padding: 20px;
   display: grid;
   justify-items: center;
   margin-bottom: 40px;
+  height: 120px;
+}
+.statContainer h1.totalScore {
+  font-family: var(--monoFont);
+  color:var(--darkAccentColor)
 }
 
 @media only screen and (max-width: 600px) {
@@ -509,6 +527,10 @@ table.userSynonyms td {
 
   #hamburgerMenu {
     width:100vw;
+  }
+
+  .containerForAllStats {
+    grid-gap: 5px;
   }
 
 }
