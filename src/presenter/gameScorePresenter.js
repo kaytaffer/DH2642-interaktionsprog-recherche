@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import GameScoreView from "../view/gameScoreView";
 import {useNavigate} from "react-router-dom";
-import {totalScoreState, bestSynonymThisGameState, userDisplayNameState} from "../model/atoms";
+import {totalScoreState, bestSynonymThisGameState, userDisplayNameState, userIdState} from "../model/atoms";
 import {useRecoilState, useRecoilValue} from "recoil";
 import HighScoreInputView from "../view/highScoreInputView";
-import {highScoreState} from "../model/persistenceAtoms";
+import {highScoreState, usersBestGameState} from "../model/persistenceAtoms";
 import {addNewHighScore, isHighScore} from "../utilities/gameUtilities";
 
 function GameScore() {
@@ -16,6 +16,8 @@ function GameScore() {
     const [notEnteredName, setNotEnteredName] = useState(true);
     const displayName = useRecoilValue(userDisplayNameState);
     const [newHighScorer, setNewHighScorer] = useState(displayName) || '';
+    const userId = useRecoilValue(userIdState);
+    const [bestUserScore, setBestUserScore] = useRecoilState(usersBestGameState(userId));
 
     //Navigates to start page
     function navigateToStartACB(){
@@ -37,6 +39,13 @@ function GameScore() {
         setHighScore(addNewHighScore(highScore, newHighScorer, score.toFixed(0)));
         setNotEnteredName(false);
     }
+
+    function componentWasCreatedACB() {
+        if(userId && (!bestUserScore || parseInt(bestUserScore.score) < parseInt(score))) {
+            setBestUserScore({score, date: Date.now()})
+        }
+    }
+    React.useEffect( componentWasCreatedACB, [] );
 
     return (<div id="gameScore">
             <GameScoreView
