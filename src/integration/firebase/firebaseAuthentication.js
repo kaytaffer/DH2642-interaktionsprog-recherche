@@ -3,18 +3,22 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateC
     from "firebase/auth";
 
 export function createNewUser(name, email, password){
-    return createUserWithEmailAndPassword(fireBAuth, email, password)
+    let f = createUserWithEmailAndPassword(fireBAuth, email, password)
                 .then((userCredential) => {
+                    console.log("did we get here");
                     updateProfile(fireBAuth.currentUser, {displayName: name})
-                        .then(() => {/* Profile updated!*/});
-                    return userCredential.user;// Signed in
-                }).catch((error) => { throw error;});
+                            .then(() => {
+                                return userCredential.user; /*signed in*/
+                            })
+                })
+    console.log(f);
+    return f;
 }//TODO better error handling for already existing creations -> redirect to login
 
 export function signInUser(email, password){
     return signInWithEmailAndPassword(fireBAuth, email, password).then((userCredential) => {
         return userCredential.user; // Signed in
-    }).catch((error) => {throw error;});
+    })
 } //TODO better error handling for false logins
 
 export function subscribeToAuthChange(callback) {
@@ -34,8 +38,7 @@ export function signOutUser() {
 export function setUserDisplayName(name) {
     updateProfile(fireBAuth.currentUser, {displayName: name})
         .then(() => {
-            // Profile updated!
-            // ...
+            console.log("user name set")
         })
         .catch((error) => {console.log(error)});
 }
