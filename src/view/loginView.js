@@ -22,6 +22,7 @@ function LoginView(props) {
             <input type="password" id="loginPassword" placeholder="password"/>
             <input type="submit" id="submitLogin"/>
         </form>
+        {props.error && props.error.form === 'login' && <p className="error">{props.error.error}</p>}
 
         <h2>Create Account</h2>
         <form onSubmit={createAccountACB}>
@@ -33,6 +34,7 @@ function LoginView(props) {
             <input type="password" id="createAccountPassword" placeholder="password"/>
             <input type="submit" id="submitCreateAccount"/>
         </form>
+        {props.error && props.error.form === 'createAccount' && <p className="error">{props.error.error}</p>}
     </div>
 }
 

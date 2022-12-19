@@ -1,10 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import AccountView from "../view/accountView";
 import {useRecoilValue} from "recoil";
 import {userEmailState, userIdState, userDisplayNameState, userState} from "../model/atoms";
 import {
     createNewUser,
-    setUserDisplayName,
     signInUser,
     signOutUser
 } from "../integration/firebase/firebaseAuthentication";
@@ -17,31 +16,60 @@ function Account() {
     const currentUserEmail = useRecoilValue(userEmailState);
     const currentUserNickname = useRecoilValue(userDisplayNameState);
     const bestWord = useRecoilValue(mostRechercheWordState(currentUserId))
+    const [error, setError] = useState(null);
 
     function logInACB(email, password) {
-        try {
-            signInUser(email, password);
-        }catch (error){ console.log(error);}
+        signInUser(email, password)
+            .then(() => {
+                setError(null);
+            })
+            .catch((error) => {
+                setError({form:'login', error: getErrorMessage(error)})
+            });
     }
 
     function createAccountACB(name, email, password) {
-        try { createNewUser(name, email, password);
-        }catch (error){ console.log(error);}
+        if(name === '') {
+            setError({form: 'createAccount', error: 'Enter a non-empty display name.'})
+            return;
+        }
+        createNewUser(name, email, password)
+            .then(() => {
+                setError(null);
+            })
+            .catch((error) => {
+                setError({form:'createAccount', error: getErrorMessage(error)})
+                throw error;
+            });
     }
 
-    function changeDisplayNameACB(name) {
-        setUserDisplayName(name)
+    function getErrorMessage(error) {
+        if(error.message.includes('email-already-exists'))
+            return 'Email already exists.'
+        if(error.message.includes('invalid-display-name'))
+            return 'Choose a non-empty display name.'
+        if(error.message.includes('invalid-password'))
+            return 'Choose a password that is least 6 characters.'
+        if(error.message.includes('user-not-found'))
+            return 'No user with the entered email was found.'
+        if(error.message.includes('wrong-password'))
+            return 'Wrong password!'
+        if(error.message.includes('weak-password'))
+            return 'Choose a password that is least 6 characters.'
+        if(error.message.includes('email-already-in-use'))
+            return 'Email already exists.'
+        return error.message;
     }
 
     return ( <div>
         {currentUser &&<AccountView userId={currentUserId}
                                     userEmail={currentUserEmail}
                                     userDisplayName={currentUserNickname}
-                                    onChangeDisplayName={changeDisplayNameACB}
                                     bestWord = {bestWord}
                                     onSignOut={signOutUser}/>}
         {!currentUser && <LoginView onLogin={logInACB}
-                                    onCreateAccount={createAccountACB}/>}
+                                    onCreateAccount={createAccountACB}
+                                    error={error}/>}
     </div>)
 }
 export default Account;
