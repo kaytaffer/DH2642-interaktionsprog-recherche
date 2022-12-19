@@ -25,7 +25,9 @@ function GameScoreView(props){
                     <h4>best word:</h4>
                     <div className="innerStatContainer">
                         <h1 className="bestWord">{props.highestScoringSynonym.word}</h1>
-                        <span className="points number"> {props.totalScore.toFixed(0)} points</span>
+                        <span className="points number">
+                            {props.highestScoringSynonym.points.toFixed(0)} points
+                        </span>
                     </div>
                 </div>
             </div>

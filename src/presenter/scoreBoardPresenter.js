@@ -31,6 +31,7 @@ function ScoreBoard(props) {
     const [sortedSynonyms, setSortedSynonyms] = useState([]);
     const userId = useRecoilValue(userIdState);
     const [mostRechercheWord, setMostRechercheWord] = useRecoilState(mostRechercheWordState(userId));
+    const [newBestWord, setNewBestWord] = useState();
 
     function getMultipleRandom(newArray) {
         const shuffled = [...newArray].sort(() => 0.5 - Math.random());
@@ -46,8 +47,11 @@ function ScoreBoard(props) {
           function saveHighestScoringSynonym(synonym){
               if(synonym.points > highestScoringSynonym.points){
                   setHighestScoringSynonym(synonym);
-                  if (userId && (!mostRechercheWord || parseInt(mostRechercheWord.points) < parseInt(synonym.points)))
+                  if (userId && (!mostRechercheWord || parseInt(mostRechercheWord.points) < parseInt(synonym.points))) {
+                      console.log(mostRechercheWord)
+                      setNewBestWord(synonym);
                       setMostRechercheWord(synonym);
+                  }
               }
         }
         const sortedSynonymsArray = [...userWords].sort(compareSynonymsCB);
@@ -87,6 +91,7 @@ function ScoreBoard(props) {
                     round = {currentGameRound}
                     maxRound = {numberOfRounds}
                     word = {givenWord}
+                    newBestWord = {newBestWord}
                     definition = {definition}
                     userWords = {sortedSynonyms}
                     incorrectUserWords = {incorrectUserWords}

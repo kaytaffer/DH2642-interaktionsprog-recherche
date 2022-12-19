@@ -23,7 +23,7 @@ const apiParam ={
 }
 
 function apiCall(URL){
-    return fetch(URL,apiParam).then(treatResponseACB).catch(treatErrorACB);
+    return fetch(URL,apiParam).then(treatResponseACB);
 }
 
 /**

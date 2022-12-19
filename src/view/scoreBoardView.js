@@ -47,6 +47,8 @@ function ScoreBoardView(props){
             <span className="roundDescription">round {props.round} of {props.maxRound}</span>
             <h1 className="givenWord">[{props.word}]</h1>
 
+            {props.newBestWord && <p className="instruction">Congratulations! You got a new all-time best word, <b>{props.newBestWord.word}</b> with {props.newBestWord.points.toFixed(0)} points.</p> }
+
             <h3>Your synonyms:</h3>
             <table className="userSynonyms">
                 <tbody>

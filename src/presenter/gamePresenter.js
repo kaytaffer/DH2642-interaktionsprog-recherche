@@ -7,9 +7,10 @@ import Loading from "./loadingPresenter";
 import {
     gameRound,
     enteredWordsState,
-    bestSynonymThisGameState
+    bestSynonymThisGameState, userIdState
 } from "../model/atoms";
-import {useRecoilState, useSetRecoilState} from "recoil";
+import {useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
+import {mostRechercheWordState} from "../model/persistenceAtoms";
 
 function Game() {
 
@@ -17,6 +18,8 @@ function Game() {
     const [roundOver, setRoundOver] = useState(false);
     const setEnteredWords = useSetRecoilState(enteredWordsState);
     const setHighestScoringSynonym = useSetRecoilState(bestSynonymThisGameState);
+    const userId = useRecoilValue(userIdState);
+    const usersBestWord = useRecoilValue(mostRechercheWordState(userId)); // update
 
     //Increases the game round (and therefore triggers a new given word) when player press the
     //"Next word" button in scoreBoardView and deletes entered words from previous round.
