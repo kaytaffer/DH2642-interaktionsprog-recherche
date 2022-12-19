@@ -65,7 +65,7 @@ h2{
 
 
 /* ---------- Standard buttons ---------- */
-button.button {
+button.button, input.button {
   font-size: 14px;
   color: var(--textColor);
   background: var(--lightBackgroundColor);
@@ -257,7 +257,7 @@ ol.definitions {
   grid-gap: 10px;
   margin-bottom: 10px;
 }
-input.wordInput {
+input.wordInput, input.loginInput  {
   color: var(--textColor);
   font-family: var(--monoFont);
   font-size: 14px;
@@ -433,6 +433,36 @@ table.userSynonyms td {
 .highScoreScore{
   font-family: var(--monoFont);
   color: var(--darkAccentColor);
+}
+
+/* login form */
+#login form > div {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+/* account page */
+#account h2 {
+  margin-block-end: 0;
+}
+#account h3 {
+  margin-top: 0;
+}
+#account h4 {
+  font-size: 15px;
+  margin-bottom: 0;
+  font-family: var(--monoFont);
+  font-style: italic;
+  padding-left: 10px;
+}
+.bestWordContainer {
+  background: var(--darkBackgroundcolor);
+  padding: 20px;
+  display: grid;
+  justify-items: center;
+  margin-bottom: 40px;
 }
 
 @media only screen and (max-width: 600px) {
