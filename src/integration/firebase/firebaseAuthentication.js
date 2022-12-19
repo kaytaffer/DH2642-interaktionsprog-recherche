@@ -3,7 +3,7 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateC
     from "firebase/auth";
 
 export function createNewUser(name, email, password){
-    let f = createUserWithEmailAndPassword(fireBAuth, email, password)
+    return createUserWithEmailAndPassword(fireBAuth, email, password)
                 .then((userCredential) => {
                     console.log("did we get here");
                     updateProfile(fireBAuth.currentUser, {displayName: name})
@@ -11,8 +11,6 @@ export function createNewUser(name, email, password){
                                 return userCredential.user; /*signed in*/
                             })
                 })
-    console.log(f);
-    return f;
 }//TODO better error handling for already existing creations -> redirect to login
 
 export function signInUser(email, password){
